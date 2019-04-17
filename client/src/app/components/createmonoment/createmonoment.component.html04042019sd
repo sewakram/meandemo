@@ -1,0 +1,178 @@
+<div class="page-wrapper">
+  <div class="animated slideInUp">
+      <div class="page-header-wrapp">
+          <div class="page-header-text">
+             <h2 class="page-header">New monument inventory interface</h2>
+             <span class="page-header-content">Two side monument validation schema</span>
+          </div>
+      </div>
+<div class="createmonument-body">      
+    <!-- <div class="container"> -->
+    <form class="form-signin" (ngSubmit)="createMonument()" #dataForm="ngForm" enctype="multipart/form-data">
+      <div class="row createmonument-statistic">
+              <div class="col-md-6">
+                    <!-- <input type="file" ng2FileSelect [uploader]="uploader" multiple /> -->
+                                    <!-- <button type="button" class="btn btn-success btn-s" (click)="uploader.uploadAll()"
+                                      [disabled]="!uploader.getNotUploadedItems().length">
+                                      <span class="glyphicon glyphicon-upload"></span> Upload all
+                                    </button> -->
+                                    <span class="createmonument-statistic-content">Image preview</span>
+                                        <div class="createmonument-btn btn btn-warning fileinput-button">
+                                          <span><i class="material-icons">filter_none</i>Load gallery</span>
+                                          <!-- The file input field used as target for the file upload widget -->
+                                          <input type='file' (change)="onSelectFile($event)" id="fileupload" name="m_image[]"  multiple>
+                                        </div>
+                    <!-- <input type='file' (change)="onSelectFile($event)" id="m_image" name="m_image"  multiple> -->
+                    <!-- <button>Load gallery</button> -->
+                    <!-- <img *ngFor='let url of urls' [src]="url" height="200"> <br />
+                    <button type="submit" class="region btn btn-light">Send</button> -->
+                    <!-- galll start -->
+                    <ngb-carousel *ngIf="urls">
+                      <ng-template ngbSlide *ngFor='let url of urls'>
+                        <!-- <span>{{url}}</span> -->
+                        <img  [src]="url"  alt="Random first slide">
+                        <div class="carousel-caption">
+                          <h3>First slide label</h3>
+                          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                        </div>
+                      </ng-template>
+                      <!-- <ng-template ngbSlide>
+                        <img [src]="images[1]" alt="Random second slide">
+                        <div class="carousel-caption">
+                          <h3>Second slide label</h3>
+                          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                      </ng-template>
+                      <ng-template ngbSlide>
+                        <img [src]="images[2]" alt="Random third slide">
+                        <div class="carousel-caption">
+                          <h3>Third slide label</h3>
+                          <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                        </div>
+                      </ng-template> -->
+                    </ngb-carousel>
+                    <span>{{ url}}</span>
+                    <button type="submit" (click)="sendgallery(images)" class="region btn btn-light">Send</button>
+                    <!-- gall end -->
+                
+              </div>
+              <div class="col-md-6"> 
+                <div class="createmonument-statistic-form">
+                    <span class="createmonument-label">Monument interface</span>
+                      <!-- {{Latitude.value | json}} -->
+                      <input type="text" id="lat"  class="form-control map-text-box1" attr.data-lat="{{Latitude.value}}" placeholder="Latitude" #Latitude [ngModel]="data.lat" (ngModelChange)="holaUpdate(Latitude)" name="lat">
+                      <input id="lng"  class="form-control map-text-box2" type="text" #Longitude  attr.data-lng="{{Longitude.value}}" [(ngModel)]="aValue" placeholder="Longitude" name="lng">
+                      <div (mouseenter) ="mouseEnter() "  (mouseleave) ="mouseLeave()" id="mapm"></div>
+                   
+                    <div class="createmonument-form">
+                      <div class="form-group row">
+                        <label class="for-label col-md-4">Location</label>
+                        <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" [(ngModel)]="model">
+                          <input required type="text"  id="location" class="form-control" placeholder="Enter an address or reference" [(ngModel)]="data.address" name="address">
+                          <!-- <label ngbButtonLabel class="btn-primary">
+                            <input ngbButton type="radio" [value]="1"> Left (pre-checked)
+                          </label> -->
+                          <label ngbButtonLabel class="btn-light">
+                            <input ngbButton type="radio" value="middle"> Public
+                          </label>
+                          <label ngbButtonLabel class="btn-light">
+                            <input ngbButton type="radio" [value]="false"> Business
+                          </label>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label for="sel1" class="for-label col-md-4">Assigned block {{ this.nearest | json }}</label>
+                        <select [(ngModel)]="data.block" class="form-control for-inputbox col-md-4" id="sel1" name="block">
+                          <option>Select a type</option>
+                          <option>Mupi</option>
+                          <option>Transmupi</option>
+                          <option>Valla</option>
+                          <option>Pasarela</option>
+                        </select>
+                      </div>
+                        
+                    
+                      <div class="form-group row">
+                        <label for="sel1" class="for-label col-md-4">Type</label>
+                        <select class="form-control for-inputbox col-md-4" [(ngModel)]="data.type" id="sel1" name="type">
+                          <option>Select a type</option>
+                          <option>Mupi</option>
+                          <option>Transmupi</option>
+                          <option>Valla</option>
+                          <option>Pasarela</option>
+                        </select>
+                        <button type="submit" class="manage-faces btn btn-light" >
+                          <span (click)="open(faces)">Manage faces<i class="material-icons">filter_none</i></span>
+                        </button>
+                      </div>
+
+                      <div class="form-group row">
+                        <label for="sel1" class="for-label col-md-4">Provider</label>
+                        <select class="form-control for-inputbox col-md-4" id="sel1" [(ngModel)]="data.provider" name="provider">
+                          <option>Select an option</option>
+                          <option>Select an option</option>
+                          <option>GPO Vallas</option>
+                          <option>Publigrafik</option>
+                          <option>Top Media</option>
+                        </select>
+                      
+                      </div>
+
+                      <div class="form-group row">
+                        <label class="for-label col-md-4">Notes</label>
+                        <input required type="text" class="form-control for-inputbox col-md-4" placeholder="Enter an optional note for reference"
+                          [(ngModel)]="data.notes" name="notes">
+                      </div>
+                  
+                  
+                    <div class="modal-footer">
+                    <button type="submit" class="set-reference btn btn-light">
+                      <span class="set-reference-content">Set references <i class="material-icons">aspect_ratio</i></span>
+                    </button>
+                    <button type="submit" class="reset btn btn-light" >Cancel & Reset</button>
+                    <button type="submit" class="footer-direction btn btn-light" [disabled]="!dataForm.form.valid"><i class="material-icons"> room</i>Create Monument</button>
+                    </div>
+                  </div>
+            </div>
+              </div>
+      </div>        
+    </form>
+</div><!-- </div> -->
+</div>
+</div>
+
+<ng-template #faces let-c="close" let-d="dismiss">
+  <div class="modal-country animated fadeIn">
+      <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Create a new country</h4>
+          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+              <span aria-hidden="true" class="close-icon"><i class="material-icons">
+                  close
+                  </i></span>
+          </button>
+      </div>
+
+      <form class="form-signin" (ngSubmit)="createCountry()" #dataForm="ngForm">
+
+          <div class="modal-body" style="height:100%">
+              <div class="form-group">
+                  <!-- <input type="text" class="form-control" placeholder="Enter a country name" required> -->
+                  <input type="text" id="pac-input"  data-mapdata="" class="form-control map-text-box" [(ngModel)]="data.cname" name="cname"
+                      placeholder="Enter a country name" required>
+              </div>
+              <div class="form-group">
+                  <div id="map" class="mapc form-control"></div>
+              </div>
+
+              <!-- <input id="pac-input" class="controls" type="text" placeholder="Search Box"> -->
+          </div>
+
+
+          <div class="modal-footer">
+              <button type="submit" class="country btn btn-light" [disabled]="!dataForm.form.valid">Create country </button>
+          </div>
+
+      </form>
+  </div>
+</ng-template>

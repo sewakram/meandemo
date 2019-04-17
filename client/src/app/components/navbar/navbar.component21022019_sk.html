@@ -1,0 +1,130 @@
+ <!-- <div class="row row-offcanvas row-offcanvas-left"> -->
+        <nav class="sidebar" id="sidebar" role="navigation" *ngIf="navbarservice.visible">
+            <a class="navbar-brand text-center" [routerLink]="['/']"><img class="logo" src="http://adsmart.tech/assets/images/logo-adsmart.png"></a>
+    
+            <ul class="nav flex-column ">
+              <!--  <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
+            <a class="nav-link" [routerLink]="['/']">Home <span></span></a>
+          </li> -->
+            <li class="nav-item" *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
+          
+            <a class="nav-link" [routerLink]="['/dashboard']">   
+              <span>Dashboard</span> 
+            </a>
+          </li>
+             <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
+            <a class="nav-link" [routerLink]="['/hierarchy']">Hierarchy<span></span></a>
+              <ul class="inner-item">
+              <li>
+                  <a class="nav-link" [routerLink]="['/dependency']" ><span>Dependency</span> </a>
+              </li>
+              <li>
+               <a class="nav-link" [routerLink]="['/monuments']"><span>Monuments</span> </a>
+              </li>
+               
+              </ul>    
+          </li>
+            <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
+            <a class="nav-link" [routerLink]="['/usertypes']">User types<span></span></a>
+            <ul class="inner-item">
+              <li>
+                  <a class="nav-link" [routerLink]="['/']" ><span>Administrators</span> </a>
+              </li>
+              <li>
+               <a class="nav-link" [routerLink]="['/']"><span>Operators</span> </a>
+              </li>
+                <li>
+                    <a class="nav-link" [routerLink]="['/']"><span> Verifiers</span> </a>
+               </li>
+              <li>
+                    <a class="nav-link" [routerLink]="['/']"><span> Resellers</span> </a>
+              </li>
+               <li>
+                     <a class="nav-link" [routerLink]="['/']"><span>   Customers</span> </a>
+             </li>
+            </ul>
+          </li>
+            <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
+            <a class="nav-link" [routerLink]="['/advertisement']">Advertisement setup<span></span></a>
+               <ul class="inner-item">
+              <li>
+                  <a class="nav-link" [routerLink]="['/']" ><span>Categories</span> </a>
+              </li>
+              <li>
+               <a class="nav-link" [routerLink]="['/']"><span>Types</span> </a>
+              </li>
+                <li>
+                    <a class="nav-link" [routerLink]="['/']"><span> Brands</span> </a>
+               </li>
+              <li>
+                    <a class="nav-link" [routerLink]="['/']"><span> Providers</span> </a>
+              </li>
+               <li>
+                     <a class="nav-link" [routerLink]="['/']"><span> Cycles</span> </a>
+             </li>
+            </ul>
+
+          </li>
+            <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
+            <a class="nav-link" [routerLink]="['/globalheatmap']">Global Heatmap<span></span></a>
+          </li>
+        <!--   <li class="nav-item" *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
+            <a class="nav-link" [routerLink]="['/profile']">Profile </a>
+          </li> -->
+          <li class="nav-item" *ngIf="show" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
+            <a class="nav-link" *ngIf="!authService.loggedIn()" [routerLink]="['/login']">Login </a>
+          </li>
+          <li class="nav-item" *ngIf="!authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
+            <a class="nav-link" [routerLink]="['/register']">Register</a>
+          </li>
+        <!--   <br>
+          <br>
+          <br> -->
+
+          <li class="nav-item" *ngIf="authService.loggedIn()"><a class="nav-link" (click)="onLogoutClick()" href="#">Logout</a>
+          </li>
+            </ul>
+     
+        </nav>
+
+
+
+
+
+
+
+
+
+
+
+
+<!--  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      <a class="navbar-brand" href="#"><img class="logo" src="http://adsmart.tech/assets/images/logo-adsmart.png"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
+            <a class="nav-link" [routerLink]="['/']">Home <span></span></a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item" *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
+            <a class="nav-link" [routerLink]="['/dashboard']">Dashboard </a>
+          </li>
+          <li class="nav-item" *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
+            <a class="nav-link" [routerLink]="['/profile']">Profile </a>
+          </li>
+          <li class="nav-item" *ngIf="!authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
+            <a class="nav-link" [routerLink]="['/login']">Login </a>
+          </li>
+          <li class="nav-item" *ngIf="!authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
+            <a class="nav-link" [routerLink]="['/register']">Register</a>
+          </li>
+          <li class="nav-item" *ngIf="authService.loggedIn()"><a class="nav-link" (click)="onLogoutClick()" href="#">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </nav> -->

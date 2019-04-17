@@ -1,0 +1,97 @@
+/* .container {max-width: 1040px;} */
+/* >>>>>>>>>>>>Header content starts<<<<<<<<<< */
+* {font-family: 'PT Sans';}
+* i.material-icons{
+  font-family: 'Material Icons';
+}
+.page-wrapper {
+  margin-left: 275px;
+  margin-right: 20px;
+  margin-top: 20px;
+  padding: 0 10px;
+}
+/* .container-fluid {width: 100%;padding-left: 150px;padding-right: 0px;} */
+.page-wrapper .page-header-wrapp {
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+  width: 100%;  
+}
+.page-wrapper .page-header-wrapp .page-header {font-size: 24px;color:#030303;margin-bottom:0;}
+.page-wrapper .page-header-wrapp .page-header-text {margin-right: auto;padding-right:15px;}
+.page-wrapper .page-header-wrapp .page-header-text .back-btn {
+  background-color: transparent;
+  border: 0 none;
+  outline: 0 none;
+  margin-left: -15px;
+  margin-bottom: 10px;
+  font-size: 15px;
+  font-weight: 400;
+}
+.page-wrapper .page-header-wrapp .page-header-text .back-btn i{
+  font-size: 18px;
+  vertical-align: middle;
+  margin-top: -2px;
+  /* margin-left: 5px;   */
+}
+
+.page-wrapper .page-header-wrapp .page-header-btn .monument-header-direction {
+  background-color: #ffce00;
+  border: 0 none;
+  box-shadow: none;
+  outline: 0 none;
+  color: #fff;
+  font-size: 14px;
+  font-weight: normal;
+  vertical-align: middle;
+  height: 43px;
+  line-height: 43px;
+  border-radius: 6px;
+  padding: 0 22px;
+  max-width: 190px;
+  transition: all 0.3s;
+  width: 100%;
+  min-width: 190px;
+  display: inline-block; 
+}
+.page-wrapper  .page-header-wrapp .page-header-btn .monument-header-direction:hover {
+  background-color: #ecbf00;
+}
+.page-wrapper  .page-header-wrapp .page-header-btn .monument-header-direction i {
+  font-size: 18px;
+  vertical-align: middle;
+  margin-top: -2px;
+  margin-left: 5px;  
+}
+.page-wrapper  .page-header-content{font-size: 13px;color:#a3a4ac;}
+/* >>>>>>>>>>>>Header content starts<<<<<<<<<< */
+
+/* >>>>>>>>>>>>List box starts<<<<<<<<<< */
+.page-wrapper .monuments-body .for-margin-class {margin:0;}
+.page-wrapper .monuments-body .col-md-2{border:1px solid #f5f6f8;padding-top: 15px;/*border-radius: 5px;*/}
+.page-wrapper .monuments-body .col-md-2:nth-child(-n+5){/*border-top:none;*/border-left: none;}
+.page-wrapper .monuments-body .col-md-2:last-child{width:100%;border-right: none;}
+.page-wrapper .monuments-body .monument-logics{color: #91929C;font-weight: 400;font-size: 13px;}
+.page-wrapper .monuments-body .monument-logics .box-title {
+  color: #9e9fa8;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  display: flex;
+  align-items: center;  
+  font-size: 14px;
+}
+.page-wrapper .monuments-body .monument-logics .box-title i {margin-left:auto;}
+/* >>>>>>>>>>>>List box ends<<<<<<<<<< */
+
+/* >>>>>>>>>>>> dropdown button for lists starts<<<<<<<<<<< */
+.page-wrapper .monuments-body .monument-logics .monument-statistic-content .dropdown-toggle a {text-decoration: none;color: #C4CAD2; font-size: 13px;}
+.page-wrapper .monuments-body .monument-logics .monument-statistic-content button.btn.btn-light.dropdown-toggle.float-right {border: 0 none;}
+.page-wrapper .monuments-body .monument-logics .monument-statistic-content button.btn.btn-light.dropdown-toggle:hover {border: 0 none;}
+.page-wrapper .monuments-body .monument-logics .monument-statistic-content button.btn.btn-light.dropdown-toggle:focus {outline:0 none;border: 0 none;}
+.page-wrapper .monuments-body .monument-logics .monument-statistic-content .dropdown-toggle .icons {font-size: 13px;color: #C4CAD2;font-family: 'Material Icons';margin: 4px 0 0px 0;}
+.page-wrapper .monuments-body .monument-logics{align-items: center;}
+.page-wrapper .monuments-body .monument-logics .monument-statistic-content .dropdown-toggle{text-align: left;font-size: 9px;float:right;align-content: left;border-radius: 5px;background-color:whitesmoke;width:100%;color:#C4CAD2;}
+.page-wrapper .monuments-body .monument-logics .monument-statistic-content .dropdown-toggle {margin-left: 5.255em;margin-top: 10px;margin-bottom: 20px;}
+.page-wrapper .monuments-body .monument-logics .monument-statistic-content .dropdown-toggle::after {/* margin: 3.255em; */margin-left: 3.255em;display:none}
+/* >>>>>>>>>>>>>> dropdown button for lists ends<<<<<<<<<<<<<<< */

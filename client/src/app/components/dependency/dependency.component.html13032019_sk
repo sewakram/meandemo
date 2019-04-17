@@ -1,0 +1,1082 @@
+<div class="container">
+    <div class="container-fluid">
+        <div class="page-header">
+            <span style="font-size: 24px">Dependency</span>
+            <button type="button" class="btn btn-warning btn-sm float-right">
+                <a class="dependency-header-direction text-center" href="#">Add Monuments <i
+                        class="material-icons fwd-arrow">arrow_forward</i></a>
+            </button>
+            <p class="page-header-content">Structure and dependency logics</p>
+            <!-- mapppppppppppppppppppppppppp -->
+            <!-- <input type="text" name="test" id="edit_country" placeholder="search box">
+                    <div id="mapec"></div> -->
+            <!-- <h1>dssssssssssss</h1> -->
+            <!-- mapppppppppppppppppppppppppp -->
+        </div>
+
+
+        <div class="dependency-body">
+            <div class="row ">
+                <div class="col-md-2">
+                    <div class="dependency-logics">
+                        <span> Countries <i class="material-icons icons" placement="top" ngbTooltip="Add a new country"
+                                (click)="opencountry(country)">add</i></span>
+                        
+                        <!-- search box starts -->
+                        <div class="search-box">
+                            <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="modelc"
+                                [ngbTypeahead]="searchc"  placeholder="Search" [resultTemplate]="rt" (selectItem)="onSelectc($event)"
+                        [inputFormatter]="formatter" />
+                            <i class="material-icons search-icon">search</i>
+                        </div>
+                         <!-- <hr> -->
+                        <!-- <pre>Model: {{ modelc | json }}</pre> -->
+                        <!-- Search box ends -->
+
+
+                        <div class="list text-left">
+
+
+
+                            <div class="sub-list" *ngFor="let country of countrys">
+                                <div *ngIf="country; then thenBlockc else elseBlockc"></div>
+                                    <ng-template #thenBlockc>
+                                        <!-- Content to render when condition is true. -->
+                                    <span>{{country.cname}}</span>
+                                    <div class="dropdown">
+
+                                    <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="material-icons">more_vert</i>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <button class="dropdown-item" (click)="openeditc(countryedit,country.id)" >
+                                        Edit country
+                                    </button>
+                                    <button class="dropdown-item" (click)="opendeletec(countrydelete,country.id)">Delete
+                                        country</button>
+                                    </div>
+                                    </div>
+                                    </ng-template>
+
+                                    <ng-template #elseBlockc>
+                                        <!-- Content to render when condition is false. -->
+                                        <span>{{country.cname}}</span>
+                                            <div class="dropdown">
+
+                                            <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="material-icons">more_vert</i>
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <button class="dropdown-item" (click)="openeditc(countryedit,country.id)" >
+                                                Edit country
+                                            </button>
+                                            <button class="dropdown-item" (click)="opendeletec(countrydelete,country.id)">Delete
+                                                country</button>
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                            </div>
+                            <!-- <div class="sub-list">
+                                <span>Gautemala </span>
+                                <div class="dropdown">
+
+                                    <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <button class="dropdown-item" (click)="open(countryedit,country.id)">Edit Country</button>
+                                        <button class="dropdown-item" (click)="open(countrydelete)">Delete Country</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sub-list">
+                                <span>Mexico </span>
+                                <div class="dropdown">
+
+                                    <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <button class="dropdown-item" (click)="open(countryedit,country.id)">Edit Country</button>
+                                            <button class="dropdown-item" (click)="open(countrydelete)">Delete Country</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sub-list">
+                                <span>Panama</span>
+                                <div class="dropdown">
+
+                                    <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <button class="dropdown-item" (click)="open(countryedit,country.id)">Edit Country</button>
+                                            <button class="dropdown-item" (click)="open(countrydelete)">Delete Country</button>
+                                    </div>
+                                </div>
+                            </div> -->
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="dependency-logics">
+                            <div *ngIf="countryid; then thenenables else thendisables"></div>
+                            <ng-template #thenenables>
+                            <span> States <i class="material-icons icons" placement="top" ngbTooltip="Add a new state"
+                            (click)="openstate(state)">add</i> </span>
+                            </ng-template>
+                            <ng-template #thendisables>
+                            <span> States <i class="material-icons icons" placement="top" ngbTooltip="Add a new state"
+                            >add</i> </span>
+                            </ng-template>
+                        
+
+                        
+                        <!-- search box starts -->
+
+                        <div class="search-box">
+                            <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="models" [ngbTypeahead]="searchs" placeholder="Search" [resultTemplate]="rts" [inputFormatter]="formatters" (selectItem)="onSelects($event)"/>
+                            <i class="material-icons search-icon">search</i>
+                        </div>
+                        <!-- <hr> -->
+                        <!-- <pre>Model: {{ models.id ? models.id:'' | json }}</pre> -->
+                        <!-- search box ends -->
+
+                        <div class="list text-left">
+                            <div class="sub-list" *ngFor="let state of statesbycid">
+                                <span>{{state.sname}} </span>
+                                <div class="dropdown">
+
+                                    <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <button class="dropdown-item" (click)="openedits(stateedit,state.id)">Edit State</button>
+                                            <button class="dropdown-item" (click)="opendeletes(statedelete,state.id)">Delete State</button>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <!-- <div class="sub-list">
+                                <span>Gautemala</span>
+                                <div class="dropdown">
+
+                                    <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <button class="dropdown-item" (click)="open(stateedit)">Edit State</button>
+                                            <button class="dropdown-item" (click)="open(focusFirst)">Delete State</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sub-list">
+                                <span>Quetzaltenango</span>
+                                <div class="dropdown">
+
+                                    <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <button class="dropdown-item" (click)="open(stateedit)">Edit State</button>
+                                            <button class="dropdown-item" (click)="open(focusFirst)">Delete State</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sub-list">
+                                <span>Huehuetenango</span>
+                                <div class="dropdown">
+
+                                    <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <button class="dropdown-item" (click)="open(stateedit)">Edit State</button>
+                                            <button class="dropdown-item" (click)="open(focusFirst)">Delete State</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sub-list">
+                                <span> Retalhuleu</span>
+                                <div class="dropdown">
+
+                                    <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <button class="dropdown-item" (click)="open(stateedit)">Edit State</button>
+                                            <button class="dropdown-item" (click)="open(focusFirst)">Delete State</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sub-list">
+                                <span>Peten</span>
+                                <div class="dropdown">
+
+                                    <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <button class="dropdown-item" (click)="open(stateedit)">Edit State</button>
+                                            <button class="dropdown-item" (click)="open(focusFirst)">Delete State</button>
+                                    </div>
+                                </div>
+                            </div> -->
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="dependency-logics">
+                        <span> Regions <i class="material-icons icons" placement="top" ngbTooltip="Add a new region"
+                                (click)="openregion(region)">add</i> </span>
+                         
+                        <!-- search box starts -->
+                        <div class="search-box">
+                            <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="modelr"
+                                [ngbTypeahead]="searchr" placeholder="Search" [resultTemplate]="rtr" [inputFormatter]="formatterr" (selectItem)="onSelectr($event)"/>
+                            <i class="material-icons search-icon">search</i>
+                        </div>
+                        <!-- <pre>Model: {{ modelr.id }}</pre> -->
+                        <!-- search box ends -->
+                        <div class="list text-left">
+                            <div class="sub-list" *ngFor="let region of regionsbysid">
+                                <span>{{region.rname}}</span>
+                                <div class="dropdown">
+
+                                    <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <button class="dropdown-item" (click)="openeditr(regionedit,region.id)">Edit Region</button>
+                                            <button class="dropdown-item" (click)="opendeleter(regiondelete,region.id)">Delete State</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="sub-list">
+                                <span> Área metropolitana de la ciudad de Guatemala </span>
+                                <div class="dropdown">
+
+                                    <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <button class="dropdown-item" (click)="open(countryedit)">Edit Region</button>
+                                            <button class="dropdown-item" (click)="open(focusFirst)">Delete Region</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sub-list">
+                                <span>Fraijanes y rededores </span>
+                                <div class="dropdown">
+
+                                    <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <button class="dropdown-item" (click)="open(countryedit)">Edit Region</button>
+                                            <button class="dropdown-item" (click)="open(focusFirst)">Delete Region</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sub-list">
+                                <span>Muxbal y rededores </span>
+                                <div class="dropdown">
+
+                                    <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <button class="dropdown-item" (click)="open(countryedit)">Edit Region</button>
+                                            <button class="dropdown-item" (click)="open(focusFirst)">Delete Region</button>
+                                    </div>
+                                </div>
+                            </div> -->
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="dependency-logics">
+                        <span> Routes <i class="material-icons icons" placement="top" ngbTooltip="Add a new route"
+                                (click)="openroute(route)">add</i></span>
+                        <!-- search box starts -->
+
+                        <div class="search-box">
+                            <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="modelro"
+                                [ngbTypeahead]="searchro" placeholder="Search" [resultTemplate]="rtro" [inputFormatter]="formatterro" (selectItem)="onSelectro($event)"/>
+                            <i class="material-icons search-icon">search</i>
+                        </div>
+                        <hr>
+                        <!-- <pre>Model: {{ modelro.rname }}</pre> -->
+                        <!-- search box ends -->
+
+                        <div class="list text-left">
+                            <div class="sub-list" *ngFor="let route of routesbyrid">
+                                <span>{{route.rname}} </span>
+                                <div class="dropdown">
+
+                                    <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <button class="dropdown-item" (click)="openeditro(routeedit,route.id)">Edit Route</button>
+                                            <button class="dropdown-item" (click)="opendeletero(routedelete,route.id)">Delete Route</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="sub-list">
+                                <span>Avenida Reforma Zona 9</span>
+                                <div class="dropdown">
+
+                                    <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <button class="dropdown-item" (click)="open(countryedit)">Edit Route</button>
+                                            <button class="dropdown-item" (click)="open(focusFirst)">Delete Route</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sub-list">
+                                <span>Boulevard Principal da</span>
+                                <div class="dropdown">
+
+                                    <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <button class="dropdown-item" (click)="open(countryedit)">Edit Route</button>
+                                            <button class="dropdown-item" (click)="open(focusFirst)">Delete Route</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sub-list">
+                                <span>Boulevard austriaco Principal da</span>
+                                <div class="dropdown">
+
+                                    <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <button class="dropdown-item" (click)="open(countryedit)">Edit Route</button>
+                                            <button class="dropdown-item" (click)="open(focusFirst)">Delete Route</button>
+                                    </div>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-2">
+                    <div class="dependency-logics">
+                        <span> Blocks <i class="material-icons icons" placement="top" ngbTooltip="Add a new block"
+                                (click)="openblock(block)">add</i></span>
+                        <!-- search box starts -->
+
+                        <div class="search-box">
+                            <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="modelb"
+                                [ngbTypeahead]="searchb" placeholder="Search" [resultTemplate]="rtb"
+                        [inputFormatter]="formatterb" />
+                            <i class="material-icons search-icon">search</i>
+                        </div>
+                        
+                        <!-- search box ends -->
+                        <div class="scrollbar" id="scroll">
+                        <div class="list text-left">
+                            <div class="force-flow" >
+                                
+                            <div class="sub-list" *ngFor="let block of blocksbyroid">
+                                <span>{{block.bname}} </span>
+                                <div class="dropdown">
+
+                                    <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <button class="dropdown-item" (click)="openeditb(blockedit,block.id)">Edit Block</button>
+                                            <button class="dropdown-item" (click)="open(focusFirst)">Delete Block</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- <div class="sub-list" >
+                                <span >Desde 9 calle hasta 17 aveni</span>
+                                <div class="dropdown">
+
+                                    <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <button class="dropdown-item" (click)="open(countryedit)">Edit Block</button>
+                                            <button class="dropdown-item" (click)="open(focusFirst)">Delete Block</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="sub-list" >
+                                <span >Avenida principal de</span>
+                                <div class="dropdown">
+
+                                    <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <button class="dropdown-item" (click)="open(countryedit)">Edit Block</button>
+                                            <button class="dropdown-item" (click)="open(focusFirst)">Delete Block</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="sub-list" >
+                                <span >Desde 10 calle</span>
+                                <div class="dropdown">
+
+                                    <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <button class="dropdown-item" (click)="open(countryedit)">Edit Block</button>
+                                            <button class="dropdown-item" (click)="open(focusFirst)">Delete Block</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sub-list" >
+                                <span >Calle EI Arriyo</span>
+                                <div class="dropdown">
+
+                                    <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <button class="dropdown-item" (click)="open(countryedit)">Edit Block</button>
+                                            <button class="dropdown-item" (click)="open(focusFirst)">Delete Block</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sub-list" >
+                                <span >Desde 9 calle hasta 17 aveni</span>
+                                <div class="dropdown">
+
+                                    <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <button class="dropdown-item" (click)="open(countryedit)">Edit Block</button>
+                                            <button class="dropdown-item" (click)="open(focusFirst)">Delete Block</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sub-list" >
+                                <span >Avenida principal de</span>
+                                <div class="dropdown">
+
+                                    <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <button class="dropdown-item" (click)="open(countryedit)">Edit Block</button>
+                                            <button class="dropdown-item" (click)="open(focusFirst)">Delete Block</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sub-list" >
+                                <span >Desde 10 calle</span>
+                                <div class="dropdown">
+
+                                    <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <button class="dropdown-item" (click)="open(countryedit)">Edit Block</button>
+                                            <button class="dropdown-item" (click)="open(focusFirst)">Delete Block</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sub-list">
+                                <span >Calle EI Arriyo</span>
+                                <div class="dropdown">
+
+                                    <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <button class="dropdown-item" (click)="open(countryedit)">Edit Block</button>
+                                            <button class="dropdown-item" (click)="open(focusFirst)">Delete Block</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sub-list" >
+                                <span>Desde 10 calle</span>
+                                <div class="dropdown">
+
+                                    <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <button class="dropdown-item" (click)="open(countryedit)">Edit Block</button>
+                                            <button class="dropdown-item" (click)="open(focusFirst)">Delete Block</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sub-list" > 
+                                <span >Calle EI Arriyo</span>
+                                <div class="dropdown">
+
+                                    <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <button class="dropdown-item" (click)="open(countryedit)">Edit Block</button>
+                                            <button class="dropdown-item" (click)="open(focusFirst)">Delete Block</button>
+                                    </div>
+                                </div>
+
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="row text-center dependency-statistic-row ">
+                <div class="col-sm-3">
+                    <div class="dependency-statistic-1">
+                        <span class="dependency-statistic-monuments">
+                            <h3>451</h3>
+                            <p>Total of Monuments</p>
+                            <!--    <button type="button" class="btn btn-warning btn-sm dependency-bottom-direction">
+               View Monuments<i class="material-icons fwd-arrow">arrow_forward</i>
+           </button> -->
+                        </span>
+                    </div>
+
+                </div>
+                <div class="col-sm-3">
+                    <div class="dependency-statistic-1">
+                        <h3>47</h3>
+                        <p>Brands</p>
+                    </div>
+
+                </div>
+                <div class="col-sm-3">
+                    <div class="dependency-statistic-1">
+                        <h3>9</h3>
+                        <p>Monument Types</p>
+                    </div>
+
+                </div>
+                <div class="col-sm-3">
+                    <div class="dependency-statistic-1">
+                        <h3>12</h3>
+                        <p>Categories</p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- popup starts  -->
+<ng-template #rt let-r="result" let-t="term" >
+  <!-- <img [src]="'https://upload.wikimedia.org/wikipedia/commons/thumb/' + r['flag']" class="mr-1" style="width: 16px"> -->
+  <p>{{r.cname}}</p>
+  <!-- <pre>Model: {{ r | json }}</pre> -->
+  <!-- <ngb-highlight [result]="r.id" [term]="t"></ngb-highlight> -->
+</ng-template>
+<ng-template #rts let-r="result" let-t="term">
+  <!-- <img [src]="'https://upload.wikimedia.org/wikipedia/commons/thumb/' + r['flag']" class="mr-1" style="width: 16px"> -->
+  <p>{{r.sname}}</p>
+  <!-- <pre>Model: {{ r | json }}</pre> -->
+  <!-- <ngb-highlight [result]="r.id" [term]="t"></ngb-highlight> -->
+</ng-template>
+<ng-template #rtr let-r="result" let-t="term">
+  <!-- <img [src]="'https://upload.wikimedia.org/wikipedia/commons/thumb/' + r['flag']" class="mr-1" style="width: 16px"> -->
+  <p>{{r.rname}}</p>
+  <!-- <pre>Model: {{ r | json }}</pre> -->
+  <!-- <ngb-highlight [result]="r.id" [term]="t"></ngb-highlight> -->
+</ng-template>
+<ng-template #rtro let-r="result" let-t="term">
+  <!-- <img [src]="'https://upload.wikimedia.org/wikipedia/commons/thumb/' + r['flag']" class="mr-1" style="width: 16px"> -->
+  <p>{{r.rname}}</p>
+  <!-- <pre>Model: {{ r | json }}</pre> -->
+  <!-- <ngb-highlight [result]="r.id" [term]="t"></ngb-highlight> -->
+</ng-template>
+<ng-template #rtb let-r="result" let-t="term">
+  <!-- <img [src]="'https://upload.wikimedia.org/wikipedia/commons/thumb/' + r['flag']" class="mr-1" style="width: 16px"> -->
+  <p>{{r.bname}}</p>
+  <!-- <pre>Model: {{ r | json }}</pre> -->
+  <!-- <ngb-highlight [result]="r.id" [term]="t"></ngb-highlight> -->
+</ng-template>
+<ng-template #country let-c="close" let-d="dismiss">
+<div class="modal-country">       
+        <div class="modal-header">
+            <h4 class="text-center" id="modal-basic-title">Create a new country</h4>
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true" class="close-icon">&times;</span>
+            </button>
+        </div>
+
+        <form class="form-signin" (ngSubmit)="createCountry()" #dataForm="ngForm">
+
+            <div class="modal-body" style="height:100%">
+                <div class="form-group">
+                    <!-- <input type="text" class="form-control" placeholder="Enter a country name" required> -->
+                    <input type="text" id="pac-input" class="form-control" [(ngModel)]="data.cname" name="cname" placeholder="Enter a country name" required>
+                </div>
+                <div class="form-group">
+                    <div id="map" class="mapc form-control"></div>
+                </div>
+               
+                <!-- <input id="pac-input" class="controls" type="text" placeholder="Search Box"> -->
+            </div>
+
+
+            <div class="modal-footer">
+                <button type="submit" class="country btn btn-light" [disabled]="!dataForm.form.valid">Create country <i
+                        class="material-icons fwd">arrow_forward</i></button>
+            </div>
+
+        </form>
+    </div>
+    </ng-template>
+
+<div class="modal">
+    <ng-template #countryedit let-c="close" let-d="dismiss">
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Update country</h4>
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+          
+        <!-- <div *ngFor="let singlecountry of singlecountrys"> -->
+            <!-- <h1>{{singlecountrys?singlecountrys[0].cname:''}}</h1> -->
+            
+            <form (ngSubmit)="updateCountry(singlecountrys?singlecountrys[0].id:'',cedataForm.value)" #cedataForm="ngForm">
+
+                <div class="modal-body">
+                    <div class="form-group">
+                     <input type="text" id="edit_country" class="form-control" [ngModel]="singlecountrys?singlecountrys[0].cname:''" name="cname" placeholder="Enter a country name" required>
+                    </div>
+                                     
+                  <div id="mapec"></div>
+               
+                <!-- <input type="text" name="testyy" id="edit_country" placeholder="search box"> -->
+                   <!--  <div class="form-group">
+                        <input type="hidden" class="form-control" [(ngModel)]="singlecountry.cid" name="cid">
+                    </div> -->
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn  btn-light" [disabled]="!cedataForm.form.valid">Update         country</button>
+                </div>
+            </form>
+    
+    </ng-template>
+</div>
+
+<div class="modal">
+
+    <ng-template #countrydelete let-c="close" let-d="dismiss">
+            
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-title">Delete Country</h4>
+            <button type="button" class="close" aria-describedby="modal-title" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    <form (ngSubmit)="deleteCountry(singlecountrys?singlecountrys[0].id:'',cedataForm.value)" #cedataForm="ngForm">
+        <div class="modal-body">
+            <p><strong>Are you sure you want to delete?</strong></p>
+            <p>All information associated to this Country will be permanently deleted.
+                <span class="text-danger">This operation can not be undone.</span>
+            </p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" (click)="d('cancel click')">Cancel</button>
+            
+            <button type="submit" class="btn btn-light">Delete</button>
+        </div>
+  </form> 
+
+    </ng-template>
+</div>
+
+
+
+
+<ng-template #state let-c="close" let-d="dismiss">
+<div class="modal-state">
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Create a new state</h4>
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <form class="form-signin" (ngSubmit)="createState(countryid)" #dataForm="ngForm">
+            <!-- <span>{{countryid}}</span> -->
+            <div class="modal-body" style="height:100%">
+                <div class="form-group">
+                    <input required type="text" id="pac-input" class="form-control" placeholder="Enter a state name"
+                        [(ngModel)]="data.sname" name="sname">
+                </div>
+                              
+                <div id="map"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="state btn btn-light" [disabled]="!dataForm.form.valid">Create state<i
+                        class="material-icons fwd">arrow_forward</i></button>
+            </div>
+        </form>
+    </div>
+    </ng-template>
+
+
+<div class="modal">
+    <ng-template #stateedit let-c="close" let-d="dismiss">
+        
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Update State</h4>
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+       
+            <form (ngSubmit)="updateState(singlestates ? singlestates[0].id : '', esdataForm.value)" #esdataForm="ngForm">
+                <div class="modal-body">
+                    <div class="form-group">
+                            <!-- <p><strong>Are you sure you want to Update State?</strong></p> -->
+                        <input type="text" id="edit_country" class="form-control" [ngModel]="singlestates?singlestates[0].sname:''" name="sname"
+                            placeholder="Enter a state name" required>
+                  
+                        <input type="hidden" class="form-control" [ngModel]="singlestates?singlestates[0].cid:''" name="cid">
+                    </div>
+                    <div id="mapec"></div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-light" [disabled]="!esdataForm.form.valid">Update
+                        state</button>
+                </div>
+            </form>
+        
+    </ng-template>
+</div>
+
+<div class="modal">
+    <ng-template #statedelete let-c="close" let-d="dismiss">
+        <form (ngSubmit)="deleteState(singlestates?singlestates[0].id:'')" #cedataForm="ngForm">
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-title">Delete State</h4>
+            <button type="button" class="close" aria-describedby="modal-title" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <p><strong>Are you sure you want to delete?</strong></p>
+            <p>All information associated to this State will be permanently deleted.
+                <span class="text-danger">This operation can not be undone.</span>
+            </p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" (click)="d('cancel click')">Cancel</button>
+            
+            <button type="submit" class="btn btn-light">Delete</button>
+        </div>
+    </form>
+    </ng-template>
+</div>
+
+
+        <ng-template #region let-c="close" let-d="dismiss">
+            
+            <div class="modal-region">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modal-basic-title">Create a new region</h4>
+                <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form class="form-signin" (ngSubmit)="createRegion(stateid)" #dataForm="ngForm">
+                <!-- <span>{{stateid}}</span> -->
+                <div class="modal-body" style="height:100%">
+                    <div class="form-group">
+                        <input required type="text" id="create_region" class="form-control text" placeholder="Enter a Region name"
+                        [(ngModel)]="data.rname" name="rname">
+                        <!-- <input required type="text" class="form-control text" placeholder="Enter a Region name"
+                        > -->
+                        <span class="msg" >Draw a Polygon inside the state to set the region limits</span>
+                    </div>
+                    <!-- <div class="form-group"> -->
+                    <!-- <textarea type="text" placeholder="Enter a location to " [(ngModel)]="clocation" name="clocation" class="form-control" rows="3"></textarea> -->
+                    <!-- <input id="pac-input" class="controls form-control" type="text"
+                            placeholder="Enter a location to load  map"> -->
+    
+                    <!-- </div> -->
+                    <div id="mapre"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="region btn btn-light" [disabled]="!dataForm.form.valid">Create region<i
+                            class="material-icons fwd">arrow_forward</i></button>
+                </div>
+            </form>
+        </div>
+        </ng-template>
+
+        <ng-template #regionedit let-c="close" let-d="dismiss">
+            
+                <div class="modal-region">
+                <div class="modal-header">
+                <h4 class="modal-title" id="modal-basic-title">Update region</h4>
+                <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <form (ngSubmit)="updateRegion(singleregions ? singleregions[0].id : '', erdataForm.value)" #erdataForm="ngForm">
+                <!-- <span>{{stateid}}</span> -->
+                <div class="modal-body" style="height:100%">
+                    <div class="form-group">
+                        
+                        <input required type="text" id="edit_region" class="form-control text" placeholder="Enter a Region name"
+                        [ngModel]="singleregions?singleregions[0].rname:''" name="rname" required>
+                        <!-- <input required type="text" class="form-control text" placeholder="Enter a Region name"
+                        > -->
+                        <span class="msg" >Draw a Polygon inside the state to set the region limits</span>
+                    </div>
+                    
+                    <div id="mapredit"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="region btn btn-light" [disabled]="!erdataForm.form.valid">Update region<i
+                            class="material-icons fwd">arrow_forward</i></button>
+                </div>
+                </form>
+                </div>
+        </ng-template>
+        
+        <div class="modal">
+            <ng-template #regiondelete let-c="close" let-d="dismiss">
+            <!-- <span>{{stateid}}</span> -->
+
+                <form (ngSubmit)="deleteRegion(singleregions?singleregions[0].id:'',stateid)" #cedataForm="ngForm">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modal-title">Delete Region</h4>
+                    <button type="button" class="close" aria-describedby="modal-title" (click)="d('Cross click')">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Are you sure you want to delete?</strong></p>
+                    <p>All information associated to this State will be permanently deleted.
+                        <span class="text-danger">This operation can not be undone.</span>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" (click)="d('cancel click')">Cancel</button>
+                    
+                    <button type="submit" class="btn btn-light">Delete</button>
+                </div>
+            </form>
+            </ng-template>
+        </div>
+
+  
+            <ng-template #route let-c="close" let-d="dismiss">
+                    <div class="modal-route">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modal-basic-title">Create a new route</h4>
+                    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form class="form-signin" (ngSubmit)="createRoute(regionid)" #dataForm="ngForm">
+            <!-- <span>{{regionid}}</span> -->
+
+                    <div class="modal-body" style="height:100%">
+                        <div class="form-group">
+                            
+                            <input required type="text" id="create_route" class="form-control text" placeholder="Enter a Route name" [(ngModel)]="data.rname" name="rname">
+                            <span class="msg">Draw a Polygon inside the {{route.rname}}  state to set the region limits</span>
+                        </div>
+                        <!-- <div class="form-group"> -->
+                        <!-- <textarea type="text" placeholder="Enter a location to " [(ngModel)]="clocation" name="clocation" class="form-control" rows="3"></textarea> -->
+                        <!-- <input id="pac-input" class="controls form-control" type="text"
+                                placeholder="Enter a location to load  map"> -->
+        
+                        <!-- </div> -->
+                        <div id="mapro"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="region btn btn-light" [disabled]="!dataForm.form.valid">Create route<i
+                                class="material-icons fwd">arrow_forward</i></button>
+                    </div>
+                </form>
+            </div>
+            </ng-template>
+            
+            <ng-template #routeedit let-c="close" let-d="dismiss">
+            
+                    <div class="modal-region">
+                    <div class="modal-header">
+                    <h4 class="modal-title" id="modal-basic-title">Update route</h4>
+                    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <form (ngSubmit)="updateRoute(singleroutes ? singleroutes[0].id : '', erodataForm.value)" #erodataForm="ngForm">
+                    <!-- <span>{{stateid}}</span> -->
+                    <div class="modal-body" style="height:100%">
+                        <div class="form-group">
+                            
+                            <input required type="text" id="edit_route" class="form-control text" placeholder="Enter a Route name"
+                            [ngModel]="singleroutes?singleroutes[0].rname:''" name="rname" required>
+                            <!-- <input required type="text" class="form-control text" placeholder="Enter a Region name"
+                            > -->
+                            <span class="msg" >Draw a Polygon inside the state to set the route limits</span>
+                        </div>
+                        
+                        <div id="maproedit"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="region btn btn-light" [disabled]="!erodataForm.form.valid">Update route<i
+                                class="material-icons fwd">arrow_forward</i></button>
+                    </div>
+                    </form>
+                    </div>
+            </ng-template>
+
+            <div class="modal">
+                <ng-template #routedelete let-c="close" let-d="dismiss">
+                    <!-- <span>{{regionid}}</span> -->
+
+                    <form (ngSubmit)="deleteRoute(singleroutes?singleroutes[0].id:'',regionid)" #cedataForm="ngForm">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-title">Delete Route</h4>
+                        <button type="button" class="close" aria-describedby="modal-title" (click)="d('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p><strong>Are you sure you want to delete?</strong></p>
+                        <p>All information associated to this State will be permanently deleted.
+                            <span class="text-danger">This operation can not be undone.</span>
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" (click)="d('cancel click')">Cancel</button>
+                        
+                        <button type="submit" class="btn btn-light">Delete</button>
+                    </div>
+                </form>
+                </ng-template>
+            </div>
+       
+                <ng-template #block let-c="close" let-d="dismiss">
+                        <div class="modal-block">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">Create a new block</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form class="form-signin" (ngSubmit)="createBlock(routeid)" #dataForm="ngForm">
+                    <!-- <span>{{routeid}}</span> -->
+
+                        <div class="modal-body" style="height:100%">
+                            <div class="form-group">
+
+                                <input required type="text" id="create_block" class="form-control text" placeholder="Enter a Block name" [(ngModel)]="data.bname" name="bname">
+                                <span class="msg">Draw a Polygon inside the {{block.bname}} state to set the region limits</span>
+                            </div>
+                            <!-- <div class="form-group"> -->
+                            <!-- <textarea type="text" placeholder="Enter a location to " [(ngModel)]="clocation" name="clocation" class="form-control" rows="3"></textarea> -->
+                            <!-- <input id="pac-input" class="controls form-control" type="text"
+                                    placeholder="Enter a location to load  map"> -->
+            
+                            <!-- </div> -->
+                            <div id="mapb"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="region btn btn-light" [disabled]="!dataForm.form.valid">Create block<i
+                                    class="material-icons fwd">arrow_forward</i></button>
+                        </div>
+                    </form>
+                </div>
+                </ng-template>
+
+                <ng-template #blockedit let-c="close" let-d="dismiss">
+            
+                        <div class="modal-region">
+                        <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">Update block</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <form (ngSubmit)="updateBlock(singleblocks ? singleblocks[0].id : '', bdataForm.value)" #erodataForm="ngForm">
+                        <!-- <span>{{stateid}}</span> -->
+                        <div class="modal-body" style="height:100%">
+                            <div class="form-group">
+                                
+                                <input required type="text" id="edit_route" class="form-control text" placeholder="Enter a Route name"
+                                [ngModel]="singleblocks?singleblocks[0].bname:''" name="bname" required>
+                                <!-- <input required type="text" class="form-control text" placeholder="Enter a Region name"
+                                > -->
+                                <span class="msg" >Draw a Polygon inside the state to set the route limits</span>
+                            </div>
+                            
+                            <div id="maproedit"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="region btn btn-light" [disabled]="!bdataForm.form.valid">Update route<i
+                                    class="material-icons fwd">arrow_forward</i></button>
+                        </div>
+                        </form>
+                        </div>
+                </ng-template>
+           
+<!-- popup ends -->

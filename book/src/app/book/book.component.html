@@ -1,0 +1,25 @@
+<div class="container">
+  <h1>Book List</h1>
+  <span><a [routerLink]="['/book-create']" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> ADD</a></span>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <!-- <th>Desc</th> -->
+        <th colspan="2">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let book of books">
+        <td>{{ book.title }}</td>
+        <td>{{ book.author }}</td>
+        <!-- <td>{{ book.descr }}</td> -->
+        <td><a [routerLink]="['/book-details', book.id]" class="btn btn-default btn-sm" >View</a></td>
+        <td><a [routerLink]="['/book-edit', book.id]" class="btn btn-success">Edit</a></td>
+        <td><button class="btn btn-danger" type="button" (click)="deleteBook(book.id)">DELETE</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<router-outlet></router-outlet>

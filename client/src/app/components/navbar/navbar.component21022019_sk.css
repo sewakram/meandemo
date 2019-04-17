@@ -1,0 +1,22 @@
+.logo{width:40%;}
+
+nav#sidebar {
+	background-color:#F5F5F5; 
+	font-family: "SFUIDisplay";
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.nav-link{
+	color: #91929C;
+
+}
+
+.inner-item{
+	list-style:none;
+	color:#91929C;
+}

@@ -1,0 +1,224 @@
+* {font-family: 'PT Sans';}
+.logo{    width: 38px;
+    height: 38px;
+    margin: 15px 0px 15px 24px;
+    /* margin-left: 24px;
+    margin-bottom: 15px; */
+}
+
+nav#sidebar {background-color:#f4f5f7; width: 250px;position: fixed;z-index: 1;height: 100%;top: 0; left: 0;/*box-shadow: 10px 0px 30px -6px rgba(0,0,0,0.23) !important*/}
+.sidebar .nav .nav-menu {
+    background-color: #fff;
+}
+nav#sidebar .navbar-header-section {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    padding: 25px 25px 20px;
+}
+nav#sidebar .navbar-header-section .navbar-brand {
+    padding: 0;
+    margin: 0;
+}
+nav#sidebar .navbar-header-section .navbar-brand img {
+    margin: 0 0 14px 0;
+    width: auto;
+    height: 38px;
+}
+nav#sidebar .navbar-header-section .toggle-menu-section {
+    margin-left: auto;
+}
+nav#sidebar .navbar-header-section .toggle-menu-section .menu-toggle {
+    width: 35px;
+    height: 35px;
+    border: 0 none;
+    border-radius: 50%;
+    background-color: #e9ebf2;
+    vertical-align: middle;
+    outline: 0 none;
+    padding: 0;
+}
+nav#sidebar .navbar-header-section .toggle-menu-section .menu-toggle i {
+    font-family: 'Material Icons';
+    vertical-align: middle;
+    margin-top: -2px;
+    color: #717384;
+    font-size: 20px;
+}
+
+.sidebar .nav .nav-tag {font-size: 10px;color: #DDDDDD;/* padding-left: 18px; */}
+.sidebar .nav a.nav-link {padding: 0;}
+ul.inner-item.sub-menu {padding: 0 0 0 44px;}
+ul.inner-item{background-color: #F2F2F2;}
+li.nav-item {font-size: 13px;}
+li.nav-item .d-inline-block.dropdown button#dropdownBasic1 {
+    background-color: #F2F2F2;
+    border: none;
+    color: #F2F2F2;
+}
+
+.sidebar .nav .sub-menu a.nav-link {
+  padding: 12px 0px 0px 0px;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+
+
+
+/*.nav-item ul.dropdown-menu {
+    display: block;
+    padding: 0 0 10px 10px;
+    margin: 0;
+    min-width: 0;
+    background-color: transparent;
+    z-index: 1;
+    opacity: 1;
+}*/
+
+
+i.icon.material-icons {
+    font-size: 13px;
+    padding-right: 8px;
+    font-family: 'Material Icons';
+    vertical-align: middle;
+}
+
+.nav-link{
+    color: #616375;
+
+}
+
+.inner-item{
+    list-style:none;
+    color:#91929C;
+}
+
+.sidebar .nav .logout {
+       position: sticky;
+    /* margin-top: 270px; */
+}
+
+/* .logout{
+    margin-top:300%;
+} */
+::ng-deep nav#sidebar ul.nav .card,
+::ng-deep nav#sidebar ul.nav .card .card-header {background-color: transparent;width: 100%;
+    transition: none;
+    animation: none;
+}
+::ng-deep .card {
+border: none;
+background: #F2F2F2;
+border-radius: 0;
+}
+::ng-deep .card .card-header {
+    padding: 8px 0 4px 20px;
+    margin-bottom: -9px !important;
+    background-color:#F2F2F2;
+}
+
+::ng-deep .card .card-header .btn-link {
+    color: #616375;
+    text-decoration: none;
+    margin-bottom: 0;
+    padding:0;
+    border-bottom: 0;
+    border-radius: 0;
+}
+
+::ng-deep .card .card-header button.btn.btn-link{
+    color:#000;
+}
+
+
+::ng-deep .card .card-header button.btn.btn-link.collapsed {
+    color:#616375;
+}
+
+/*/deep/ .card .card-header .btn-link::before {
+    content: '';
+    height: 40px;
+    width: 40px;
+    display: inline-block;
+    background-color: red;
+
+}*/
+::ng-deep .card .card-header button.btn.btn-link .nav-style {
+    font-size: 13px;
+    font-weight: 400;
+}
+::ng-deep .card-body {
+flex: 0;
+padding: 0;
+}
+::ng-deep nav#sidebar ul.nav .card .card-header {
+    padding-right: 20px;
+    padding-bottom: 7px;
+    padding-top: 0px;
+    margin: 0 !important;
+    border: 0 none;
+    border-radius: 0 !important;
+    box-shadow: none;    
+    text-align: left !important;
+}
+::ng-deep nav#sidebar ul.nav .card .card-header .btn {
+    margin: 0;
+    padding: 0;
+    border: 0 none;
+    display: inline-block;
+    width: 100%;
+    text-align: left;
+    vertical-align: middle;    
+}
+::ng-deep nav#sidebar ul.nav .card .card-header .btn .nav-tag {
+    font-size: 14px;
+    color: #e0e0e0;
+}
+::ng-deep nav#sidebar ul.nav .card .card-header .btn .nav-link {
+    display: inline-block;
+    width: 100%;
+    vertical-align: middle;
+}
+::ng-deep nav#sidebar ul.nav .card .card-header .btn i.icon {
+    font-size: 20px;
+    color: #91929c;
+    height: 24px;
+}
+::ng-deep nav#sidebar ul.nav .card .card-header .btn .nav-link.logout i.icon {
+    transform: rotate(-180deg);
+    padding-right: 0;
+    padding-left: 8px;
+    vertical-align: text-bottom;
+    margin-top: 0;
+    line-height: 19px;    
+}
+::ng-deep nav#sidebar ul.nav .card .card-header .btn .nav-style {
+    font-size: 15px;
+    line-height: 28px;
+    color: #656779;
+}
+::ng-deep nav#sidebar ul.nav {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+::ng-deep nav#sidebar ul.nav .card:last-child {
+    position: absolute;
+    bottom: 15px;    
+}
+::ng-deep .nav#sidebar ul.nav .card .collapse {
+
+}
+::ng-deep nav#sidebar ul.nav .card .collapse .card-body ul.sub-menu {
+    padding: 0 0 0 48px;
+    background-color: transparent;
+}
+::ng-deep nav#sidebar ul.nav .card .collapse .card-body ul.sub-menu li {
+    padding-right:20px;
+}
+::ng-deep nav#sidebar ul.nav .card .collapse .card-body ul.sub-menu li .nav-link {
+    padding:5px 0;
+    font-size: 15px;
+    color: #9e9fa8;
+}

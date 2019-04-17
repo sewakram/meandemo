@@ -1,0 +1,174 @@
+<div class="container">
+<div class="container-fluid">
+       <div class="page-header">
+            <span style="font-size: 24px">Dependency</span> 
+           <button type="button" class="btn btn-warning btn-sm dependency-header-direction text-center">
+               Add Monuments<i class="material-icons">arrow_forward</i>
+           </button>
+            <p class="page-header-content">Structure and dependency logics</p>
+       </div>
+      
+
+<div class="container dependency-body">
+  <div class="row ">
+        <div class="col-md-2">
+            <span class="dependency-logics"> Countries <i class="material-icons icons" placement="top" ngbTooltip="Tooltip on top">add</i></span>
+ 
+
+               <div class="input-group mb-3">
+                   <div class="input-group-prepend">
+                        <!-- <span class="input-group-text" id="basic-addon1">@</span> -->
+                   </div>
+                        <!-- <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1"> -->
+                </div>
+                    <div class="countries-list">
+                    <ul class="text-left">
+                       <li *ngFor="let country of countrys" > {{ country.cname}}<i class="material-icons">more_vert</i></li>
+                       <li>Gautemala <i class="material-icons">more_vert</i></li>
+                       <li>Mexico</li>
+                       <li>Panama</li>
+                    </ul>
+                  </div>
+ 
+                
+       </div>
+      <div class="col-md-2">
+        <span class="dependency-logics"> States <i class="material-icons icons">add</i> </span>
+               <div class="input-group mb-3">
+                   <div class="input-group-prepend">
+                        <!-- <span class="input-group-text" id="basic-addon1">@</span> -->
+                   </div>
+                        <!-- <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1"> -->
+                </div>
+               
+                    <ul class="text-left">
+                       <li *ngFor="let state of states" >{{state.sname}} <i class="material-icons">more_vert</i></li>
+                       <li>Gautemala</li>
+                       <li>Quetzaltenango</li>
+                       <li>Huehuetenango</li>
+                        <li>Retalhuleu</li>
+                       <li>Peten</li>
+                    </ul>
+ 
+               
+       </div>
+      <div class="col-md-2">
+        <span class="dependency-logics"> Regions <i class="material-icons icons">add</i> </span>
+               <div class="input-group mb-3">
+                   <div class="input-group-prepend">
+                        <!-- <span class="input-group-text" id="basic-addon1">@</span> -->
+                   </div>
+                        <!-- <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1"> -->
+                </div>
+               
+                    <ul class="text-left" >
+                       <li *ngFor="let region of regions" >{{region.rname}} <i class="material-icons">more_vert</i></li>
+                       <li>Área metropolitana de la ciudad de Guatemala </li>
+                       <li>Fraijanes y rededores</li>
+                       <li>Muxbal y rededores</li>
+                    </ul>
+ 
+                
+      </div>
+      <div class="col-md-2">
+        <span class="dependency-logics"> Routes <i class="material-icons icons">add</i></span>
+               <div class="input-group mb-3">
+                   <div class="input-group-prepend">
+                        <!-- <span class="input-group-text" id="basic-addon1">@</span> -->
+                   </div>
+                        <!-- <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1"> -->
+                </div>
+               
+                    <ul class="text-left" >
+                       <li *ngFor="let route of routes" >{{route.rname}} <i class="material-icons">more_vert</i></li>
+                       <li>Avenida Reforma Zona 9</li>
+                       <li>Boulevard Principal da</li>
+                       <li>Boulevard austriaco Principal da</li>
+                    </ul>
+ 
+               
+      </div>
+      <div class="col-md-2">
+        <span class="dependency-logics"> Blocks <i class="material-icons icons">add</i></span>
+               <div class="input-group mb-3">
+                   <div class="input-group-prepend">
+                        <!-- <span class="input-group-text" id="basic-addon1">@</span> -->
+                   </div>
+                        <!-- <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1"> -->
+                </div>
+               
+                    <ul  class="text-left">
+                       <li *ngFor="let block of blocks" >{{block.bname}} <i class="material-icons">more_vert</i></li>
+                       <li>Desde 9 calle hasta 17 aveni</li>
+                       <li>Avenida principal de</li>
+                       <li>Desde 10 calle</li>
+                       <li>Calle EI Arriyo</li>
+                        <li>Desde 9 calle hasta 17 aveni</li>
+                       <li>Avenida principal de</li>
+                       <li>Desde 10 calle</li>
+                       <li>Calle EI Arriyo</li>
+                         <li>Desde 10 calle</li>
+                       <li>Calle EI Arriyo</li>
+                    </ul>
+      </div>
+   
+  </div>
+
+
+ <div class="row text-center">
+       <div class="col-md-3">
+        <div class="dependency-statistic-1">
+             <h1>451</h1>
+            <p>Total of Monuments</p>
+        <!--     <button type="button" class="btn btn-warning btn-sm dependency-bottom-direction">
+               View Monuments<i class="material-icons">arrow_forward</i>
+           </button> -->
+        </div>
+      
+       </div>
+       <div class="col-md-3">
+          <div class="dependency-statistic-1">
+              <h1>47</h1>
+         <p>Brands</p>
+          </div>
+    
+        </div>
+      <div class="col-md-3">
+          <div class="dependency-statistic-1">
+           <h1>9</h1>
+         <p>Monument Types</p>
+          </div>
+        
+      </div>
+      <div class="col-md-3">
+          <div class="dependency-statistic-1">
+             <h1>12</h1>
+        <p>Categories</p>
+          </div>
+     
+      </div>
+     </div>
+    <!--  <div class="row">
+
+       <div class="dependency-statistic-1 col">
+            <h1>451</h1>
+            <p>Total of Monuments</p>
+            <button type="button" class="btn btn-warning btn-sm dependency-bottom-direction">
+               View Monuments<i class="material-icons">arrow_forward</i>
+           </button>
+        </div>
+       <div class="dependency-statistic-1 col">
+         <h1>47</h1>
+         <p>Brands</p>
+        </div>
+      <div class="dependency-statistic-1 col">
+         <h1>9</h1>
+         <p>Monument Types</p>
+      </div>
+      <div class="dependency-statistic-1 col">
+        <h1>12</h1>
+        <p>Categories</p>
+      </div>
+     </div> -->
+</div>
+</div>

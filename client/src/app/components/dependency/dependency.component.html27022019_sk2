@@ -1,0 +1,652 @@
+<div class="container">
+<div class="container-fluid">
+       <div class="page-header">
+            <span style="font-size: 24px">Dependency</span> 
+           <button type="button" class="btn btn-warning btn-sm float-right">
+               <a class="dependency-header-direction text-center" href="#">Add Monuments <i class="material-icons fwd-arrow">arrow_forward</i></a>
+           </button>
+            <p class="page-header-content">Structure and dependency logics</p>
+            <!-- mapppppppppppppppppppppppppp -->
+          <!--   <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+            <div id="map"></div>
+            <h1>dssssssssssss</h1> -->
+            <!-- mapppppppppppppppppppppppppp -->
+       </div>
+      
+
+<div class="dependency-body">
+  <div class="row ">
+        <div class="col-md-2">
+          <div class="dependency-logics">
+             <span > Countries <i class="material-icons icons" placement="top" ngbTooltip="Add a new country" (click)="open(country)">add</i></span>
+
+  <!-- search box starts -->
+            <div class="search-box">
+                 <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="modelc" [ngbTypeahead]="searchc"  placeholder="Search" />
+                 <i class="material-icons search-icon">search</i>
+            </div>
+           <!-- Search box ends -->
+
+                 
+                    <div class="list text-left">
+                       <div class="sub-list" *ngFor="let country of countrys">
+                             <span>  {{country.cname}}</span>
+                        <div class="dropdown">
+                        
+                               <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                   <i class="material-icons">more_vert</i>
+                               </button>
+                                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                      <button class="dropdown-item" (click)="open(countryedit)">Edit country</button>
+                                      <button class="dropdown-item" (click)="open(countrydelete)">Delete country</button>
+                                   </div>
+                             </div>
+                       </div>
+                     <div class="sub-list">
+                          <span>Gautemala </span>
+                            <div class="dropdown">
+                                 
+                               <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                   <i class="material-icons">more_vert</i>
+                               </button>
+                                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                      <a class="dropdown-item" href="#">Edit country</a>
+                                      <a class="dropdown-item" href="#">Delete country</a>
+                                   </div>
+                             </div>
+                      </div>
+                       <div class="sub-list">
+                            <span>Mexico </span>
+                          <div class="dropdown">
+                          
+                               <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                   <i class="material-icons">more_vert</i>
+                               </button>
+                                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                      <a class="dropdown-item" href="#">Edit country</a>
+                                      <a class="dropdown-item" href="#">Delete country</a>
+                                   </div>
+                             </div>
+                       </div>
+                       <div class="sub-list"> 
+                        <span>Panama</span>
+                        <div class="dropdown">
+                              
+                               <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                   <i class="material-icons">more_vert</i>
+                               </button>
+                                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                      <a class="dropdown-item" href="#">Edit country</a>
+                                      <a class="dropdown-item" href="#">Delete country</a>
+                                   </div>
+                             </div>
+                           </div>
+                    </div>
+                   
+            </div>
+        </div>
+      <div class="col-md-2">
+             <div class="dependency-logics">
+        <span > States <i class="material-icons icons" placement="top" ngbTooltip="Add a new state" (click)="open(state)">add</i> </span>
+            <!-- search box starts -->
+
+            <div class="search-box">
+                 <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="models" [ngbTypeahead]="searchs" placeholder="Search" />
+                 <i class="material-icons search-icon">search</i>
+            </div>
+             <!-- search box ends -->
+               
+                    <div class="list text-left">
+                       <div class="sub-list" *ngFor="let state of states" >
+                               <span>{{state.sname}} </span>
+                           <div class="dropdown">
+                        
+                               <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                   <i class="material-icons">more_vert</i>
+                               </button>
+                                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                      <a class="dropdown-item" href="#">Edit State</a>
+                                      <a class="dropdown-item" href="#">Delete State</a>
+                                   </div>
+                             </div>
+                       
+
+                     </div>
+                       <div class="sub-list">
+                         <span>Gautemala</span>
+                             <div class="dropdown">
+                              
+                               <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                   <i class="material-icons">more_vert</i>
+                               </button>
+                                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                      <a class="dropdown-item" href="#">Edit State</a>
+                                      <a class="dropdown-item" href="#">Delete State</a>
+                                   </div>
+                             </div>
+                       </div>
+
+                       <div class="sub-list">
+                        <span>Quetzaltenango</span>
+                             <div class="dropdown">
+                             
+                               <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                   <i class="material-icons">more_vert</i>
+                               </button>
+                                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                      <a class="dropdown-item" href="#">Edit State</a>
+                                      <a class="dropdown-item" href="#">Delete State</a>
+                                   </div>
+                             </div>
+                       </div>
+                       <div class="sub-list">
+                         <span>Huehuetenango</span>
+                           <div class="dropdown">
+                           
+                               <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                   <i class="material-icons">more_vert</i>
+                               </button>
+                                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                      <a class="dropdown-item" href="#">Edit State</a>
+                                      <a class="dropdown-item" href="#">Delete State</a>
+                                   </div>
+                             </div>
+                       </div>
+                        <div class="sub-list">
+                            <span>  Retalhuleu</span>
+                            <div class="dropdown">
+                      
+                               <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                   <i class="material-icons">more_vert</i>
+                               </button>
+                                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                      <a class="dropdown-item" href="#">Edit State</a>
+                                      <a class="dropdown-item" href="#">Delete State</a>
+                                   </div>
+                             </div>
+                        </div>
+                       <div class="sub-list">
+                          <span>Peten</span>
+                           <div class="dropdown">
+                          
+                               <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                   <i class="material-icons">more_vert</i>
+                               </button>
+                                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                      <a class="dropdown-item" href="#">Edit State</a>
+                                      <a class="dropdown-item" href="#">Delete State</a>
+                                   </div>
+                             </div>
+                       </div>
+                    </div>
+ 
+               </div>
+       </div>
+      <div class="col-md-2">
+             <div class="dependency-logics">
+       <span > Regions <i class="material-icons icons" placement="top" ngbTooltip="Add a new route" (click)="open(content)">add</i> </span>
+          <!-- search box starts -->
+           <div class="search-box">
+                 <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="modelr" [ngbTypeahead]="searchr" placeholder="Search" />
+                 <i class="material-icons search-icon">search</i>
+            </div>
+            <!-- search box ends -->
+                    <div class="list text-left" >
+                       <div class="sub-list" *ngFor="let region of regions" >
+                             <span>{{region.rname}}</span> 
+                            <div class="dropdown">
+                         
+                               <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                   <i class="material-icons">more_vert</i>
+                               </button>
+                                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                      <a class="dropdown-item" href="#">Edit State</a>
+                                      <a class="dropdown-item" href="#">Delete State</a>
+                                   </div>
+                             </div>
+                       </div>
+                       <div class="sub-list">
+                           <span>   Área metropolitana de la ciudad de Guatemala </span>
+                          <div class="dropdown">
+                          
+                               <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                   <i class="material-icons">more_vert</i>
+                               </button>
+                                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                      <a class="dropdown-item" href="#">Edit State</a>
+                                      <a class="dropdown-item" href="#">Delete State</a>
+                                   </div>
+                             </div>
+                       </div>
+                       <div class="sub-list">
+                              <span>Fraijanes y rededores </span>
+                         <div class="dropdown">
+                       
+                               <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                   <i class="material-icons">more_vert</i>
+                               </button>
+                                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                      <a class="dropdown-item" href="#">Edit State</a>
+                                      <a class="dropdown-item" href="#">Delete State</a>
+                                   </div>
+                             </div>
+                       </div>
+                       <div class="sub-list">
+                             <span>Muxbal y rededores </span>
+                           <div class="dropdown">
+                        
+                               <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                   <i class="material-icons">more_vert</i>
+                               </button>
+                                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                      <a class="dropdown-item" href="#">Edit State</a>
+                                      <a class="dropdown-item" href="#">Delete State</a>
+                                   </div>
+                             </div>
+                       </div>
+                    </div>
+ 
+              </div>  
+      </div>
+      <div class="col-md-2">
+             <div class="dependency-logics">
+        <span > Routes <i class="material-icons icons" placement="top" ngbTooltip="Add a new route" (click)="open(content)">add</i></span>
+          <!-- search box starts -->
+
+             <div class="search-box">
+                 <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="modelro" [ngbTypeahead]="searchro" placeholder="Search" />
+                 <i class="material-icons search-icon">search</i>
+            </div>
+          <!-- search box ends -->
+               
+                    <div class="list text-left" >
+                       <div class="sub-list" *ngFor="let route of routes" >
+                         <span>{{route.rname}} </span>
+                         <div class="dropdown">
+                            
+                               <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                   <i class="material-icons">more_vert</i>
+                               </button>
+                                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                      <a class="dropdown-item" href="#">Edit State</a>
+                                      <a class="dropdown-item" href="#">Delete State</a>
+                                   </div>
+                             </div>
+                       </div>
+                       <div class="sub-list">
+                             <span>Avenida Reforma Zona 9</span>
+                             <div class="dropdown">
+                       
+                               <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                   <i class="material-icons">more_vert</i>
+                               </button>
+                                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                      <a class="dropdown-item" href="#">Edit State</a>
+                                      <a class="dropdown-item" href="#">Delete State</a>
+                                   </div>
+                             </div>
+                       </div>
+                       <div class="sub-list">
+                        <span>Boulevard Principal da</span>
+                            <div class="dropdown">
+                            
+                               <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                   <i class="material-icons">more_vert</i>
+                               </button>
+                                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                      <a class="dropdown-item" href="#">Edit State</a>
+                                      <a class="dropdown-item" href="#">Delete State</a>
+                                   </div>
+                             </div>
+                       </div>
+                       <div class="sub-list">
+                        <span>Boulevard austriaco Principal da</span>
+                            <div class="dropdown">
+                            
+                               <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                   <i class="material-icons">more_vert</i>
+                               </button>
+                                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                      <a class="dropdown-item" href="#">Edit State</a>
+                                      <a class="dropdown-item" href="#">Delete State</a>
+                                   </div>
+                             </div>
+                       </div>
+                    </div>
+              </div>
+               
+      </div>
+      <div class="col-md-2">
+             <div class="dependency-logics">
+        <span> Blocks <i class="material-icons icons" placement="top" ngbTooltip="Add a new block" (click)="open(block)">add</i></span>
+         <!-- search box starts -->
+
+             <div class="search-box">
+                 <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="modelb" [ngbTypeahead]="searchb" placeholder="Search" />
+                 <i class="material-icons search-icon">search</i>
+            </div>
+             <!-- search box ends -->
+                    <div class="list text-left">
+                       <div class="sub-list" *ngFor="let block of blocks" >
+                                <span>{{block.bname}} </span>
+                         <div class="dropdown">
+                   
+                               <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                   <i class="material-icons">more_vert</i>
+                               </button>
+                                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                      <a class="dropdown-item" href="#">Edit State</a>
+                                      <a class="dropdown-item" href="#">Delete State</a>
+                                   </div>
+                             </div>
+
+                       </div>
+                       <div class="sub-list">
+                          <span>Desde 9 calle hasta 17 aveni</span>
+                          <div class="dropdown">
+                          
+                               <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                   <i class="material-icons">more_vert</i>
+                               </button>
+                                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                      <a class="dropdown-item" href="#">Edit State</a>
+                                      <a class="dropdown-item" href="#">Delete State</a>
+                                   </div>
+                             </div>
+
+                       </div>
+                       <div class="sub-list">
+                               <span>Avenida principal de</span>
+                           <div class="dropdown">
+                    
+                               <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                   <i class="material-icons">more_vert</i>
+                               </button>
+                                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                      <a class="dropdown-item" href="#">Edit State</a>
+                                      <a class="dropdown-item" href="#">Delete State</a>
+                                   </div>
+                             </div>
+
+                       </div>
+                       <div class="sub-list">
+                                <span>Desde 10 calle</span>
+                              <div class="dropdown">
+                    
+                               <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                   <i class="material-icons">more_vert</i>
+                               </button>
+                                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                      <a class="dropdown-item" href="#">Edit State</a>
+                                      <a class="dropdown-item" href="#">Delete State</a>
+                                   </div>
+                             </div>
+                       </div>
+                       <div class="sub-list">
+                             <span>Calle EI Arriyo</span>
+                              <div class="dropdown">
+                       
+                               <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                   <i class="material-icons">more_vert</i>
+                               </button>
+                                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                      <a class="dropdown-item" href="#">Edit State</a>
+                                      <a class="dropdown-item" href="#">Delete State</a>
+                                   </div>
+                             </div>
+                       </div>
+                        <div class="sub-list">
+                          <span>Desde 9 calle hasta 17 aveni</span>
+                           <div class="dropdown">
+                            
+                               <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                   <i class="material-icons">more_vert</i>
+                               </button>
+                                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                      <a class="dropdown-item" href="#">Edit State</a>
+                                      <a class="dropdown-item" href="#">Delete State</a>
+                                   </div>
+                             </div>
+                        </div>
+                       <div class="sub-list">
+                            <span>Avenida principal de</span>
+                            <div class="dropdown">
+                       
+                               <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                   <i class="material-icons">more_vert</i>
+                               </button>
+                                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                      <a class="dropdown-item" href="#">Edit State</a>
+                                      <a class="dropdown-item" href="#">Delete State</a>
+                                   </div>
+                             </div>
+                       </div>
+                       <div class="sub-list">
+                           <span>Desde 10 calle</span>
+                            <div class="dropdown">
+                         
+                               <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                   <i class="material-icons">more_vert</i>
+                               </button>
+                                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                      <a class="dropdown-item" href="#">Edit State</a>
+                                      <a class="dropdown-item" href="#">Delete State</a>
+                                   </div>
+                             </div>
+                       </div>
+                       <div class="sub-list">
+                        <span>Calle EI Arriyo</span>
+                            <div class="dropdown">
+                            
+                               <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                   <i class="material-icons">more_vert</i>
+                               </button>
+                                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                      <a class="dropdown-item" href="#">Edit State</a>
+                                      <a class="dropdown-item" href="#">Delete State</a>
+                                   </div>
+                             </div>
+                       </div>
+                         <div class="sub-list">
+                              <span>Desde 10 calle</span>
+                               <div class="dropdown">
+                        
+                               <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                   <i class="material-icons">more_vert</i>
+                               </button>
+                                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                      <a class="dropdown-item" href="#">Edit State</a>
+                                      <a class="dropdown-item" href="#">Delete State</a>
+                                   </div>
+                             </div>
+                         </div>
+                       <div class="sub-list">
+                          <span>Calle EI Arriyo</span>
+                            <div class="dropdown">
+                          
+                               <button class="dropdown-toggle float-right" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                   <i class="material-icons">more_vert</i>
+                               </button>
+                                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                      <a class="dropdown-item" href="#">Edit State</a>
+                                      <a class="dropdown-item" href="#">Delete State</a>
+                                   </div>
+                             </div>
+
+                       </div>
+                    </div>
+                  </div>
+      </div>
+   
+  </div>
+
+
+ <div class="row text-center dependency-statistic-row ">
+       <div class="col-sm-3">
+        <div class="dependency-statistic-1">
+            <span class="dependency-statistic-monuments">
+               <h3>451</h3>
+            <p>Total of Monuments</p>
+         <!--    <button type="button" class="btn btn-warning btn-sm dependency-bottom-direction">
+               View Monuments<i class="material-icons fwd-arrow">arrow_forward</i>
+           </button> -->
+            </span>
+        </div>
+      
+       </div>
+       <div class="col-sm-3" >
+          <div class="dependency-statistic-1">
+              <h3>47</h3>
+         <p>Brands</p>
+          </div>
+    
+        </div>
+      <div class="col-sm-3">
+          <div class="dependency-statistic-1">
+           <h3>9</h3>
+         <p>Monument Types</p>
+          </div>
+        
+      </div>
+      <div class="col-sm-3" >
+          <div class="dependency-statistic-1">
+             <h3>12</h3>
+        <p>Categories</p>
+          </div>
+     
+      </div>
+     </div>
+ 
+</div>
+</div>
+</div>
+ 
+   <!-- popup starts  -->
+      <div class="modal" >
+   <ng-template #country let-c="close" let-d="dismiss">
+  <div class="modal-header">
+  <h4 class="text-center" id="modal-basic-title">Create a new country</h4>
+  <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  </div>
+  <form class="form-signin" (ngSubmit)="createCountry()" #dataForm="ngForm">
+  <div class="modal-body">
+          <div class="form-group">
+               <input type="text" class="form-control" [(ngModel)]="data.cname" name="cname" placeholder="Enter a country name" required>
+          </div>
+          <div class="form-group">
+          <!-- <textarea type="text" placeholder="Enter a location to " [(ngModel)]="clocation" name="clocation" class="form-control" rows="3"></textarea> -->
+         <!--  <input id="pac-input" class="controls form-control" type="text" placeholder="Enter a location to load map">
+          <div id="map"></div> -->
+          </div>
+  </div>
+  <div class="modal-footer">
+   <button type="submit" class="btn  btn-outline-dark" [disabled]="!dataForm.form.valid" >Create country <i class="material-icons fwd">arrow_forward</i></button>
+  </div>
+  </form>
+</ng-template>
+</div>
+<div class="modal" >
+<ng-template #countryedit let-c="close" let-d="dismiss">
+  <div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Update country</h4>
+  <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  </div>
+  <form (ngSubmit)="updateCountry()" #dataForm="ngForm">
+  <div class="modal-body">
+        <div class="form-group">
+        <input type="text" class="form-control" [(ngModel)]="data.cname" name="cname" placeholder="Enter a country name" required>
+        </div>
+
+        <div class="form-group">
+        <input type="hidden" class="form-control" [(ngModel)]="data.cid" name="cid">
+        </div>
+  </div>
+  <div class="form-group">
+          <button type="submit" class="btn  btn-outline-dark" [disabled]="!dataForm.form.valid" >Update country</button>
+        </div>
+  </form>
+</ng-template>
+</div>
+
+<div class="modal" >
+<ng-template #countrydelete let-c="close" let-d="dismiss">
+  <div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">delete country</h4>
+  <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  </div>
+  <form (ngSubmit)="updateCountry()" #dataForm="ngForm">
+  <div class="modal-body">
+        <div class="form-group">
+        <input type="text" class="form-control" [(ngModel)]="data.cname" name="cname" placeholder="Enter a country name" required>
+        </div>
+
+        <div class="form-group">
+        <input type="hidden" class="form-control" [(ngModel)]="data.cid" name="cid">
+        </div>
+  </div>
+  <div class="form-group">
+          <button type="submit" class="btn  btn-outline-dark" [disabled]="!dataForm.form.valid" >Update country</button>
+        </div>
+  </form>
+</ng-template>
+</div>
+
+    <div class="modal" >
+  <ng-template #state let-c="close" let-d="dismiss">
+  <div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Create a new state</h4>
+  <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  </div>
+ <form class="form-signin" (ngSubmit)="createState()" #dataForm="ngForm">
+  <div class="modal-body">
+          <div class="form-group">
+               <input required type="text" class="form-control" placeholder="Enter a state name" [(ngModel)]="data.sname" name="sname">
+          </div>
+          <div class="form-group">
+          <!-- <textarea type="text" placeholder="Enter a location to " [(ngModel)]="clocation" name="clocation" class="form-control" rows="3"></textarea> -->
+          <input id="pac-input" class="controls form-control" type="text" placeholder="Enter a location to load  map">
+          <!-- <div id="map"></div> -->
+          </div>
+  </div>
+  <div class="modal-footer">
+  <button type="submit" class="btn  btn-light" [disabled]="!dataForm.form.valid">Create state<i class="material-icons fwd">arrow_forward</i></button>
+  </div>
+  </form>
+</ng-template>
+</div>
+
+  <div class="modal" >
+<ng-template #region let-c="close" let-d="dismiss">
+  <div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Create a new region</h4>
+  <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  </div>
+ <form class="form-signin" (ngSubmit)="createRegion()" #dataForm="ngForm">
+  <div class="modal-body">
+          <div class="form-group">
+               <input required type="text" class="form-control" placeholder="Enter a region name" [(ngModel)]="data.rname" name="rname">
+          </div>
+          <div class="form-group">
+          <!-- <textarea type="text" placeholder="Enter a location to " [(ngModel)]="clocation" name="clocation" class="form-control" rows="3"></textarea> -->
+          <input id="pac-input" class="controls form-control" type="text" placeholder="Enter a location to load  map">
+          <!-- <div id="map"></div> -->
+          </div>
+  </div>
+  <div class="modal-footer">
+  <button type="submit" class="btn  btn-light" [disabled]="!dataForm.form.valid">Create region<i class="material-icons fwd">arrow_forward</i></button>
+  </div>
+  </form>
+</ng-template>
+</div>
+   <!-- popup ends -->
+   

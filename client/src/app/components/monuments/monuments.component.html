@@ -1,0 +1,202 @@
+<div class="page-wrapper">
+  <div class="animated slideInUp">
+
+      <div class="page-header-wrapp">
+          <div class="page-header-text">
+            <button class="btn btn-light float-left back-btn" [routerLink]="['/createmonoment']"><i class="material-icons">
+                arrow_back
+                </i> Go Back</button>
+            <h2 class="page-header">Monuments</h2>
+          <span class="page-header-content">External advertisement analysis</span>
+          </div>
+          <div class="page-header-btn">
+              <a class="text-center" > <i class="material-icons">view_headline</i>List </a>
+              <a class="text-center" ><i  class="material-icons"> room</i>Map </a>
+              <a class="text-center" > <i class="material-icons">grid_on</i>Grid </a>
+          </div>
+      </div>
+
+
+      <div class="monuments-body">
+          <div class="row for-margin-class">
+              <div class="col-md-2">
+                  <div class="monument-logics">
+                      <span class="box-title"> Type </span>
+                      <div class="col-md-4" class="monument-statistic-content">
+                        <button type="button" class="btn btn-light dropdown-toggle float-right" data-toggle="dropdown">
+                            <a class="text-center" href="#"> All types <i class="material-icons icons float-right">keyboard_arrow_down</i></a>
+                        </button>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">A</a>
+                    <a class="dropdown-item" href="#">B</a>
+                  </div>
+                    </div>
+                    </div>
+              </div>
+
+              <div class="col-md-2">
+                <div class="monument-logics">
+                  <span class="box-title"> Category </span>
+                  <div class="col-md-4" class="monument-statistic-content">
+                    <button type="button" class="btn btn-light dropdown-toggle float-right" data-toggle="dropdown">
+                        <a class="text-center" href="#"> All types <i class="material-icons icons float-right">keyboard_arrow_down</i></a>
+                    </button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">A</a>
+                <a class="dropdown-item" href="#">B</a>
+              </div>
+                </div>
+                </div>
+              </div>
+
+              <div class="col-md-2">
+                <div class="monument-logics">
+                  <span class="box-title"> Status </span>
+                  <div class="col-md-4" class="monument-statistic-content">
+                    <button type="button" class="btn btn-light dropdown-toggle float-right" data-toggle="dropdown">
+                        <a class="text-center" href="#"> All status <i class="material-icons icons float-right">keyboard_arrow_down</i></a>
+                    </button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">A</a>
+                <a class="dropdown-item" href="#">B</a>
+              </div>
+                </div>
+                </div>
+              </div>
+
+              <div class="col-md-2">
+                <div class="monument-logics">
+                  <span class="box-title"> Daily traffic </span>
+                  <div class="col-md-4" class="monument-statistic-content">
+                    <button type="button" class="btn btn-light dropdown-toggle float-right" data-toggle="dropdown">
+                        <a class="text-center" href="#"> All traffic levels <i class="material-icons icons float-right">keyboard_arrow_down</i></a>
+                    </button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">A</a>
+                <a class="dropdown-item" href="#">B</a>
+              </div>
+                </div>
+                </div>
+              </div>
+                      
+
+              <div class="col-md-2">
+                <div class="monument-logics">
+                  <span class="box-title"> Brand </span>
+                  <div class="col-md-4" class="monument-statistic-content">
+                    <button type="button" class="btn btn-light dropdown-toggle float-right" data-toggle="dropdown">
+                        <a class="text-center" href="#"> All brands <i class="material-icons icons float-right">keyboard_arrow_down</i></a>
+                    </button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">A</a>
+                <a class="dropdown-item" href="#">B</a>
+              </div>
+                </div>
+                </div>
+              </div>
+
+              <div class="col-md-2">
+                <div class="monument-logics">
+                  <span class="box-title"> Providers </span>
+                  <div class="col-md-4" class="monument-statistic-content">
+                    <button type="button" class="btn btn-light dropdown-toggle float-right" data-toggle="dropdown">
+                        <a class="text-center" href="#"> All providers <i class="material-icons icons float-right">keyboard_arrow_down</i></a>
+                    </button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">A</a>
+                <a class="dropdown-item" href="#">B</a>
+              </div>
+                </div>
+                </div>
+              </div>
+
+          </div>
+      </div>
+<div class="monument-list">
+       
+        <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Type</th>
+          <th scope="col">Category</th>
+          <th scope="col">Status</th>
+          <th scope="col">Daily Traffic</th>
+          <th scope="col">Brand</th>
+          <th scope="col">Provider</th>
+          <th scope="col">Gallery</th>
+          <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let list of listdata; ">
+                  
+                <td>{{list.id}}</td>
+                <td>{{list.type}}</td>
+                <td>{{list.category}}</td>
+                <td>{{list.status}}</td>
+                <td>{{list.daily_traffic}}</td>
+                <td> {{list.brand}}</td>
+                <td>{{list.provider}}</td>
+               <td><img *ngFor="let listg of gal;" src = "{{listg}}"></td>
+               <td><i class="material-icons" (click)="openview(view)">visibility</i>
+                <i class="material-icons" (click)="openmonoedit(monoedit)"> edit</i>
+                <i class="material-icons" (click)="openmonoedit(monoedit)">close</i>
+                 <!-- <button type="button" class="btn btn-success" (click)="openview(view)">View</button> -->
+                <!-- <button type="button" class="btn btn-warning" (click)="openmonoedit(monoedit)">Edit</button> -->
+                <!-- <button type="button" class="btn btn-danger" (click)="openmonodelete(monodelete)">Delete</button> -->
+              </td>
+              </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>
+
+<!-- >>>>>>>>>>View monuments Modals starts<<<<<<<<<< -->
+<ng-template #view let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Monument Details</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>One fine body&hellip;</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+  </ng-template>
+
+  <ng-template #monoedit let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title">Edit Monument</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>One fine body&hellip;</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+      </div>
+    </ng-template>
+
+    <ng-template #monodelete let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title">Delete Monument</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>One fine body&hellip;</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+        </div>
+      </ng-template>
+<!-- >>>>>>>>>>View monuments Modals ends<<<<<<<<<< -->

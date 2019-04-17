@@ -1,0 +1,199 @@
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { NavbarserviceService } from '../../services/navbarservice.service';
+import { Router } from '@angular/router';
+import * as $ from 'jquery';
+import { Observable } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
+import { MonumentService } from '../../services/monument.service';
+import { DependencyService } from '../../services/dependency.service';
+import { HttpHeaders } from '@angular/common/http';
+// import { setInterval } from 'timers';
+// import { FileUploader } from 'ng2-file-upload';
+declare function search(nameKey, myArray): any;
+declare function searchlng(nameKey, myArray): any;
+declare function monumentnew(): any;
+// declare function monument(lat,lng): any;
+// const URL = 'http://localhost:3000/uploader/gallery';
+@Component({
+  selector: 'app-createmonoment',
+  templateUrl: './createmonoment.component.html',
+  styleUrls: ['./createmonoment.component.css'],
+  encapsulation: ViewEncapsulation.None
+})
+export class CreatemonomentComponent implements OnInit {
+  blocks:any;
+  data = {};
+//  lat:any;
+//  lng:any;
+ nearestblocks=[];
+ nearest:any;
+  constructor(
+    public navbarservice: NavbarserviceService,
+    public monumentservice: MonumentService,
+    public dependencyservice: DependencyService,
+    private router: Router) {
+    
+   }
+
+  ngOnInit() {
+    this.navbarservice.show();
+    monumentnew();
+    // monument(14.64, -90.51);
+   
+    
+  }
+
+  fileToUpload: File = null;
+  urls = [];
+  images=[];
+  onSelectFile(event) {
+    this.fileToUpload = event.target.files;
+    console.log('this.fileToUpload:', this.fileToUpload);
+    //////////////////////////////////////
+    // var url = 'http://localhost:3000/uploader/gallery';
+      
+    //   var fd = new FormData();
+    // var files = this.fileToUpload;//event.target.files[0];// $('#file')[0].files[0];
+    // for (let index = 0; index < event.target.files.length; index++) {
+    //   fd.append('files[]', event.target.files[index]);
+      
+    // }
+      
+    //   console.log('fd:',fd)
+    //   // fd.append('uid', 1);
+    //   $.ajax({
+    //     url: url,
+    //     type: 'post',
+    //     data: fd,
+    //     contentType: false,
+    //     processData: false,
+    //     success: function (response) {
+    //       console.log('response:', response);
+    //       // if(response != 0){
+    //       //     $("#img").attr("src",response);
+    //       //     $('.preview img').show();
+    //       // }else{
+    //       //     alert('File not uploaded');
+    //       // }
+    //     }
+    //   });
+   
+    //////////////////////////////////////
+    
+    const headers = new HttpHeaders()
+      .append('Content-Type', 'multipart/form-data');
+
+    const formData: FormData = new FormData();
+    for (let index = 0; index < event.target.files.length; index++) {
+      formData.append('m_image[]', event.target.files[index], event.target.files[index].name);
+    }
+    // formData.append('avatar', event.target.files[0], event.target.files[0].name);
+    this.monumentservice.uploadgallery(formData, headers).subscribe(mydata => {
+      for (let i = 0; i < event.target.files.length; i++) {
+        this.images.push('../../../assets/uploads/'+mydata[i].filename);
+      }
+      console.log('mydata:', mydata);
+      
+    });
+    console.log(' this.urls:', this.urls);
+    
+    if (event.target.files && event.target.files[0]) {
+      var filesAmount = event.target.files.length;
+      for (let i = 0; i < filesAmount; i++) {
+        var reader = new FileReader();
+
+        reader.onload = (event:any) => {
+          // console.log(event.target.result);
+          this.urls.push(event.target.result);
+        }
+
+        reader.readAsDataURL(event.target.files[i]);
+      }
+    }
+    
+    
+  }
+  loadmap(event){
+  //   let lat = $('#lat').val();
+  //   let lng = $('#lng').val();
+  //   console.log('test:',lat,'AND',lng);
+  //   monument(lat, lng)
+console.log('hola');
+  }
+  sendgallery(images){
+    console.log(images);
+    this.monumentservice.createmonument({ gallery: images}).subscribe(formdata => {
+
+    });
+  }
+  createMonument(){
+    // console.log(this.data)
+    console.log('holla');
+
+  }
+  holaUpdate(event){
+    console.log('holaUpdate: ', event);
+      
+  }
+
+public setTime;
+mouseEnter(){
+  console.log('mouseEnter');
+  
+  // this.setTime = setInterval(()=>{
+  //   this.callByset();
+  // },1000);
+
+  this.setTime=setInterval(() => {
+    this.callByset();
+  }, 1000);
+  
+}
+mouseLeave(){
+  console.log('mouseLeave');
+  // this.setTime=undefined;
+  clearInterval(this.setTime);
+  
+}
+
+callByset(){
+  
+  let val = (document.getElementById('lat') as HTMLInputElement).value;
+
+  console.log('callByset: ',val);
+  /////////////////////////////////////////
+  let lat = parseInt($("#lat").attr('data-lat'));
+  
+  let lng = parseInt($('#lng').attr('data-lng'));
+  this.dependencyservice.getblock().subscribe(data => {
+    this.blocks = data;
+    console.log('latlng:', lat, lng);
+
+    console.log('this.blocks: ', this.blocks);
+    
+    for (let i = 0; i < this.blocks.length; i++) {
+      console.log('test', this.blocks[i].polydata);
+      if (this.blocks[i].polydata) {
+        console.log('test2', JSON.parse(this.blocks[i].polydata));
+        var resultObject = search(lat, JSON.parse(this.blocks[i].polydata));
+        var resultObject2 = searchlng(lng, JSON.parse(this.blocks[i].polydata));
+        if (resultObject && resultObject2){
+          console.log('hola sewak');
+          
+          // this.nearestblocks.push({ id: this.blocks[i].id, bname: this.blocks[i].bname})
+          this.nearest = [...this.nearestblocks,{ id: this.blocks[i].id, bname: this.blocks[i].bname}];
+          
+        }
+        console.log('resultObject', resultObject);
+        console.log('resultObject2', resultObject2);
+        console.log('nearestblocks: ', this.nearest);
+      }
+
+    }
+
+  });
+    /////////////////////////////////////////////////
+  
+  }
+  
+}

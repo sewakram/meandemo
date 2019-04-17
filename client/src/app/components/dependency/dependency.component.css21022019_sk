@@ -1,0 +1,85 @@
+.container-fluid {width: 100%;/* padding-right: 100px; */ padding-left: 150px;}
+.page-header{font-size: 30;color:#122755;font-family:"OpenSans";}
+.page-top-header{font-size: 30}
+.page-header-content{font-size: 12px;color:#91929C;}
+.dependency-statistic-1{ border:2px solid #C4CAD2;border-radius: 2px;padding:30px;color:#122755;font-size: 40px;}
+.dependency-statistic-1 p{font-size: 12px;}
+.dependency-body .dependency-statistic-row {    margin-right: 192px;margin-top: 30px;}
+.dependency-header-direction {align-content: left;border-radius: 5px;color: #fff;line-height: 25px;font-size: 14px;}
+.dependency-header-direction i.material-icons.fwd-arrow {font-size: 11px;padding-left: 3px;color: #fff;}
+.dependency-bottom-direction{float: right; font-size: 12px;font-family: 'OpenSans'; border-radius: 5px; /*width: 50%;*/line-height: 24px;color: #fff;margin-right: 62px;margin-bottom: 10px;}
+.dependency-bottom-direction i.material-icons.fwd-arrow {font-size: 10px;padding-left: 3px;color: #fff;}
+.dependency-body{width:120%;}
+.dependency-body .dependency-logics .list {padding: 0;white-space: nowrap;}
+.dependency-body .dependency-logics .sub-list{list-style: none; color: #A4A4A4;font-size: 13px;border-bottom: 1px solid #C4CAD2;padding-bottom: 14px; position: relative; right: 0px; }
+.col-md-2{border:1px solid #C4CAD2;padding-top: 15px;/*border-radius: 5px;*/}
+.col-md-2:nth-child(-n+5){/*border-top:none;*/border-left: none;}
+.col-md-2:last-child{width:100%;border-right: none;}
+.dependency-logics{color:#C4CAD2;font-weight: 200;font-style: 'OpenSans';}
+.dependency-logics span {display: block;overflow: hidden;text-overflow: ellipsis;width: 85%;}
+
+.icons{float:right;color:#fff;background-color: #FFCE00;border-radius: 2px;}
+
+/*dropdown list ie. Edit state and delete state start*/
+.dependency-body .dependency-logics .dropdown {position: unset;}
+.dropdown:hover>.dropdown-menu {display: block;}
+.dropdown>.dropdown-toggle:active {pointer-events: none;}
+.dropdown .dropdown-menu {padding: 0;margin: 0;min-width: 0;}
+button#dropdownMenuButton {position: absolute;right: 0;bottom: 0;background-color: transparent;border: none;}
+button#dropdownMenuButton::after { display: none;}
+button#dropdownMenuButton:hover{color: #FFCE00;}
+
+/*dropdown list ie. Edit state and delete state end*/
+
+
+/*Searchbox start*/
+#custom-search-input {
+        margin:0;
+        margin-top: 10px;
+        padding: 0;
+    }
+ #custom-search-input .search-query {
+        padding-right: 3px;
+        padding-right: 4px \9;
+        padding-left: 3px;
+        padding-left: 4px \9;
+        /* IE7-8 doesn't have border-radius, so don't indent the padding */
+ 
+        margin-bottom: 0;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+    }
+ #custom-search-input button {
+        border: 0;
+        background: none;
+        /** belows styles are working good */
+        padding: 2px 5px;
+        margin-top: 2px;
+        position: relative;
+        left: -28px;
+        /* IE7-8 doesn't have border-radius, so don't indent the padding */
+        margin-bottom: 0;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        /*color:#D9230F;*/
+    }
+
+    .search-query:focus + button {
+        z-index: 3;   
+    }
+/*Searchbox start*/
+
+/*Modal for contry,state,region,block start*/
+
+.modal.show .modal-dialog .modal-content .modal-header {
+    background-color: #000;
+    color: #fff;
+}
+.modal.show .modal-dialog .modal-content .modal-header #modal-basic-title {
+    font-size: 13px;
+  
+}
+
+/*Modal for contry,state,region,block end*/

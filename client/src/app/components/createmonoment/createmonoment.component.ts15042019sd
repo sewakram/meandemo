@@ -1,0 +1,467 @@
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { NavbarserviceService } from '../../services/navbarservice.service';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
+import * as $ from 'jquery';
+import { Observable } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
+import { MonumentService } from '../../services/monument.service';
+import { DependencyService } from '../../services/dependency.service';
+import { HttpHeaders } from '@angular/common/http';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+// import { setInterval } from 'timers';
+// import { FileUploader } from 'ng2-file-upload';
+declare function search(nameKey, myArray): any;
+declare function searchlng(nameKey, myArray): any;
+declare function monumentnew(lat,lng): any;
+// declare function GeoPoint(lon, lat): any;
+declare function deg2declat(lat,max): any;
+declare function deg2declng(lng,max): any;
+declare function mycanvas(): any;
+// const URL = 'http://localhost:3000/uploader/gallery';
+@Component({
+  selector: 'app-createmonoment',
+  templateUrl: './createmonoment.component.html',
+  styleUrls: ['./createmonoment.component.css'],
+  providers: [NgbModalConfig, NgbModal]
+})
+export class CreatemonomentComponent implements OnInit {
+  blocks:any;
+  data:any = {};
+  //  lat:any;
+  //  lng:any;
+  nearestblocks=[];
+  nearest:any;
+  modalReference: any;
+  public form: FormGroup;
+  public contactList: FormArray;
+  // returns all form groups under contacts
+  get contactFormGroup() {
+    return this.form.get('contacts') as FormArray;
+  }
+
+  constructor(
+    private fb: FormBuilder,
+    public navbarservice: NavbarserviceService,
+    public monumentservice: MonumentService,
+    public dependencyservice: DependencyService,
+    config: NgbModalConfig,
+    private modalService: NgbModal,
+    private router: Router) {
+    
+   }
+  opensetref(setref, refurls) {
+    console.log('refurls:', refurls);
+    
+
+    this.modalReference = this.modalService.open(setref);
+    // mycanvas();
+  }
+
+  opensetfref(setfref, frefurls) {
+    console.log('refurls:', frefurls);
+    
+
+    this.modalReference = this.modalService.open(setfref);
+    // mycanvas();
+  }
+
+  openfaces(faces) {
+    this.modalReference = this.modalService.open(faces, { size: 'lg' });
+    // mycanvas();
+  }
+  ngOnInit() {
+    this.navbarservice.show();
+    // monumentnew();
+    monumentnew(14.64, -90.51);
+    //form start
+    this.form = this.fb.group({
+     
+      contacts: this.fb.array([this.createContact()])
+    });
+
+    // set contactlist to this field
+    this.contactList = this.form.get('contacts') as FormArray;
+    //form end
+   }
+
+  fileToUpload: File = null;
+  reffileToUpload: File = null;
+  urls = [];
+  refurls=[];
+  frefurls=[];
+  images=[];
+  refimages=[];
+  frefimages=[];
+  monumentid:any;
+  faceid:any;
+ 
+  onSelectFile(event) {
+    this.fileToUpload = event.target.files;
+    console.log('this.fileToUpload:', this.fileToUpload);
+    //////////////////////////////////////
+    // var url = 'http://localhost:3000/uploader/gallery';
+      
+    //   var fd = new FormData();
+    // var files = this.fileToUpload;//event.target.files[0];// $('#file')[0].files[0];
+    // for (let index = 0; index < event.target.files.length; index++) {
+    //   fd.append('files[]', event.target.files[index]);
+      
+    // }
+      
+    //   console.log('fd:',fd)
+    //   // fd.append('uid', 1);
+    //   $.ajax({
+    //     url: url,
+    //     type: 'post',
+    //     data: fd,
+    //     contentType: false,
+    //     processData: false,
+    //     success: function (response) {
+    //       console.log('response:', response);
+    //       // if(response != 0){
+    //       //     $("#img").attr("src",response);
+    //       //     $('.preview img').show();
+    //       // }else{
+    //       //     alert('File not uploaded');
+    //       // }
+    //     }
+    //   });
+   
+    //////////////////////////////////////
+    
+    const headers = new HttpHeaders()
+      .append('Content-Type', 'multipart/form-data');
+
+    const formData: FormData = new FormData();
+    for (let index = 0; index < event.target.files.length; index++) {
+      formData.append('m_image[]', event.target.files[index], event.target.files[index].name);
+    }
+    // formData.append('avatar', event.target.files[0], event.target.files[0].name);
+    this.monumentservice.uploadgallery(formData, headers).subscribe(mydata => {
+      for (let i = 0; i < event.target.files.length; i++) {
+        this.images.push('../../../assets/uploads/'+mydata[i].filename);
+      }
+      console.log('mydata:', mydata);
+      console.log(' this.images:',typeof JSON.stringify(this.images));
+      let gdata = { gallery: JSON.stringify(this.images) };
+      console.log('gdata:', gdata);
+      this.monumentservice.createmonument(gdata).subscribe(gallerydata => {
+        console.log('gallerydata:', gallerydata);
+        this.monumentid=gallerydata.insertId;
+        console.log('monumentid:', this.monumentid);
+
+      });
+    });
+ 
+    console.log(' this.urls:', this.urls);
+    
+    if (event.target.files && event.target.files[0]) {
+      var filesAmount = event.target.files.length;
+      for (let i = 0; i < filesAmount; i++) {
+        var reader = new FileReader();
+
+        reader.onload = (event:any) => {
+          // console.log(event.target.result);
+          this.urls.push(event.target.result);
+        }
+
+        reader.readAsDataURL(event.target.files[i]);
+      }
+    }
+    
+    
+  }
+
+  
+  public setTime;
+  mouseEnter() {
+    console.log('mouseEnter');
+
+    // this.setTime = setInterval(()=>{
+    //   this.callByset();
+    // },1000);
+
+    this.setTime = setInterval(() => {
+      this.callByset();
+    }, 1000);
+
+  }
+  mouseLeave() {
+    console.log('mouseLeave');
+    // this.setTime=undefined;
+    clearInterval(this.setTime);
+
+  }
+
+  callByset() {
+
+    let val = (document.getElementById('lat') as HTMLInputElement).value;
+
+    console.log('callByset: ', val);
+    /////////////////////////////////////////
+    let lat = parseInt($("#lat").attr('data-lat'));
+
+    let lng = parseInt($('#lng').attr('data-lng'));
+    this.dependencyservice.getblock().subscribe(data => {
+      this.blocks = data;
+      console.log('latlng:', lat, lng);
+
+      console.log('this.blocks: ', this.blocks);
+
+      for (let i = 0; i < this.blocks.length; i++) {
+        console.log('test', this.blocks[i].polydata);
+        if (this.blocks[i].polydata) {
+          console.log('test2', JSON.parse(this.blocks[i].polydata));
+          var resultObject = search(lat, JSON.parse(this.blocks[i].polydata));
+          var resultObject2 = searchlng(lng, JSON.parse(this.blocks[i].polydata));
+          if (resultObject && resultObject2) {
+            console.log('hola sewak');
+
+            // this.nearestblocks.push({ id: this.blocks[i].id, bname: this.blocks[i].bname})
+            this.nearest = [...this.nearestblocks, { id: this.blocks[i].id, bname: this.blocks[i].bname }];
+
+          }
+          console.log('resultObject', resultObject);
+          console.log('resultObject2', resultObject2);
+          console.log('nearestblocks: ', this.nearest);
+        }
+
+      }
+
+    });
+    /////////////////////////////////////////////////
+
+  }
+
+  createMonument() {
+    console.log(this.data)
+    console.log('hollacreateMonument');
+
+    var lat = this.data.degrees + '°' + this.data.minutes + '\'' + this.data.seconds + '.' + this.data.secondsdeci + '\"';
+    var lon = this.data.e_degrees + '°' + this.data.e_minutes + '\'' + this.data.e_seconds + '.' + this.data.e_secondsdeci + '\"';
+    // var lon = "24° 43' 30.16\"";
+    // var lat = "58° 44' 43.97\"";
+    var MAX_LON = 180, MAX_LAT = 90;
+
+    let mylat = deg2declat(lat, MAX_LAT);
+    let mylng = deg2declng(lon, MAX_LON);
+    // var point =new GeoPoint(lon, lat);
+    var test = $("#lat").val(mylat);
+    if (test) {
+      console.log('holiiiia');
+
+    }
+    $("#lng").val(mylng);
+    console.log('mylat and mylng', mylat, mylng);
+    monumentnew(mylat, mylng);
+    //console.log(point.getLonDec()); // 24.725044444444443
+    //console.log(point.getLatDec()); // 58.74554722222222
+
+  }
+  
+  updatemdata(mid,data){
+    let lat = ((document.getElementById('lat')) as HTMLInputElement).value;
+    let lng = ((document.getElementById('lng')) as HTMLInputElement).value;
+    let location = ((document.getElementById('location')) as HTMLInputElement).value;
+    let mydata = { lat: lat, lng: lng, location: location, status: 1, ass_block: this.data.block, type: this.data.type, provider: this.data.provider, notes: this.data.notes}
+    console.log('updatemdata:', this.data, lat, lng, location);
+    this.monumentservice.updatemonudata(mid, mydata).subscribe(formdata => {
+      console.log('monumentdata', formdata);
+    });
+    
+   }
+
+  onSelectref(event) {
+    this.reffileToUpload = event.target.files;
+    console.log('this.fileToUpload:', this.reffileToUpload);
+    
+    const headers = new HttpHeaders()
+      .append('Content-Type', 'multipart/form-data');
+
+    const formData: FormData = new FormData();
+    for (let index = 0; index < event.target.files.length; index++) {
+      formData.append('ref_image[]', event.target.files[index], event.target.files[index].name);
+    }
+    // formData.append('avatar', event.target.files[0], event.target.files[0].name);
+    this.monumentservice.uploadrefgallery(formData, headers).subscribe(mydata => {
+      for (let i = 0; i < event.target.files.length; i++) {
+        this.refimages.push('../../../assets/refuploads/' + mydata[i].filename);
+      }
+      console.log('mydata:', mydata);
+      console.log(' this.refimages:', this.refimages);
+      // let gdata = { reference: JSON.stringify(this.refimages) };
+      // console.log('gdata:', gdata);
+      // this.monumentservice.createmonuref(mid,gdata).subscribe(gallerydata => {
+      //   console.log('gallerydata:', gallerydata);
+      //   // this.monumentid = gallerydata.insertId;
+      //   // console.log('monumentid:', this.monumentid);
+
+      // });
+    });
+
+    console.log(' this.refurls:', this.refurls);
+
+    if (event.target.files && event.target.files[0]) {
+      var filesAmount = event.target.files.length;
+      for (let i = 0; i < filesAmount; i++) {
+        var reader = new FileReader();
+
+        reader.onload = (event: any) => {
+          // console.log(event.target.result);
+          this.refurls.push(event.target.result);
+        }
+
+        reader.readAsDataURL(event.target.files[i]);
+      }
+    }
+
+
+  }
+
+  onSelectfref(event) {
+    this.reffileToUpload = event.target.files;
+    console.log('this.fileToUpload:', this.reffileToUpload);
+
+    const headers = new HttpHeaders()
+      .append('Content-Type', 'multipart/form-data');
+
+    const formData: FormData = new FormData();
+    for (let index = 0; index < event.target.files.length; index++) {
+      formData.append('ref_image[]', event.target.files[index], event.target.files[index].name);
+    }
+    // formData.append('avatar', event.target.files[0], event.target.files[0].name);
+    this.monumentservice.uploadrefgallery(formData, headers).subscribe(mydata => {
+      for (let i = 0; i < event.target.files.length; i++) {
+        this.frefimages.push('../../../assets/refuploads/' + mydata[i].filename);
+      }
+      console.log('mydata:', mydata);
+      console.log(' this.frefimages:', this.frefimages);
+      // let gdata = { reference: JSON.stringify(this.refimages) };
+      // console.log('gdata:', gdata);
+      // this.monumentservice.createmonuref(mid,gdata).subscribe(gallerydata => {
+      //   console.log('gallerydata:', gallerydata);
+      //   // this.monumentid = gallerydata.insertId;
+      //   // console.log('monumentid:', this.monumentid);
+
+      // });
+    });
+
+    console.log(' this.frefurls:', this.frefurls);
+
+    if (event.target.files && event.target.files[0]) {
+      var filesAmount = event.target.files.length;
+      for (let i = 0; i < filesAmount; i++) {
+        var reader = new FileReader();
+
+        reader.onload = (event: any) => {
+          // console.log(event.target.result);
+          this.frefurls.push(event.target.result);
+        }
+
+        reader.readAsDataURL(event.target.files[i]);
+      }
+    }
+
+
+  }
+
+  setreference(mydata,mid){
+    let refdata = { reference: JSON.stringify(mydata) };
+    this.monumentservice.createmonuref(mid, refdata).subscribe(gallerydata => {
+        console.log('gallerydata:', gallerydata);
+        // this.monumentid = gallerydata.insertId;
+        // console.log('monumentid:', this.monumentid);
+
+      });
+    this.modalReference.close();
+  }
+
+  setfreference(mydata,mid){
+    console.log('hola sewak:',mid);
+    let refdata = { freference: JSON.stringify(mydata),mid:mid };
+    this.monumentservice.createfaceref(refdata).subscribe(facerefdata => {
+      console.log('facerefdata:', facerefdata);
+        this.faceid = facerefdata.insertId;
+      console.log('faceid:', this.faceid);
+      // this.monumentservice.updatemonumentfid(mid,{ faceid:this.faceid}).subscribe(faceid => {
+          
+      //   });
+
+      });
+    this.modalReference.close();
+  }
+//form start
+  // contact formgroup
+  createContact(): FormGroup {
+    return this.fb.group({
+      refname: [null, Validators.compose([Validators.required])], // i.e Email, Phone
+      level: ['level', Validators.compose([Validators.required])], // i.e. Home, Office
+      fref_image: [null, Validators.compose([Validators.required])] // i.e. Home, Office
+      // value: [null, Validators.compose([Validators.required, Validators.email])]
+    });
+  }
+
+  // add a contact form group
+  addContact() {
+    this.contactList.push(this.createContact());
+  }
+
+  // remove contact from group
+  removeContact(index) {
+    // this.contactList = this.form.get('contacts') as FormArray;
+    this.contactList.removeAt(index);
+  }
+
+  // triggered to change validation of value field type
+  // changedFieldType(index) {
+  //   let validators = null;
+
+  //   if (this.getContactsFormGroup(index).controls['type'].value === 'email') {
+  //     validators = Validators.compose([Validators.required, Validators.email]);
+  //   } else {
+  //     validators = Validators.compose([
+  //       Validators.required,
+  //       Validators.pattern(new RegExp('^\\+[0-9]?()[0-9](\\d[0-9]{9})$')) // pattern for validating international phone number
+  //     ]);
+  //   }
+
+  //   this.getContactsFormGroup(index).controls['value'].setValidators(
+  //     validators
+  //   );
+
+  //   this.getContactsFormGroup(index).controls['value'].updateValueAndValidity();
+  // }
+
+  // get the formgroup under contacts form array
+  getContactsFormGroup(index): FormGroup {
+    // this.contactList = this.form.get('contacts') as FormArray;
+    const formGroup = this.contactList.controls[index] as FormGroup;
+    return formGroup;
+  }
+//form end
+  
+  onSubmit(mid) {
+    console.log('faceid:', mid);
+    // TODO: Use EventEmitter with form value
+    console.log("hollaaaaaa", this.form.value.contacts);
+    this.monumentservice.getfacedatabymid(mid).subscribe(facedata => {
+      console.log('facedata',facedata);
+    
+
+      for (let i = 0; i < facedata.length; i++) {
+      console.log('sewak', this.form.value.contacts[i].refname);
+      let mydata = { 
+        refname: this.form.value.contacts[i].refname, 
+        level: this.form.value.contacts[i].level 
+      };
+        // console.log('i:facedata', facedata[i].mid,':', mydata);
+      this.monumentservice.updatefacedata(facedata[i].id, mydata ).subscribe(faceid => {
+        
+      });
+    }
+    });
+    $('.close').trigger('click');
+  }
+
+}

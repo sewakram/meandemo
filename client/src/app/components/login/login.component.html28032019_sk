@@ -1,0 +1,64 @@
+
+<div class="page-wrapper">
+  <div class="container-fluid">
+<a class="logo text-center" [routerLink]="['/']"><img class="logo" src="../../../assets/images/black_adsmart_logo.png"></a>
+
+<div class="login">
+    <h2 class="page-header">Welcome to AdSmart.</h2>
+    <p class="page-header-content">Access your account</p>
+      <form class="form-signin" (submit)="onLoginSubmit()">
+        
+         <div class="input-group form-group">
+          <!-- <label for="Username">Username</label> -->
+          <div class="input-group-prepend">
+              <span class="input-group-text"> <i class="material-icons">mail_outline</i> </span>
+          </div>
+          <input type="text" class="form-control" placeholder="Enter an address or reference" [(ngModel)]="username" name="username" required >
+        </div>
+        <div class="input-group form-group">
+        <!-- <label for="Password">Password</label> -->
+        <div class="input-group-prepend">
+            <span class="input-group-text"><i class="material-icons">lock</i></span>
+        </div>
+        <input type="password" class="form-control" placeholder=" Enter your password" [(ngModel)]="password" name="password" required >
+        </div>
+       
+           <input class="btn btn-warning text-center submit" type="submit" >
+          <!--    <div class="submit">
+            <i class="material-icons fwd-arrow">arrow_forward</i>
+        </div> -->
+        <!-- <div class="input-group form-group"> 
+            <div class="input-group-prepend">
+                <input class="input-group-text" type="submit" class="btn btn-warning" value="Login">
+               <a class="login-direction text-center" [routerLink]="['/dashboard']">
+                  <i class="material-icons fwd-arrow">arrow_forward</i>
+                </a>
+            </div>
+        </div> -->
+      
+          <!-- <input type="submit" class="btn btn-warning" value="Login">
+            <a class="login-direction text-center" [routerLink]="['/dashboard']">Login
+              <i class="material-icons fwd-arrow">arrow_forward</i>
+            </a> -->
+            
+        </form>
+</div>      <div class="security">         
+          <div class="row text-center">
+           
+            <div class="col-md-4">
+                <a href="#" class="forget-password"> Forgot your password?</a> 
+            </div>
+            <div class="col-md-4">
+              <a class="register" [routerLink]="['/register']">Don't have an account?</a>
+            </div>
+         
+          </div>
+        </div> 
+       
+
+ <h5 class="footer text-center">Adsmart &copy; 2019</h5>
+<div class="col-md-4">
+  <!-- <img src="../../../assets/images/Background Image_LP.jpg" class="bckg_img"> -->
+</div> 
+</div>
+</div>

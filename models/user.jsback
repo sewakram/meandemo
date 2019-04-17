@@ -1,0 +1,32 @@
+var db=require('../config/dbconnection');
+// var db=require('../app.js');
+  var md5 = require('md5');
+
+var User={
+ // User login 
+login:function(user,pass,callback){
+// console.log("hi");
+var hash = md5(pass);
+return db.query("Select * from aauth_users WHERE email = ? AND pass=?",[user,hash],callback);
+},
+
+register:function(user,callback){
+var data = {
+email : user.email,
+pass : md5(user.pass),
+username : user.username,
+banned : user.banned,
+remember_exp : user.remember_exp,
+verification_code : user.verification_code,
+totp_secret : user.totp_secret,
+ip_address : user.ip_address,
+brand : user.brand,
+plan : user.plan,
+
+};
+return db.query("INSERT INTO aauth_users set ? ",data,callback);
+}
+
+};
+
+module.exports=User;

@@ -1,0 +1,147 @@
+<div class="page-wrapper">
+  <div class="animated slideInUp">
+    <div class="page-header-wrapp">
+      <div class="page-header-text">
+        <h2 class="page-header">New monument inventory interface</h2>
+        <span class="page-header-content">Two side monument validation schema</span>
+      </div>
+    </div>
+    <div class="createmonument-body">
+      <!-- <div class="container"> -->
+      
+        <div class="row createmonument-statistic">
+          <div class="col-md-6">
+            <!-- <input type="file" ng2FileSelect [uploader]="uploader" multiple /> -->
+            <!-- <button type="button" class="btn btn-success btn-s" (click)="uploader.uploadAll()"
+                                      [disabled]="!uploader.getNotUploadedItems().length">
+                                      <span class="glyphicon glyphicon-upload"></span> Upload all
+                                    </button> -->
+            <span class="createmonument-statistic-content">Image preview</span>
+            <div class="createmonument-btn btn btn-warning">
+
+              <i class="icon material-icons">filter_none</i>
+              <span>Load gallery</span>
+              <!-- The file input field used as target for the file upload widget -->
+              <input type='file' (change)="onSelectFile($event)" id="fileupload" name="m_image[]" multiple>
+            </div>
+            <!-- <input type='file' (change)="onSelectFile($event)" id="m_image" name="m_image"  multiple> -->
+            <!-- <button>Load gallery</button> -->
+            <!-- <img *ngFor='let url of urls' [src]="url" height="200"> <br />
+                    <button type="submit" class="region btn btn-light">Send</button> -->
+            <!-- galll start -->
+            <ngb-carousel *ngIf="urls">
+              <ng-template ngbSlide *ngFor='let url of urls'>
+                <!-- <span>{{url}}</span> -->
+                <img [src]="url" height="200" alt="Random first slide">
+                <div class="carousel-caption">
+                  <!-- <h3>First slide label</h3>
+                          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p> -->
+                </div>
+              </ng-template>
+
+            </ngb-carousel>
+            <span>{{ url}}</span>
+            <form class="form-signin" (ngSubmit)="createMonument(dataForm)" #dataForm="ngForm" enctype="multipart/form-data">
+              <!-- <form (ngSubmit)="deleteBlock(singleblocks?singleblocks[0].id:'',routeid)" #bdataForm="ngForm"> -->
+            <div class="form-group">
+              <label>N</label>
+              <input required type="text" id="degrees" class="form-control" placeholder="00"
+                [(ngModel)]="data.degrees" name="degrees"><label>°</label>
+              <input required type="text" id="minutes" class="form-control" placeholder="00" [(ngModel)]="data.minutes"
+                name="minutes"><label>'</label>
+              <input required type="text" id="seconds" class="form-control" placeholder="00" [(ngModel)]="data.seconds"
+                name="seconds"><label>.</label>
+              <input required type="text" id="secondsdeci" class="form-control" placeholder="00" [(ngModel)]="data.secondsdeci"
+                name="secondsdeci">
+            </div>
+            <div class="form-group">
+              <label>E</label>
+              <input required type="text" id="e_degrees" class="form-control" placeholder="00" [(ngModel)]="data.e_degrees"
+                name="e_degrees"><label>°</label>
+              <input required type="text" id="e_minutes" class="form-control" placeholder="00" [(ngModel)]="data.e_minutes"
+                name="e_minutes"><label>'</label>
+              <input required type="text" id="e_seconds" class="form-control" placeholder="00" [(ngModel)]="data.e_seconds"
+                name="e_seconds"><label>.</label>
+              <input required type="text" id="e_secondsdeci" class="form-control" placeholder="00" [(ngModel)]="data.e_secondsdeci"
+                name="e_secondsdeci">
+            </div>
+             <button type="submit"  class="region btn btn-light">Send</button>
+             </form>
+            <!-- gall end -->
+
+          </div>
+          <div class="col-md-6">
+            <div class="createmonument-statistic-form">
+              <span>Monument interface</span>
+
+              <input type="text" id="lat" class="form-control map-text-box1" attr.data-lat="{{Latitude.value}}"
+                placeholder="Latitude" #Latitude [ngModel]="data.lat" (ngModelChange)="holaUpdate(Latitude)" name="lat">
+              <input id="lng" class="form-control map-text-box2" type="text" #Longitude
+                attr.data-lng="{{Longitude.value}}" [(ngModel)]="aValue" placeholder="Longitude" name="lng">
+              <div (mouseenter)="mouseEnter() " (mouseleave)="mouseLeave()" id="mapm"></div>
+
+              <div class="form-group">
+                <label>Location</label>
+              <input required type="text" id="location" class="form-control" placeholder="Enter an address or reference"
+                [(ngModel)]="data.address" name="address">
+              </div>
+              <div class="form-group">
+                <label for="sel1">Assigned block</label>
+                <select [(ngModel)]="data.block" class="form-control" id="sel1" name="block">
+                  <option>Select block</option>
+                  <div *ngIf="nearest; then thenBlockc "></div>
+                  <ng-template #thenBlockc>
+                    <option *ngFor="let block of nearest" value="{{block.id}}">{{block.bname}}</option>
+                    <!-- <option>3</option>
+                            <option>4</option> -->
+                  </ng-template>
+
+                </select>
+
+              </div>
+              <div class="form-group">
+                <label for="sel1">Type</label>
+                <select class="form-control" [(ngModel)]="data.type" id="sel1" name="type">
+                  <option>Mupi</option>
+                  <option>Transmupi</option>
+                  <option>Valla</option>
+                  <option>Pasarela</option>
+                </select>
+                <button type="submit" class="region btn btn-light">Manage faces</button>
+              </div>
+
+              <div class="form-group">
+                <label for="sel1">Provider</label>
+                <select class="form-control" id="sel1" [(ngModel)]="data.provider" name="provider">
+                  <option>Select an option</option>
+                  <option>Select an option</option>
+                  <option>GPO Vallas</option>
+                  <option>Publigrafik</option>
+                  <option>Top Media</option>
+                </select>
+
+              </div>
+
+              <div class="form-group">
+                <label>Notes</label>
+                <input required type="text" class="form-control" placeholder="Enter an optional note for reference"
+                  [(ngModel)]="data.notes" name="notes">
+              </div>
+
+
+              <div class="modal-footer">
+                <button type="submit" class="region btn btn-light">Set references</button>
+                <button type="submit" class="region btn btn-light">Reset</button>
+                <button type="submit" class="region btn btn-light" [disabled]="!dataForm.form.valid"><i
+                    class="material-icons"> room</i>Create Monument</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      
+      <!-- </div> -->
+    </div>
+
+  </div>
+</div>

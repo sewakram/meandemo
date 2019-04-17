@@ -1,0 +1,41 @@
+.container-fluid{width: 100%;padding-right: 0; padding-left: 150px;margin-right: auto;margin-left: auto;}
+.page-header{font-size: 24;color:#122755;font-family: "OpenSans";}
+.page-header-content{font-size: 12px;color:#91929C;}
+.dashboard-statistic-2{border:2px solid #C4CAD2;border-radius: 2px;justify-content: center;padding:20px;margin:10px;color:#122755;}
+.dashboard-statistic-3{border-right: 1px solid #C4CAD2;}
+.dashboard-statistic-3:last-child{border:none;}
+.dashboard-statistic-1{ border:2px solid #C4CAD2;border-radius: 2px;padding:10px;flex: 0 0 calc(25% - 20px);align-content: center;color:#122755;margin:10px;/*margin: auto 0;*/text-align: center;}
+.dashboard-statistic-1 p{font-size: 12px;}
+.dashboard-statistic-4{margin: auto 0;text-align: center;font-size: 6px}
+.dashboard-statistic-4 p{font-size: 6px}
+.dashboard-body .btn{ padding: 0px 24px 0px 20px;line-height: 12px;border-radius: 5px;color: #fff;background-color:rgb(155, 236, 4);font-size: 9px;font-family: 'OpenSans';text-transform: lowercase;}
+/*.dashboard-body .row p{font-size: 14px;/* margin: 0 20px 0 24px;*/
+.dashboard-dropdown .dropdown-toggle{font-size: 11px;float:right;align-content: left;border-radius: 5px;background-color:whitesmoke;width:40%;color:#C4CAD2;}
+.dashboard-statistic-progress {/*display: -webkit-box;*/display: -ms-flexbox;display: flex; height: 5px;overflow: hidden;font-size: 0.65625rem;background-color: #DFD7CA;border-radius: 10px;} 
+span.status {position: absolute; right:14px;color: #122755;}
+.dashboard-statistic-progress-bar{background-color:#122755;}
+.hr{border:1px #C4CAD2;}
+.dashboard-body-box{background-color:whitesmoke;}
+
+@media (max-width: 1125px) { 
+
+.dashboard-statistic-1 { padding: 18px;margin: 10px;}
+.dashboard-body .row p{font-size: 12px;}
+}
+
+
+@media (max-width: 992px) { 
+
+.dashboard-statistic-1 {padding: 6px;}
+.dashboard-statistic-1 .h1 {font-size: 25px;}
+.dashboard-body .row p{font-size: 11px;}
+.dashboard-statistic-2 {padding: 20px;}
+
+}
+
+@media (max-width: 768px) { 
+    .dashboard-statistic-1 {padding: 0px;margin:6px;}
+    .dashboard-statistic-1 .h1 {font-size: 18px;}
+    .dashboard-body .row p{font-size: 9px;}
+
+}

@@ -1,0 +1,39 @@
+var express = require('express');
+var router = express.Router();
+var User=require('../models/user');
+
+/* GET users listing. */
+router.get('/', function(req, res, next) {
+  res.send('respond with a resource');
+});
+
+//user login 
+router.post('/login',function(req,res,next){
+	User.login(req.body.email,req.body.pass,function(err,rows){
+		if(err)
+		{
+		res.json(err);
+		}
+		else{
+			// console.log(rows);
+		res.json(rows);//or return count for 1 &amp;amp;amp; 0
+		}
+	});
+ });
+
+//user register 
+router.post('/register',function(req,res,next){
+	User.register(req.body,function(err,rows){
+		console.log('hhhhhhhhhhh');
+	  if(err)
+	  {
+	  	res.json(err);
+	  }
+	  else{
+	  	// console.log(rows);
+	  	res.json(rows);//or return count for 1 &amp;amp;amp; 0
+	  }
+	});
+ });
+
+module.exports = router;

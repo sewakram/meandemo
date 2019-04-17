@@ -1,0 +1,43 @@
+<div class="page-wrapper">
+  <div class="container-fluid">
+  <div class="main-content-wrapp">
+  <a class="logo text-center" [routerLink]="['/']"><img class="logo" src="../../../assets/images/black_adsmart_logo.png"></a>
+
+<div class="register">
+  <h2 class="page-header">Welcome to AdSmart.</h2>
+  <span class="page-header-content">Create your account</span>
+  <div class="register-container">
+ <form (submit)="onRegisterSubmit()">
+  <div class="form-group">
+    <!-- <label for="name">Name</label> -->
+    <input type="text" [(ngModel)]="name" name="name" class="form-control name-input" id="name" placeholder="Enter Name">
+  </div>
+  <div class="form-group">
+    <!-- <label for="username">Username</label> -->
+    <input type="text" [(ngModel)]="username" name="username" class="form-control username-input" id="username" placeholder="Enter Username">
+  </div>
+  <div class="form-group">
+    <!-- <label for="email">Email</label> -->
+    <input type="email" [(ngModel)]="email" name="email" class="form-control email-input" id="email" aria-describedby="emailHelp" placeholder="Enter Email">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+  <div class="form-group">
+    <!-- <label for="password">Password</label> -->
+    <input type="password" [(ngModel)]="password" name="password" class="form-control pass-input" id="password" placeholder="Enter Password">
+  </div>
+  <div class="security-btn-wrap">
+  <input type="submit" class="btn btn-warning submit-btn-css" value="Register">
+  <a class="btn btn-warning login-btn-css" [routerLink]="['/login']">Login <i class="material-icons icon">arrow_forward</i></a>
+</div>
+</form>
+</div>
+</div>
+</div>
+<div class="footer-wrapp">         
+  <div class="footer-text-wrapp">
+      <h5 class="footer text-center">AdSmart &copy; 2019</h5>
+    </div>
+</div> 
+</div>
+</div>
+

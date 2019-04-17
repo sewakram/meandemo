@@ -1,0 +1,18 @@
+import { Component, OnInit } from '@angular/core';
+import { NavbarserviceService } from '../../services/navbarservice.service';
+// import * from 'jquery';
+@Component({
+  selector: 'app-dependency',
+  templateUrl: './dependency.component.html',
+  styleUrls: ['./dependency.component.css']
+})
+export class DependencyComponent implements OnInit {
+
+  constructor(public navbarservice: NavbarserviceService) { }
+
+  ngOnInit() {
+  	 this.navbarservice.show();
+  	 
+  }
+
+}

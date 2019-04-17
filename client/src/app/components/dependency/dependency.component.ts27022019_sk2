@@ -1,0 +1,165 @@
+import { Component, OnInit } from '@angular/core';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+
+import { NavbarserviceService } from '../../services/navbarservice.service';
+import { DependencyService } from '../../services/dependency.service';
+import * as $ from 'jquery';
+// declare function initAutocomplete():any;
+import { Observable } from 'rxjs';
+import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
+
+const statesa = ['Maharashtra', 'Mexico', 'Panama', 'Quetzaltenango', 'Huehuetenango', 'Retalhuleu', 'Peten'];
+const countrysa = ['India', 'Mexico', 'Panama', 'Quetzaltenango', 'Huehuetenango', 'Retalhuleu', 'Peten'];
+const regionsa = ['nagpur', 'Mexico', 'Panama', 'Quetzaltenango', 'Huehuetenango', 'Retalhuleu', 'Peten'];
+const routesa = ['mumbai to nagpur', 'Mexico', 'Panama', 'Quetzaltenango', 'Huehuetenango', 'Retalhuleu', 'Peten'];
+const blocksa = ['nagpur to ramtek', 'Mexico', 'Panama', 'Quetzaltenango', 'Huehuetenango', 'Retalhuleu', 'Peten'];
+
+
+
+// import * from 'jquery';
+@Component({
+  selector: 'app-dependency',
+  templateUrl: './dependency.component.html',
+  styleUrls: ['./dependency.component.css'],
+  providers: [NgbModalConfig, NgbModal]
+})
+export class DependencyComponent implements OnInit {
+$: any;
+countrys:any;
+states:any;
+regions:any;
+routes:any;
+blocks:any;
+data = {};
+modalReference :any; 
+// search box starts
+ public modelc: any;
+ public models: any;
+ public modelr: any;
+ public modelro: any;
+ public modelb: any;
+
+ 
+// search box ends
+  constructor(
+  public navbarservice: NavbarserviceService,
+  public dependencyservice: DependencyService,
+  config: NgbModalConfig,
+  private modalService: NgbModal,
+  private router: Router
+  ) {
+	config.backdrop = 'static';
+	config.keyboard = false; 
+   	}
+
+	open(country) {
+	this.modalReference =this.modalService.open(country);
+	
+	console.log('sham');
+	}
+	
+  ngOnInit() {
+	this.navbarservice.show();
+
+	this.dependencyservice.getcountry().subscribe(data => {
+	this.countrys = data;
+	console.log(this.countrys);
+	});
+
+	this.dependencyservice.getstate().subscribe(data => {
+	this.states = data;
+	console.log(this.states);
+	});
+
+	this.dependencyservice.getregion().subscribe(data => {
+	this.regions = data;
+	console.log(this.regions);
+	});
+
+	this.dependencyservice.getroute().subscribe(data => {
+	this.routes = data;
+	console.log(this.routes);
+	});
+
+	this.dependencyservice.getblock().subscribe(data => {
+	this.blocks = data;
+	console.log(this.blocks);
+	});
+	// initAutocomplete();
+  }
+
+  createCountry(){
+  	this.dependencyservice.createcountry(this.data).subscribe(formdata => {
+  	let m=[...this.countrys,formdata];
+  	this.countrys=m;
+	// console.log('formdata: ',formdata);
+	// console.log('countrys: ',this.countrys);
+	});
+	this.modalReference.close();
+  }
+
+  createState(){
+  	console.log(this.data);
+  	this.dependencyservice.createstate(this.data).subscribe(formdata => {
+  	let m=[...this.states,formdata];
+  	this.states=m;
+	// console.log('formdata: ',formdata);
+	// console.log('countrys: ',this.countrys);
+	});
+	this.modalReference.close();
+  }
+
+    createRegion(){
+    	console.log(this.data);
+  	this.dependencyservice.createregion(this.data).subscribe(formdata => {
+  	let m=[...this.regions,formdata];
+  	this.regions=m;
+	// console.log('formdata: ',formdata);
+	// console.log('countrys: ',this.countrys);
+	});
+	this.modalReference.close();
+  }
+
+   searchc = (text$: Observable<string>) =>
+    text$.pipe(
+      debounceTime(200),
+      distinctUntilChanged(),
+      map(term => term.length < 2 ? []
+        : countrysa.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
+      )
+
+    searchs = (text$: Observable<string>) =>
+    text$.pipe(
+      debounceTime(200),
+      distinctUntilChanged(),
+      map(term => term.length < 2 ? []
+        : statesa.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
+      )
+
+    searchr = (text$: Observable<string>) =>
+    text$.pipe(
+      debounceTime(200),
+      distinctUntilChanged(),
+      map(term => term.length < 2 ? []
+        : regionsa.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
+      )
+
+    searchro = (text$: Observable<string>) =>
+    text$.pipe(
+      debounceTime(200),
+      distinctUntilChanged(),
+      map(term => term.length < 2 ? []
+        : routesa.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
+      )
+
+    searchb = (text$: Observable<string>) =>
+    text$.pipe(
+      debounceTime(200),
+      distinctUntilChanged(),
+      map(term => term.length < 2 ? []
+        : blocksa.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
+      )
+
+}

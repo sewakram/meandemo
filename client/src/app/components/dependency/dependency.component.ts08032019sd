@@ -1,0 +1,399 @@
+import { Component, OnInit } from '@angular/core';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+
+import { NavbarserviceService } from '../../services/navbarservice.service';
+import { DependencyService } from '../../services/dependency.service';
+import * as $ from 'jquery';
+declare function initAutocomplete(): any;
+declare function editcmap(): any;
+declare function regionmap(): any;
+declare function routemap(): any;
+declare function blockmap(): any;
+import { Observable } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
+// import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+// import { MaploaderService } from '../../services/maploader.service';
+import { AfterViewInit } from '@angular/core';
+declare var google: any;
+//const statesa = ['Maharashtra', 'Mexico', 'Panama', 'Quetzaltenango', 'Huehuetenango', 'Retalhuleu', 'Peten'];
+//const countrysa = [];//['India', 'Mexico', 'Panama', 'Quetzaltenango', 'Huehuetenango', 'Retalhuleu', 'Peten'];
+//const regionsa = ['nagpur', 'Mexico', 'Panama', 'Quetzaltenango', 'Huehuetenango', 'Retalhuleu', 'Peten'];
+//const routesa = ['mumbai to nagpur', 'Mexico', 'Panama', 'Quetzaltenango', 'Huehuetenango', 'Retalhuleu', 'Peten'];
+const blocksa = ['nagpur to ramtek', 'Mexico', 'Panama', 'Quetzaltenango', 'Huehuetenango', 'Retalhuleu', 'Peten'];
+// const statesWithFlags;
+
+
+
+// import * from 'jquery';
+@Component({
+  selector: 'app-dependency',
+  templateUrl: './dependency.component.html',
+  styleUrls: ['./dependency.component.css'],
+  providers: [NgbModalConfig, NgbModal]
+})
+export class DependencyComponent implements OnInit {
+  $: any;
+  countrys: any;
+  singlecountrys: any;
+  states: any;
+  singlestates:any;
+  regions: any;
+  routes: any;
+  blocks: any;
+  data = {};
+  modalReference: any;
+  map: any;
+  drawingManager: any;
+  countrysa:any;
+  statesbycid:any;
+  regionsbysid:any;
+  routesbyrid:any;
+  blocksbyroid:any;
+
+  // search box starts
+  public modelc: any;
+  public models: any;
+  public modelr: any;
+  public modelro: any;
+  public modelb: any;
+  public model: any;
+
+  // search box ends
+  constructor(
+    public navbarservice: NavbarserviceService,
+    public dependencyservice: DependencyService,
+    config: NgbModalConfig,
+    private modalService: NgbModal,
+    private router: Router
+  ) {
+    config.backdrop = 'static';
+    config.keyboard = false;
+  }
+
+  open(country) {
+    this.modalReference = this.modalService.open(country);
+    // console.log('sham', cid);
+    // this.dependencyservice.getsinglecountry(cid).subscribe(data => {
+    //   this.singlecountrys = data;
+    //   console.log('response', data);
+    // });
+    initAutocomplete();
+    // alert('holla');
+  }
+  openregion(region) {
+    this.modalReference = this.modalService.open(region);
+    // console.log('sham', cid);
+    // this.dependencyservice.getsinglecountry(cid).subscribe(data => {
+    //   this.singlecountrys = data;
+    //   console.log('response', data);
+    // });
+    regionmap();
+    // alert('holla');
+  }
+
+  openroute(route) {
+    this.modalReference = this.modalService.open(route);
+    // console.log('sham', cid);
+    // this.dependencyservice.getsinglecountry(cid).subscribe(data => {
+    //   this.singlecountrys = data;
+    //   console.log('response', data);
+    // });
+    routemap();
+    // alert('holla');
+  }
+
+  openblock(block) {
+    this.modalReference = this.modalService.open(block);
+    // console.log('sham', cid);
+    // this.dependencyservice.getsinglecountry(cid).subscribe(data => {
+    //   this.singlecountrys = data;
+    //   console.log('response', data);
+    // });
+    blockmap();
+    // alert('holla');
+  }
+  opendeletec(countrydelete, cid) {
+    this.modalReference = this.modalService.open(countrydelete);
+    this.dependencyservice.getsinglecountry(cid).subscribe(data => {
+    this.singlecountrys = data;
+    console.log('response', data);
+    });
+  }
+
+  openeditc(countryedit, cid) {
+  this.modalReference = this.modalService.open(countryedit);
+  console.log('sham', cid);
+  this.dependencyservice.getsinglecountry(cid).subscribe(data => {
+  this.singlecountrys = data;
+    console.log('response', data);
+  });
+  // initAutocomplete();
+  editcmap();
+  // alert('holla');
+  }
+
+  openedits(stateedit, cid) {
+  this.modalReference = this.modalService.open(stateedit);
+  console.log('sham', cid);
+  this.dependencyservice.getsinglestate(cid).subscribe(data => {
+    this.singlestates = data;
+    console.log('response', data);
+  });
+  // initAutocomplete();
+  editcmap();
+  // alert('holla');
+  }
+
+  opendeletes(statedelete, cid) {
+    this.modalReference = this.modalService.open(statedelete);
+    this.dependencyservice.getsinglestate(cid).subscribe(data => {
+    this.singlestates = data;
+    console.log('response', data);
+    });
+  }
+
+  ngOnInit() {
+    this.navbarservice.show();
+
+    this.dependencyservice.getcountry().subscribe(data => {
+      this.countrys = data;
+      this.countrysa =  data;
+      // this.statesWithFlags=(this.countrysa);
+      // console.log('this.countrysa: ',JSON.stringify(this.countrysa));
+      // statesWithFlags.push (JSON.stringify(this.countrysa));
+      // this.statesWithFlags.forEach(function (value) {
+      // console.log('loop',JSON.stringify(value));
+      // console.log('value: ',value);
+      // countrysa.push (value.cname);
+      // }); 
+      // console.log('countryarray',countrysa);
+      console.log(this.countrys);
+      // console.log('statesWithFlags',this.statesWithFlags);
+    });
+
+    this.dependencyservice.getstate().subscribe(data => {
+      this.states = data;
+      console.log(this.states);
+    });
+
+    this.dependencyservice.getregion().subscribe(data => {
+      this.regions = data;
+      console.log(this.regions);
+    });
+
+    this.dependencyservice.getroute().subscribe(data => {
+      this.routes = data;
+      console.log(this.routes);
+    });
+
+    this.dependencyservice.getblock().subscribe(data => {
+      this.blocks = data;
+      console.log(this.blocks);
+    });
+    // initAutocomplete();
+    // editcmap();
+    // MaploaderService.load().then(() => {
+    //   this.drawShape();
+    // })
+  }
+ 
+  createCountry() {
+    this.dependencyservice.createcountry(this.data).subscribe(formdata => {
+      let m = [...this.countrys, formdata];
+      this.countrys = m;
+      // console.log('formdata: ',formdata);
+      console.log('Countries: ', this.countrys);
+    });
+    this.modalReference.close();
+  }
+
+  updateCountry(cid, data) {
+    console.log('component', cid);
+    this.dependencyservice.updatecountry(cid, data).subscribe(formdata => {
+      console.log('formdata: ', formdata);
+      this.ngOnInit();
+    });
+    this.modalReference.close();
+  }
+
+  deleteCountry(cid) {
+  console.log('componentd', cid);
+  this.dependencyservice.deletecountry(cid).subscribe(formdata => {
+    console.log('formdata: ', formdata);
+    this.ngOnInit();
+  });
+  this.modalReference.close();
+  }
+
+  updateState(cid, data) {
+    console.log('component', cid);
+    this.dependencyservice.updatestate(cid, data).subscribe(formdata => {
+      console.log('formdata: ', formdata);
+      this.ngOnInit();
+    });
+    this.modalReference.close();
+  }
+
+  createState() {
+    console.log(this.data);
+    this.dependencyservice.createstate(this.data).subscribe(formdata => {
+      let m = [...this.states, formdata];
+      this.states = m;
+      //  console.log('formdata: ',formdata);
+      console.log('State: ', this.states);
+    });
+    this.modalReference.close();
+  }
+
+  deleteState(cid) {
+  console.log('componentd', cid);
+  this.dependencyservice.deletestate(cid).subscribe(formdata => {
+  console.log('formdata: ', formdata);
+  this.ngOnInit();
+  });
+  this.modalReference.close();
+  }
+
+  createRegion() {
+    console.log(this.data);
+    this.dependencyservice.createregion(this.data).subscribe(formdata => {
+      let m = [...this.regions, formdata];
+      this.regions = m;
+      // console.log('formdata: ',formdata);
+      console.log('countrys: ',this.regions);
+    });
+    this.modalReference.close();
+  }
+
+  createRoute() {
+    console.log(this.data);
+    this.dependencyservice.createregion(this.data).subscribe(formdata => {
+      let m = [...this.routes, formdata];
+      this.routes = m;
+      // console.log('formdata: ',formdata);
+      console.log('Routes: ',this.routes);
+    });
+    this.modalReference.close();
+  }
+
+  createBlock() {
+    console.log(this.data);
+    this.dependencyservice.createregion(this.data).subscribe(formdata => {
+      let m = [...this.blocks, formdata];
+      this.blocks = m;
+      // console.log('formdata: ',formdata);
+      console.log('Blocks: ',this.blocks);
+    });
+    this.modalReference.close();
+  }
+
+   onSelectc(cid){
+    console.log('onSelect: ',cid);
+    // alert(this.modelc);
+    this.dependencyservice.getstatesbycid(cid).subscribe(data => {
+    this.statesbycid = data;
+    console.log('statesbycid', this.statesbycid);
+    });
+// searchs();
+  } 
+
+  onSelects(sid){
+    console.log('onSelectstate: ',sid);
+    // alert(this.modelc);
+    this.dependencyservice.getregionsbysid(sid).subscribe(data => {
+    this.regionsbysid = data;
+    console.log('regionsbysid', this.regionsbysid);
+    });
+// searchs();
+  }
+
+   onSelectr(rid){
+    console.log('onSelectregion: ',rid);
+    // alert(this.modelc);
+    this.dependencyservice.getroutesbyrid(rid).subscribe(data => {
+    this.routesbyrid = data;
+    console.log('routesbyrid', this.routesbyrid);
+    });
+// searchs();
+  }
+
+  onSelectro(roid){
+    console.log('onSelectroute: ',roid);
+    // alert(this.modelc);
+    this.dependencyservice.getblocksbyroid(roid).subscribe(data => {
+    this.blocksbyroid = data;
+    console.log('blocksbyroid', this.blocksbyroid);
+    });
+// searchs();
+  }
+
+  searchc = (text$: Observable<string>) =>
+
+    text$.pipe(
+      debounceTime(200),
+      map(
+        // console.log('statesWithFlagsmap',JSON.stringify(this.countrysa)),
+        term => term === '' ? []
+        : this.countrysa.filter(v => v.cname.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10)
+        )
+    )
+
+  formatter = (x: {cname: string}) => x.cname;
+
+  searchs = (text$: Observable<string>) =>
+
+    text$.pipe(
+      debounceTime(200),
+      map(
+        // console.log('statesbycidmap',JSON.stringify(this.statesbycid)),
+        term => term === '' ? []
+        : this.statesbycid.filter(v => v.sname.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10)
+        )
+    )
+
+  formatters = (x: {sname: string}) => x.sname;
+
+  searchr = (text$: Observable<string>) =>
+
+    text$.pipe(
+      debounceTime(200),
+      map(
+        // console.log('regionsbysiddmap',JSON.stringify(this.regionsbysid)),
+        term => term === '' ? []
+        : this.regionsbysid.filter(v => v.rname.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10)
+        )
+    )
+
+  formatterr = (x: {rname: string}) => x.rname;
+
+    searchro = (text$: Observable<string>) =>
+
+    text$.pipe(
+      debounceTime(200),
+      map(
+        // console.log('routesbyriddmap',JSON.stringify(this.routesbyrid)),
+        term => term === '' ? []
+        : this.routesbyrid.filter(v => v.rname.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10)
+        )
+    )
+
+  formatterro = (x: {rname: string}) => x.rname;
+
+  searchb = (text$: Observable<string>) =>
+
+    text$.pipe(
+      debounceTime(200),
+      map(
+        // console.log('blocksbyroidmap',JSON.stringify(this.blocksbyroid)),
+        term => term === '' ? []
+        : this.blocksbyroid.filter(v => v.bname.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10)
+        )
+    )
+
+  formatterb = (x: {bname: string}) => x.bname;
+
+  
+}
+

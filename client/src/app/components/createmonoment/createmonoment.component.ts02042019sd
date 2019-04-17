@@ -1,0 +1,114 @@
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { NavbarserviceService } from '../../services/navbarservice.service';
+import { Router } from '@angular/router';
+import * as $ from 'jquery';
+import { Observable } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
+import { MonumentService } from '../../services/monument.service';
+import { HttpHeaders } from '@angular/common/http';
+// import { FileUploader } from 'ng2-file-upload';
+declare function monument(lat,lng): any;
+const URL = 'http://localhost:3000/uploader/gallery';
+@Component({
+  selector: 'app-createmonoment',
+  templateUrl: './createmonoment.component.html',
+  styleUrls: ['./createmonoment.component.css'],
+  encapsulation: ViewEncapsulation.None
+})
+export class CreatemonomentComponent implements OnInit {
+ 
+  data = {};
+  constructor(
+    public navbarservice: NavbarserviceService,
+    public monumentservice: MonumentService,
+    private router: Router) {
+    
+   }
+
+  ngOnInit() {
+    this.navbarservice.show();
+    monument(14.64, -90.51);
+    
+  }
+
+  fileToUpload: File = null;
+  urls = [];
+  onSelectFile(event) {
+    this.fileToUpload = event.target.files;
+    console.log('this.fileToUpload:', this.fileToUpload);
+    //////////////////////////////////////
+    // var url = 'http://localhost:3000/uploader/gallery';
+      
+    //   var fd = new FormData();
+    // var files = this.fileToUpload;//event.target.files[0];// $('#file')[0].files[0];
+    // for (let index = 0; index < event.target.files.length; index++) {
+    //   fd.append('files[]', event.target.files[index]);
+      
+    // }
+      
+    //   console.log('fd:',fd)
+    //   // fd.append('uid', 1);
+    //   $.ajax({
+    //     url: url,
+    //     type: 'post',
+    //     data: fd,
+    //     contentType: false,
+    //     processData: false,
+    //     success: function (response) {
+    //       console.log('response:', response);
+    //       // if(response != 0){
+    //       //     $("#img").attr("src",response);
+    //       //     $('.preview img').show();
+    //       // }else{
+    //       //     alert('File not uploaded');
+    //       // }
+    //     }
+    //   });
+   
+    //////////////////////////////////////
+    
+    const headers = new HttpHeaders()
+      .append('Content-Type', 'multipart/form-data');
+
+    const formData: FormData = new FormData();
+    for (let index = 0; index < event.target.files.length; index++) {
+      formData.append('m_image[]', event.target.files[index], event.target.files[index].name);
+    }
+    // formData.append('avatar', event.target.files[0], event.target.files[0].name);
+    this.monumentservice.uploadgallery(formData, headers).subscribe(mydata => {
+      // for (let i = 0; i < event.target.files.length; i++) {
+      //   this.urls.push('../../../assets/uploads/'+mydata[i].filename);
+      // }
+      console.log('mydata:', mydata);
+      
+    });
+    console.log(' this.urls:', this.urls);
+    
+    if (event.target.files && event.target.files[0]) {
+      var filesAmount = event.target.files.length;
+      for (let i = 0; i < filesAmount; i++) {
+        var reader = new FileReader();
+
+        reader.onload = (event:any) => {
+          // console.log(event.target.result);
+          this.urls.push(event.target.result);
+        }
+
+        reader.readAsDataURL(event.target.files[i]);
+      }
+    }
+    
+    
+  }
+  loadmap(event){
+    let lat = $('#lat').val();
+    let lng = $('#lng').val();
+    console.log('test:',lat,'AND',lng);
+    monument(lat, lng)
+
+  }
+  createMonument(){
+    // console.log(this.data)
+  }
+
+}

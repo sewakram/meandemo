@@ -1,0 +1,39 @@
+import { Injectable } from '@angular/core';
+import { Http, Headers } from '@angular/http';
+// import { HttpModule } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+import { NavbarserviceService } from './navbarservice.service';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class MonumentService {
+  
+  constructor(private http: Http, public navbarservice: NavbarserviceService) { }
+  // postFile(fileToUpload: File, fileName: string): Observable<any> {
+  //   this.imageListCache = [];
+  //   const idtoken = this.getCachedUser('idtoken');
+  //   return this.http.post(this.serviceURL, fileToUpload,
+  //     {
+  //       headers: { 'filename': fileName, 'enctype': 'multipart/form-data', 'idtoken': idtoken }
+  //       , reportProgress: true
+  //     });
+  // }
+  uploadgallery(formdata, headers) {
+    // console.log('data: ', data);
+    
+    // let headers = new Headers();
+    // this.navbarservice.loadToken();
+    // headers.append('Authorization', this.navbarservice.authToken);
+    // headers.append('Content-Type', 'application/json');
+    // headers.append('enctype', 'multipart/form-data');
+    // const formData: FormData = new FormData();
+    // formData.append('fileKey', fileToUpload, fileToUpload.name);
+    // const headers = new Headers();
+    // headers.append('Content-Type', 'multipart/form-data');
+    // headers.append('Accept', 'application/json');
+    return this.http.post('http://3.95.92.70:5000/uploader/gallery', formdata, { headers: headers })
+      .map(res => res.json());
+  }
+
+}

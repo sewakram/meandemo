@@ -1,0 +1,124 @@
+<div class="page-wrapper">
+  <div class="animated fadeInLeftBig">
+    <div class="page-header">
+      <span style="font-size: 24px">New monument inventory interface</span>
+      
+      <p class="page-header-content">Two side monument validation schema</p>
+     
+    </div>
+
+    <div class="container">
+        <form class="form-signin" (ngSubmit)="createMonument()" #dataForm="ngForm" enctype="multipart/form-data">
+
+      <div class="row">
+              <div class="col">
+                    <!-- <span>Image preview</span> -->
+                    <!-- <input type="file" ng2FileSelect [uploader]="uploader" multiple /> -->
+                                    <!-- <button type="button" class="btn btn-success btn-s" (click)="uploader.uploadAll()"
+                                      [disabled]="!uploader.getNotUploadedItems().length">
+                                      <span class="glyphicon glyphicon-upload"></span> Upload all
+                                    </button> -->
+                                        <span class="btn btn-success fileinput-button">
+                                          <i class="glyphicon glyphicon-plus"></i>
+                                          <span>Load gallery</span>
+                                          <!-- The file input field used as target for the file upload widget -->
+                                          <input type='file' (change)="onSelectFile($event)" id="fileupload" name="m_image[]"  multiple>
+                                        </span>
+                    <!-- <input type='file' (change)="onSelectFile($event)" id="m_image" name="m_image"  multiple> -->
+                    <!-- <button>Load gallery</button> -->
+                    <!-- <img *ngFor='let url of urls' [src]="url" height="200"> <br />
+                    <button type="submit" class="region btn btn-light">Send</button> -->
+                    <!-- galll start -->
+                    <ngb-carousel *ngIf="urls">
+                      <ng-template ngbSlide *ngFor='let url of urls'>
+                        <!-- <span>{{url}}</span> -->
+                        <img  [src]="url" height="200" alt="Random first slide">
+                        <div class="carousel-caption">
+                          <h3>First slide label</h3>
+                          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                        </div>
+                      </ng-template>
+                      <!-- <ng-template ngbSlide>
+                        <img [src]="images[1]" alt="Random second slide">
+                        <div class="carousel-caption">
+                          <h3>Second slide label</h3>
+                          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                      </ng-template>
+                      <ng-template ngbSlide>
+                        <img [src]="images[2]" alt="Random third slide">
+                        <div class="carousel-caption">
+                          <h3>Third slide label</h3>
+                          <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                        </div>
+                      </ng-template> -->
+                    </ngb-carousel>
+                    <!-- gall end -->
+                
+              </div>
+              <div class="col">
+                 
+                    <span>Monument interface</span>
+                    <input type="text" id="lat" (change)="loadmap()" class="form-control" placeholder="Latitude" [(ngModel)]="data.lat" name="lat">
+                    <input id="lng" (change)="loadmap()" class="form-control" type="text" [(ngModel)]="data.lng" placeholder="Longitude" name="lng">
+                    <div id="map"></div>
+                  
+                    <div class="form-group">
+                        <label>Location</label>
+                        <input required type="text"  class="form-control" placeholder="Enter an address or reference" [(ngModel)]="data.address" name="address">
+                      </div>
+                      <div class="form-group">
+                        <label for="sel1">Assigned block</label>
+                        <select [(ngModel)]="data.block" class="form-control" id="sel1" name="block">
+                          <option>Select block</option>
+                          <option>2</option>
+                          <option>3</option>
+                          <option>4</option>
+                        </select>
+                        
+                      </div>
+                      <div class="form-group">
+                        <label for="sel1">Type</label>
+                        <select class="form-control" [(ngModel)]="data.type" id="sel1" name="type">
+                          <option>Select a type</option>
+                          <option>2</option>
+                          <option>3</option>
+                          <option>4</option>
+                        </select>
+                        <button type="submit" class="region btn btn-light" [disabled]="!dataForm.form.valid">Manage faces</button>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="sel1">Provider</label>
+                        <select class="form-control" id="sel1" [(ngModel)]="data.provider" name="provider">
+                          <option>Select an option</option>
+                          <option>2</option>
+                          <option>3</option>
+                          <option>4</option>
+                        </select>
+                      
+                      </div>
+
+                      <div class="form-group">
+                        <label>Notes</label>
+                        <input required type="text" class="form-control" placeholder="Enter an optional note for reference"
+                          [(ngModel)]="data.notes" name="notes">
+                      </div>
+                  
+                  
+                    <div class="modal-footer">
+                    <button type="submit" class="region btn btn-light">Set references</button>
+                    <button type="submit" class="region btn btn-light" >Reset</button>
+                    <button type="submit" class="region btn btn-light" [disabled]="!dataForm.form.valid"><i class="material-icons"> room</i>Create Monument</button>
+                    </div>
+                 
+            </div>
+          
+      </div>
+      </form>
+    </div>
+
+
+  </div>
+</div>
+

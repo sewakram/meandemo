@@ -1,0 +1,40 @@
+.logo{width:40%;}
+
+
+.sidebar .nav .nav-tag {
+    font-size: 13px;
+    color: #DDDDDD;
+}
+nav#sidebar {
+    background-color:#F5F5F5; 
+    font-family: "SFUIDisplay";
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+ul.inner-item.sub-menu {
+    padding: 0 0 0 11px;
+}
+
+li.nav-item {
+    font-size: 13px;
+}
+
+
+i.icon.material-icons {
+    font-size: 13px;
+}
+
+.nav-link{
+    color: #91929C;
+
+}
+
+.inner-item{
+    list-style:none;
+    color:#91929C;
+}

@@ -1,0 +1,320 @@
+* {font-family: 'PT Sans';}
+.page-wrapper {
+  margin-left: 256px;
+  margin-right: 20px;
+  margin-top: 20px;
+  padding: 0 10px;
+}
+* i.material-icons{
+  font-family: 'Material Icons';
+}
+/* .container-fluid {width: 100%;padding-left: 150px;padding-right: 0px;} */
+
+/* <<<<<<<<< header starts >>>>>>>> */
+.page-header-wrapp {
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 20px;
+  padding: 0 10px; 
+}
+.page-header-wrapp .page-header {font-size: 24px;color:#122755;margin-bottom:0;}
+.page-header-wrapp .page-header-text {margin-right: auto;padding-right:15px;padding-bottom:30px;}
+.page-header{font-size: 30;color:#122755;}
+p.page-header-content {
+  margin-top: -4px;
+  font-weight: 400;
+}
+.page-header-content{font-size: 13px;color:#91929C;}
+/*<<<<<<<< header ends >>>>>>>> */
+
+.createmonument-body .createmonument-statistic {margin: 10px;}
+.createmonument-body .createmonument-statistic .col-md-6{border:1px solid #e9edf0;padding-top: 15px;/*border-radius: 5px;*/}
+.createmonument-body .createmonument-statistic .col-md-6:nth-child(-n+5){/*border-top:none;*/border-left: none;}
+.createmonument-body .createmonument-statistic .col-md-6:last-child{width:100%;border-right: none;}
+
+
+/*<<<<<<<<< Load gallery button starts >>>>>>>>>> */
+
+
+
+.createmonument-body .createmonument-statistic .createmonument-btn{
+  position:relative;
+  display: inline-block;
+  background-color: #ffce00;
+  border: 0 none;
+  box-shadow: none;
+  outline: 0 none;
+  color: #fff;
+  font-size: 15px;
+  font-weight: normal;
+  vertical-align: middle;
+  height: 43px;
+  line-height: 43px;
+  border-radius: 6px;
+  padding: 0 30px;
+  transition: all 0.3s;
+  min-width: 168px;
+  max-width: 168px;
+  margin-left: 65%;
+}
+
+.createmonument-body .createmonument-statistic .createmonument-btn:hover {
+  background-color: #ecbf00;
+} 
+.createmonument-body .createmonument-statistic .createmonument-btn i{
+  font-size: 15px;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+.createmonument-body .createmonument-statistic .createmonument-btn input#fileupload{
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  opacity: 0;
+  -ms-filter: 'alpha(opacity=0)';
+  font-size: 200px !important;
+  direction: ltr;
+  cursor: pointer;
+}
+
+.createmonument-body .createmonument-statistic .createmonument-statistic-content {
+  position: absolute;
+  top: 23px;
+  left: 0px;
+  color: #9fa0a8;
+  transition: all 0.3s;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.createmonument-body .createmonument-statistic .createmonument-label {
+  position: absolute;
+  top: 23px;
+  left: 25px;
+  color: #9fa0a8;
+  transition: all 0.3s;
+  display: inline-block;
+  font-size: 16px;
+}
+.createmonument-body .createmonument-statistic .createmonument-statistic-form .createmonument-form {
+  display: inline-block;
+  margin-left: 15px;
+  margin-top: 20px;
+}
+/* <<<<<<<<<<< Load gallery button ends >>>>>>>>>>> */
+
+/* <<<<<<<<<<< gallery starts >>>>>>>>>>> */
+.carousel.slide {
+  top: 34px;
+} 
+.carousel .carousel-inner .carousel-item img {
+  display: inline-block;
+  margin-top: 20px;
+  height: 100%;
+  max-height: 700px;
+}
+/* <<<<<<<<<<< gallery ends >>>>>>>>>>> */
+
+
+/* <<<<<<<<<<< conversion starts >>>>>>>>>>> */
+
+.createmonument-body .createmonument-statistic  .conversion {
+  position: absolute;
+  top: 775px;
+}
+
+.createmonument-body .createmonument-statistic  .conversion .send {
+  position: absolute;
+  left: 425px;
+}
+.createmonument-body .createmonument-statistic .conversion .col-md-4 {
+  display: flex;
+}
+.createmonument-body .createmonument-statistic .image-loader .conversion .for-conversion-text {
+  width: 44px;
+  height: 44px;
+  background-color: #f4f5f7;
+  border: 1px solid #f4f5f7;
+  border-radius: 6px;
+  transition: all 0.3s;
+  margin-left: 8px;
+}
+
+
+/* <<<<<<<<<<< conversion ends >>>>>>>>>>> */
+
+/* <<<<<<<< createmonument statistics column 2 starts >>>>>>>> */
+.createmonument-statistic-form .form-control {
+  display: inline-block;
+  width: 50%;
+  padding: 8px;
+  background-color: #f4f5f7;
+  transition: all 0.3s;
+  color: #000000;
+  border: 1px solid #f4f5f7;
+  border-radius: 4px;
+}
+
+.createmonument-statistic-form .form-control::placeholder {
+  color: #93949e;
+}
+
+.createmonument-statistic-form .map-text-box1 {
+  margin-left: 164px;
+  margin-bottom: 18px;
+  width: 30%;
+}
+.createmonument-statistic-form  .map-text-box2 {
+  margin-left: 7px;
+  margin-bottom: 18px;
+  width: 30%;
+}
+
+.createmonument-statistic-form .form-group .for-label {
+  color: #9fa0a8;
+}
+
+.createmonument-body .createmonument-statistic .createmonument-statistic-form .createmonument-form label.btn-light.toggle-active.active {
+  background-color: #000;
+  color: #fff;
+}
+/* .createmonument-body .createmonument-statistic .createmonument-statistic-form .createmonument-form .for-public {
+    background-color: #000;
+    color: #fff;
+} */
+/* .createmonument-statistic-form .form-group .faces-btn {
+  color: #9798a1;
+} */
+
+.createmonument-statistic-form .form-group .manage-faces{
+  display: inline-block;
+  background-color: #f4f5f7;
+  border: 0 none;
+  box-shadow: none;
+  outline: 0 none;
+  color: #95969f;
+  font-size: 15px;
+  font-weight: normal;
+  vertical-align: middle;
+  height: 40px;
+  line-height: 24px;
+  border-radius:6px;
+  transition: all 0.3s;
+  min-width: 142px;
+  max-width: 142px;
+}
+
+.createmonument-statistic-form .form-group .manage-faces:hover {
+  background-color: #e4e5e7;
+} 
+.createmonument-statistic-form .form-group .manage-faces i{
+  font-size: 15px;
+  vertical-align: middle;
+  margin-right: 8px;
+  margin-left: 6px;
+  margin-bottom: 4px;
+}
+/* <<<<<<<< createmonument statistics column 2 ends >>>>>>>> */
+
+
+/* <<<<<<<< createmonument statistics column 1 Image starts >>>>>>>> */
+.createmonument-body .createmonument-statistic .load-pictures {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 654px;
+  margin: 15px 0px 0px 0px;
+  width: 100%;
+  height: 100%;
+  max-width: 500px;
+  max-height: 680px;
+  border: 1px solid #f5f6f7;
+  background-color: #f5f6f7;
+  color: #a3a4ad;
+  transition: all 0.3s;
+}
+/* span.carousel-control-next-icon {
+  background-color: #000;
+}
+span.carousel-control-prev-icon{
+  background-color: #000;
+} */
+
+/* <<<<<<<< createmonument statistics column 1 Image ends >>>>>>>> */
+
+/* >>>>>>>>>>Map starts<<<<<<<<<< */
+#mapm {
+  height: 400px;
+  width: 100%;
+  margin-left: 10px;
+ }
+/* >>>>>>>>>>Map ends<<<<<<<<<< */
+
+
+/* >>>>>>>Footer starts<<<<<<<< */
+
+.modal-footer .footer-direction{
+  display: inline-block;
+  background-color: #ffce00;
+  border: 0 none;
+  box-shadow: none;
+  outline: 0 none;
+  color: #fff;
+  font-size: 15px;
+  font-weight: normal;
+  vertical-align: middle;
+  height: 43px;
+  line-height: 20px;
+  border-radius: 6px;
+  transition: all 0.3s;
+  min-width: 168px;
+  max-width: 168px;
+}
+
+.modal-footer .footer-direction:hover {
+  background-color: #ecbf00;
+} 
+.modal-footer .footer-direction i{
+  font-size: 15px;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+.modal-footer .reset {
+  background-color: transparent;
+  border: 0 none;
+  white-space: nowrap;
+}
+
+.modal-footer .set-reference{
+  display: inline-block;
+  background-color: #f4f5f7;
+  border: 0 none;
+  box-shadow: none;
+  outline: 0 none;
+  color: #9b9ca5;
+  font-size: 15px;
+  font-weight: normal;
+  vertical-align: middle;
+  height: 43px;
+  line-height: 20px;
+  border-radius: 6px;
+  transition: all 0.3s;
+  min-width: 168px;
+  max-width: 168px;
+}
+
+.modal-footer .set-reference:hover {
+  background-color: #e4e5e7;
+} 
+.modal-footer .set-reference i{
+  font-size: 15px;
+  vertical-align: middle;
+  margin-left: 4px;
+  margin-right: 4px;
+  margin-bottom: 3px;
+}
+/* >>>>>>>Footer ends<<<<<<<< */
+

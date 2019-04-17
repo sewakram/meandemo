@@ -1,0 +1,555 @@
+/* .container {max-width: 1040px;} */
+* {font-family: 'PT Sans';}
+.container-fluid {width: 100%;padding-left: 150px;padding-right: 0px;}
+.page-header{font-size: 30;color:#122755;}
+p.page-header-content {
+  margin-top: -4px;
+  font-weight: 400;
+}
+.page-top-header{font-size: 30}
+.page-header-content{font-size: 13px;color:#91929C;}
+.dependency-statistic-1{ border:2px solid #C4CAD2;border-radius: 2px;padding: 24px 30px 24px 30px;color:#122755;font-size: 40px;}
+.dependency-statistic-1 p{font-size: 13px;}
+.dependency-statistic-1 h3 {
+  font-size: 40px;
+}
+.dependency-body .dependency-statistic-row {margin-right: -20px;margin-top: 40px;margin-left:-30px;}
+.dependency-header-direction {align-content: left;border-radius: 5px;color: #fff;line-height: 25px;font-size: 13px;text-decoration: none}
+.dependency-header-direction i.material-icons.fwd-arrow {font-size: 11px;padding-left: 3px;color: #fff;font-family: 'Material Icons';}
+.dependency-bottom-direction{float: right; font-size: 12px; border-radius: 5px; /*width: 50%;*/line-height: 24px;color: #fff;margin-bottom: 10px;margin-right: 20px;}
+.dependency-bottom-direction i.material-icons.fwd-arrow {font-size: 10px;padding-left: 3px;color: #fff;font-family: 'Material Icons';}
+/* .dependency-body{width:120%;} */
+.dependency-body .dependency-logics .list {padding: 0;white-space: nowrap;padding: 0;
+  white-space: nowrap;
+}
+
+/* disable button starts */
+.dependency-body .dependency-logics i.material-icons.icons.disable {
+  opacity: 0.4;
+}
+/* disable button ends */
+
+.dependency-logics span.select-option {
+  font-size: 11px;
+  color: #D5D5D5;
+  white-space: nowrap;
+  padding-top: 15px;
+}
+.dependency-body .dependency-logics i.material-icons {
+    font-family: 'Material Icons';
+}
+.dependency-body .dependency-logics button#dropdownMenuButton i.material-icons {
+  padding-right: 5px;
+}
+.dependency-body .dependency-logics .sub-list{list-style: none;color: #7C7C7C;font-weight: 400;;font-size: 13px;border-bottom: 1px solid #C4CAD2;padding: 10px 0 10px 0;; position: relative; right: 0px; }
+
+/*search-box start*/
+.search-box {position: relative}
+i.material-icons.search-icon {position: absolute;top: 4px;right: 4px;font-size: 14px;font-family: 'Material Icons';}
+.dependency-body .dependency-logics .form-control {height: 24px;margin-top: 10px;margin-bottom: 20px;font-size: 10px;background-color: #F5F5F5;}
+.dependency-body .dependency-logics .form-control:focus {box-shadow: none; background-color: transparent;outline: none;transition: none}
+::ng-deep .dropdown-item.active {
+  background-color: #ebeff2;
+  color: #000;
+}
+
+/*search box end*/
+
+.col-md-2{border:1px solid #C4CAD2;padding-top: 15px;/*border-radius: 5px;*/}
+.col-md-2:nth-child(-n+5){/*border-top:none;*/border-left: none;}
+.col-md-2:last-child{width:100%;border-right: none;}
+.dependency-logics{color: #91929C;font-weight: 400;font-size: 13px;}
+.dependency-logics span {display: block;overflow: hidden;text-overflow: ellipsis;width: 100%;}
+.icons{float:right;color:#fff;background-color: #FFCE00;border-radius: 2px;font-family: 'Material Icons';transition: all 0.3s;}
+.icons:hover {background-color: #ecb309
+  /* #ffc107 */
+}
+/*dropdown list ie. Edit and state start*/
+.dependency-body .dependency-logics .dropdown {position: unset;}
+.dependency-body .dependency-logics .dropdown-item.active{color: #000;text-decoration: none;background-color: transparent;}
+.dependency-body .dependency-logics .dropdown .dropdown-menu {padding: 3px;margin: 0px 0 30px 30px;;min-width: 0;}
+.dependency-body .dependency-logics .dropdown:hover>.dropdown-menu {display: block;top:15px;right:10px}
+.dependency-body .dependency-logics .dropdown>.dropdown-toggle:active {pointer-events: none;}
+.dependency-body .dependency-logics  button#dropdownMenuButton {position: absolute;right:-14px;bottom: 2px;;background-color: transparent;border: none;}
+.dependency-body .dependency-logics  button#dropdownMenuButton::after { display: none;}
+.dependency-body .dependency-logics  button#dropdownMenuButton:hover{color: #FFCE00;}
+.dependency-body .dependency-logics  a.dropdown-item:hover {background: #afb1b3;}
+.dependency-body .dependency-logics .dropdown .dropdown-menu .dropdown-item {font-size: 12px;font-weight: 500;}
+
+::ng-deep .form-group button.btn.btn-light.update-country {
+  border-color: #C1C1C2;
+  background-color: #C1C1C2;
+  color: #fff;
+  margin-top: 30px;
+  margin-left: 38px;
+  margin-right: 35px;
+  width: 80%;
+}
+
+::ng-deep .form-group button.btn.btn-light.update-country:hover {
+  background-color: #ffc107;
+  border-color: #ffc107;
+}
+
+::ng-deep .form-group button.btn.btn-light.update-state {
+  border-color: #C1C1C2;
+  background-color: #C1C1C2;
+  color: #fff;
+  margin-top: 30px;
+  margin-left: 38px;
+  margin-right: 35px;
+  width: 80%;
+}
+
+::ng-deep .form-group button.btn.btn-light.update-state:hover {
+  background-color: #ffc107;
+  border-color: #ffc107;
+}
+
+::ng-deep .form-group button.btn.btn-light.update-region {
+  border-color: #C1C1C2;
+  background-color: #C1C1C2;
+  color: #fff;
+  margin-top: 30px;
+  margin-left: 38px;
+  margin-right: 35px;
+  width: 80%;
+}
+
+::ng-deep .form-group button.btn.btn-light.update-region:hover {
+  background-color: #ffc107;
+  border-color: #ffc107;
+}
+
+::ng-deep .form-group button.btn.btn-light.update-route {
+  border-color: #C1C1C2;
+  background-color: #C1C1C2;
+  color: #fff;
+  margin-top: 30px;
+  margin-left: 38px;
+  margin-right: 35px;
+  width: 80%;
+}
+
+::ng-deep .form-group button.btn.btn-light.update-route:hover {
+  background-color: #ffc107;
+  border-color: #ffc107;
+}
+
+::ng-deep .form-group button.btn.btn-light.update-block {
+    border-color: #C1C1C2;
+    background-color: #C1C1C2;
+    color: #fff;
+    margin-top: 30px;
+    margin-left: 38px;
+    margin-right: 35px;
+    width: 80%;
+}
+
+::ng-deep .form-group button.btn.btn-light.update-block:hover {
+  background-color: #ffc107;
+  border-color: #ffc107;
+}
+/*dropdown list ie. Edit and delete end*/
+
+
+/*Modal for country,state,region,block start*/
+::ng-deep  .modal-body {
+  height: 100%;
+  width: 108%;
+  left: -4%;
+  top: 30px;
+  border-radius: 0px;
+}
+
+::ng-deep .modal-content {
+  border: none;
+  border-radius: unset;
+}
+
+::ng-deep .modal-content .modal-header button.close:focus {
+  outline: 0;
+}
+
+::ng-deep .modal-content .modal-header {
+  border-bottom: none;
+  border-top-left-radius: unset;
+  border-top-right-radius: unset;
+}
+
+::ng-deep .modal-content .modal-country {
+  position: absolute;
+  width: 367px;
+  height: 461px;
+  border-radius: 0;
+  background-color: #fff;
+}
+
+::ng-deep .modal-content .modal-editcountry {
+  position: absolute;
+  width: 367px;
+  height: 461px;
+  border-radius: 0;
+  background-color: #fff;
+}
+
+::ng-deep .modal-content .modal-state{
+  position: absolute;
+  width: 367px;
+  height: 461px;
+  border-radius: 0;
+  background-color: #fff;
+}
+
+::ng-deep .modal-content .modal-editstate {
+  position: absolute;
+  width: 367px;
+  height: 461px;
+  border-radius: 0;
+  background-color: #fff;
+}
+
+::ng-deep .modal-content .modal-region{
+  /* position: absolute; */
+  width: 700px;
+  height:560px;
+  border-radius: 0;
+  background-color: #fff;
+}
+
+
+::ng-deep .modal-content .modal-route{
+  position: absolute;
+  width: 700px;
+  height: 560px;
+  border-radius: 0;
+  background-color: #fff;
+}
+
+::ng-deep .modal-content .modal-block{
+  position: absolute;
+  width: 700px;
+  height: 560px;
+  border-radius: 0;
+  background-color: #fff;
+}
+
+::ng-deep .modal-content .modal-editblock {
+  position: absolute;
+  width: 700px;
+  height: 560px;
+  border-radius: 0;
+  background-color: #fff;
+}
+
+::ng-deep .modal-header {
+    background: #000;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+::ng-deep .modal-header .close {
+  position: absolute;
+  top: 12px;
+  left: 0;
+  color: #fff;
+}
+::ng-deep .modal-header .close .close-icon {
+  font-size: 30px;
+  font-weight: 200;}
+
+::ng-deep .modal-header h4#modal-basic-title {
+    font-size: 13px;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+}
+
+::ng-deep .modal-body .form-group .form-control{
+    /* width: 100%; */
+    /* height: 100%; */
+    margin: 0 0 0px;
+    padding: 0 0 8px;
+    background-color: #F5F5F5;
+    border-radius: 5px;
+}
+::ng-deep .modal-body .form-group .form-control.text {
+  width: 280px;
+  height: 40px;
+  /* border-radius: 9px; */
+}
+::ng-deep  .modal-body .form-group .msg {
+  position: absolute;
+  top: 28px;
+  left: 0;
+  font-size: 10px;
+  padding-left: 440px;
+  color:#C1C1C2;
+}
+
+::ng-deep .modal-footer{
+  border-top: none;
+border-bottom-right-radius: unset;
+border-bottom-left-radius: unset;
+}
+
+::ng-deep .modal-footer .fwd {
+    font-size: 13px;
+    color: #fff;
+    font-family: 'Material Icons';
+}
+
+/* ::ng-deep .modal-footer .region i.material-icons.fwd {
+  font-family: 'Material Icons';
+} */
+
+::ng-deep .modal-footer button.country.btn.btn-light{
+  background-color: #C1C1C2;
+    color: #fff;
+    margin-right: 35px;
+    width: 80%;
+    margin-top: -8px;
+} 
+
+.modal-footer button.country.btn.btn-light:hover {
+  background-color: #ffc107;
+}
+
+::ng-deep .modal-deletecountry .modal-body {
+  left: -1%;
+}
+
+::ng-deep .modal-footer button.state.btn.btn-light {
+  background-color: #C1C1C2;
+  color: #fff;
+  margin-right: 35px;
+  width: 80%;
+  margin-top: 12px;
+}
+
+.modal-footer button.state.btn.btn-light:hover {
+  background-color: #ffc107;
+}
+
+::ng-deep .modal-deletestate .modal-body {
+  left: -1%;
+}
+
+::ng-deep .modal-footer button.region.btn.btn-light {
+  background-color: #C1C1C2;
+  color: #fff;
+  margin-right: 15px;
+  margin-top: 12px;
+  width: 22%;
+}
+
+.modal-footer button.region.btn.btn-light:hover {
+  background-color: #ffc107;
+}
+
+::ng-deep .modal-deleteregion .modal-body {
+  left: -1%;
+}
+
+::ng-deep .modal-deleteblock .modal-body {
+  left: -1%;
+}
+/*Modal for contry,state,region,block end*/
+
+/*Mappp starts*/
+::ng-deep #map {
+  position: relative;
+  /* overflow: hidden; */
+  width: 366px;
+  min-height: 286px;
+  height: 100%;
+
+}
+
+::ng-deep #map .gm-style .gmnoprint{top:unset !important;bottom:0;z-index: 9999999 !important;}
+::ng-deep #map .gm-style .gmnoprint.gm-bundled-control{bottom:50px !important;}
+::ng-deep #map .gm-style .gm-fullscreen-control{top:35px !important;}
+/* ::ng-deep #map .gm-style div:first-child{ overflow: hidden;} */
+
+::ng-deep #mapre {
+  position: relative;
+  margin-left: 16px;
+  width: 96%;
+  min-height: 386px;
+  height: 100%;
+} 
+
+::ng-deep #mapre .gm-style .gmnoprint{top:unset !important;bottom:0;z-index: 9999999 !important;}
+ ::ng-deep #mapre .gm-style .gmnoprint.gm-bundled-control{bottom:50px !important;}
+ ::ng-deep #mapre .gm-style .gm-fullscreen-control{top:35px !important;}
+ /* ::ng-deep #mapre .gm-style div:first-child{ overflow: hidden;} */
+
+::ng-deep #mapro {
+  width: 700px;
+  min-height: 386px;
+  height: 100%;
+  margin-left: 12px;
+}
+
+::ng-deep #mapro .gm-style .gmnoprint{top:unset !important;bottom:0;z-index: 9999999 !important;}
+ ::ng-deep #mapro .gm-style .gmnoprint.gm-bundled-control{bottom:50px !important;}
+ ::ng-deep #mapro .gm-style .gm-fullscreen-control{top:35px !important;}
+ /* ::ng-deep #mapro .gm-style div:first-child{ overflow: hidden;} */
+
+::ng-deep #mapb {
+  width: 700px;
+  min-height: 386px;
+  height: 100%;
+  margin-left: 12px;
+}
+ ::ng-deep #mapb .gm-style .gmnoprint{top:unset !important;bottom:0;z-index: 9999999 !important;}
+ ::ng-deep #mapb .gm-style .gmnoprint.gm-bundled-control{bottom:50px !important;}
+ ::ng-deep #mapb .gm-style .gm-fullscreen-control{top:35px !important;}
+ /* ::ng-deep #mapb .gm-style div:first-child{ overflow: hidden;} */
+
+::ng-deep #mapbedit {
+  position: relative;
+  width: 700px;
+  min-height: 380px;
+  height: 100%;
+  margin-left: 12px;
+}
+::ng-deep #mapbedit .gm-style .gmnoprint{top:unset !important;bottom:0;z-index: 9999999 !important;}
+ ::ng-deep #mapbedit .gm-style .gmnoprint.gm-bundled-control{bottom:50px !important;}
+ ::ng-deep #mapbedit .gm-style .gm-fullscreen-control{top:35px !important;}
+ /* ::ng-deep #mapbedit .gm-style div:first-child{ overflow: hidden;} */
+
+
+::ng-deep #maproedit {
+  position: relative;
+  width: 700px;
+  min-height: 386px;
+  height: 100%;
+  margin-left: 12px;
+} 
+ ::ng-deep #maproedit .gm-style .gmnoprint{top:unset !important;bottom:0;z-index: 9999999 !important;}
+ ::ng-deep #maproedit .gm-style .gmnoprint.gm-bundled-control{bottom:50px !important;}
+ ::ng-deep #maproedit .gm-style .gm-fullscreen-control{top:35px !important;}
+ /* ::ng-deep #maproedit .gm-style div:first-child{ overflow: hidden;} */
+
+
+::ng-deep #mapredit {
+  position: relative;
+  width: 700px;
+  min-height: 386px;
+  height: 100%;
+  margin-left: 12px;
+} 
+ ::ng-deep #mapredit .gm-style .gmnoprint{top:unset !important;bottom:0;z-index: 9999999 !important;}
+ ::ng-deep #mapredit .gm-style .gmnoprint.gm-bundled-control{bottom:50px !important;}
+ ::ng-deep #mapredit .gm-style .gm-fullscreen-control{top:35px !important;}
+ /* ::ng-deep #mapredit .gm-style div:first-child{overflow: hidden;} */
+
+::ng-deep #mapec {
+  position: relative;
+  overflow: hidden;
+  width: 366px;
+  min-height: 280px;
+  height: 100%;
+}
+::ng-deep #mapec .gm-style .gmnoprint{top:unset !important;bottom:0;z-index: 9999999 !important;}
+ ::ng-deep #mapec .gm-style .gmnoprint.gm-bundled-control{bottom:50px !important;}
+ ::ng-deep #mapec .gm-style .gm-fullscreen-control{top:35px !important;}
+ /* ::ng-deep #mapec .gm-style div:first-child{ overflow: hidden;} */
+
+
+::ng-deep .gm-style input#pac-input {left: 0 !important;}
+::ng-deep .form-control input#pac-input{
+    z-index: 0;
+    position: absolute;
+    left: 0 !important;
+    /* top: -50px !important; */
+    padding: 0 20px;
+   }
+::ng-deep #edit_country {left: 0 !important;/* width: 0; */}
+::ng-deep #edit_region {/* z-index: 1050; */left: 0 !important;}
+::ng-deep #edit_route {/* z-index: 1050; */left: 0 !important;}
+::ng-deep #edit_block {/* z-index: 1050; */left: 0 !important;}
+::ng-deep #create_region {left: 0 !important;/* width: 0; */}  
+::ng-deep #create_route {left: 0 !important;/* width: 0; */}  
+::ng-deep #create_block {left: 0 !important;/* width: 0; */}
+::ng-deep #edit_route {z-index: 1050;/* width: 0; */} 
+::ng-deep #edit_region {z-index: 1050;/* width: 0; */}
+::ng-deep #edit_block { z-index: 1050;/* width: 0; */}
+
+/*Mapppp ends*/
+
+
+/* scrollbar for blocks starts */
+.dependency-body .dependency-logics .scrollbar
+{
+  height: 330px;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.dependency-body .dependency-logics .list .force-flow
+{
+  min-height: auto;
+}
+
+#scroll::-webkit-scrollbar-track
+{
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  border-radius: 4px;
+  background-color:#fff;
+}
+
+#scroll::-webkit-scrollbar
+{
+  width:8px;
+  background-color: #fff;
+}
+
+#scroll::-webkit-scrollbar-thumb
+{
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  background-color: rgb(216, 223, 231);
+}
+/* scrollbar for blocks ends */
+
+/* responsive starts */
+
+@media(min-width:1125px){
+  .container-fluid{
+    width: 100%;
+    padding-left: 180px;
+    /* padding-right: 50px; */
+}
+}
+@media(min-width:1032px){
+  .container-fluid {
+    width: 100%;
+    padding-left: 220px;
+    padding-right: 100px;
+}
+}
+
+@media (min-width: 991px){
+  .container-fluid {
+    padding-left: 144px;
+    padding-right: 0px;
+}
+}
+
+@media (min-width: 768px){
+  /* .container {
+    max-width: 720px;
+    padding-left: 90px;
+  } */
+  .dependency-body .row .col-md-2 {
+    flex: 1 0 16.666667%;
+    max-width: 19.666667%;
+}
+
+}
+/* responsive ends */
+

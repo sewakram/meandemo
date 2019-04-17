@@ -1,0 +1,17 @@
+* {font-family: 'PT Sans';}
+.page-wrapper {
+  margin-left: 260px;
+  margin-right: 20px;
+}
+/* .container-fluid {width: 100%;padding-left: 150px;padding-right: 0px;} */
+.page-header{font-size: 30;color:#122755;}
+p.page-header-content {
+  margin-top: -4px;
+  font-weight: 400;
+}
+.page-top-header{font-size: 30}
+.page-header-content{font-size: 13px;color:#91929C;}
+#map {
+        height: 400px;  /* The height is 400 pixels */
+        width: 100%;  /* The width is the width of the web page */
+       }

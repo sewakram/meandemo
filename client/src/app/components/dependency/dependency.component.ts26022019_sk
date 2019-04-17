@@ -1,0 +1,107 @@
+import { Component, OnInit } from '@angular/core';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+
+import { NavbarserviceService } from '../../services/navbarservice.service';
+import { DependencyService } from '../../services/dependency.service';
+import * as $ from 'jquery';
+// declare function initAutocomplete():any;
+
+
+// import * from 'jquery';
+@Component({
+  selector: 'app-dependency',
+  templateUrl: './dependency.component.html',
+  styleUrls: ['./dependency.component.css'],
+  providers: [NgbModalConfig, NgbModal]
+})
+export class DependencyComponent implements OnInit {
+$: any;
+countrys:any;
+states:any;
+regions:any;
+routes:any;
+blocks:any;
+data = {};
+modalReference :any; 
+  constructor(
+  public navbarservice: NavbarserviceService,
+  public dependencyservice: DependencyService,
+  config: NgbModalConfig,
+  private modalService: NgbModal,
+  private router: Router
+  ) {
+	config.backdrop = 'static';
+	config.keyboard = false; 
+   	}
+
+	open(country) {
+	this.modalReference =this.modalService.open(country);
+	
+	console.log('sham');
+	}
+	
+  ngOnInit() {
+	this.navbarservice.show();
+
+	this.dependencyservice.getcountry().subscribe(data => {
+	this.countrys = data;
+	console.log(this.countrys);
+	});
+
+	this.dependencyservice.getstate().subscribe(data => {
+	this.states = data;
+	console.log(this.states);
+	});
+
+	this.dependencyservice.getregion().subscribe(data => {
+	this.regions = data;
+	console.log(this.regions);
+	});
+
+	this.dependencyservice.getroute().subscribe(data => {
+	this.routes = data;
+	console.log(this.routes);
+	});
+
+	this.dependencyservice.getblock().subscribe(data => {
+	this.blocks = data;
+	console.log(this.blocks);
+	});
+	// initAutocomplete();
+  }
+
+  createCountry(){
+  	this.dependencyservice.createcountry(this.data).subscribe(formdata => {
+  	let m=[...this.countrys,formdata];
+  	this.countrys=m;
+	// console.log('formdata: ',formdata);
+	// console.log('countrys: ',this.countrys);
+	});
+	this.modalReference.close();
+  }
+
+  createState(){
+  	console.log(this.data);
+  	this.dependencyservice.createstate(this.data).subscribe(formdata => {
+  	let m=[...this.states,formdata];
+  	this.states=m;
+	// console.log('formdata: ',formdata);
+	// console.log('countrys: ',this.countrys);
+	});
+	this.modalReference.close();
+  }
+
+    createRegion(){
+    	console.log(this.data);
+  	this.dependencyservice.createregion(this.data).subscribe(formdata => {
+  	let m=[...this.regions,formdata];
+  	this.regions=m;
+	// console.log('formdata: ',formdata);
+	// console.log('countrys: ',this.countrys);
+	});
+	this.modalReference.close();
+  }
+
+}

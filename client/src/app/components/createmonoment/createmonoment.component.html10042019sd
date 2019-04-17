@@ -1,0 +1,322 @@
+<div class="page-wrapper">
+  <div class="animated slideInUp">
+    <div class="page-header-wrapp">
+      <div class="page-header-text">
+        <h2 class="page-header">New monument inventory interface</h2>
+        <span class="page-header-content">Two side monument validation schema</span>
+      </div>
+    </div>
+    <div class="createmonument-body">
+      <!-- <div class="container"> -->
+      
+        <div class="row createmonument-statistic">
+          <div class="col-md-6">
+            <!-- <input type="file" ng2FileSelect [uploader]="uploader" multiple /> -->
+            <!-- <button type="button" class="btn btn-success btn-s" (click)="uploader.uploadAll()"
+                                      [disabled]="!uploader.getNotUploadedItems().length">
+                                      <span class="glyphicon glyphicon-upload"></span> Upload all
+                                    </button> -->
+            <span class="createmonument-statistic-content">Image preview</span>
+            <div class="createmonument-btn btn btn-warning">
+
+              <i class="icon material-icons">filter_none</i>
+              <span>Load gallery</span>
+              <!-- The file input field used as target for the file upload widget -->
+              <input type='file' (change)="onSelectFile($event)" id="fileupload" name="m_image[]" multiple>
+            </div>
+            <!-- <input type='file' (change)="onSelectFile($event)" id="m_image" name="m_image"  multiple> -->
+            <!-- <button>Load gallery</button> -->
+            <!-- <img *ngFor='let url of urls' [src]="url" height="200"> <br />
+                    <button type="submit" class="region btn btn-light">Send</button> -->
+            <!-- galll start -->
+            <ngb-carousel *ngIf="urls">
+              <ng-template ngbSlide *ngFor='let url of urls'>
+                <!-- <span>{{url}}</span> -->
+                <img [src]="url" height="200" alt="Random first slide">
+                <div class="carousel-caption">
+                  <!-- <h3>First slide label</h3>
+                          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p> -->
+                </div>
+              </ng-template>
+
+            </ngb-carousel>
+            <!-- <span>{{urls.length}}</span> -->
+           <span *ngIf="urls.length==0">Waiting to load picture</span>
+            <form class="form-signin" (ngSubmit)="createMonument(dataForm)" #dataForm="ngForm" enctype="multipart/form-data">
+              <!-- <form (ngSubmit)="deleteBlock(singleblocks?singleblocks[0].id:'',routeid)" #bdataForm="ngForm"> -->
+            <div class="form-group">
+              <label>N</label>
+              <input required type="text" id="degrees" class="form-control" placeholder="00"
+                [(ngModel)]="data.degrees" name="degrees"><label>°</label>
+              <input required type="text" id="minutes" class="form-control" placeholder="00" [(ngModel)]="data.minutes"
+                name="minutes"><label>'</label>
+              <input required type="text" id="seconds" class="form-control" placeholder="00" [(ngModel)]="data.seconds"
+                name="seconds"><label>.</label>
+              <input required type="text" id="secondsdeci" class="form-control" placeholder="00" [(ngModel)]="data.secondsdeci"
+                name="secondsdeci">
+            </div>
+            <div class="form-group">
+              <label>E</label>
+              <input required type="text" id="e_degrees" class="form-control" placeholder="00" [(ngModel)]="data.e_degrees"
+                name="e_degrees"><label>°</label>
+              <input required type="text" id="e_minutes" class="form-control" placeholder="00" [(ngModel)]="data.e_minutes"
+                name="e_minutes"><label>'</label>
+              <input required type="text" id="e_seconds" class="form-control" placeholder="00" [(ngModel)]="data.e_seconds"
+                name="e_seconds"><label>.</label>
+              <input required type="text" id="e_secondsdeci" class="form-control" placeholder="00" [(ngModel)]="data.e_secondsdeci"
+                name="e_secondsdeci">
+            </div>
+             <button (mouseenter)="mouseEnter() " (mouseleave)="mouseLeave()" type="submit" (click)="callByset()" class="region btn btn-light">Send</button>
+             </form>
+            <!-- gall end -->
+
+          </div>
+          <div class="col-md-6">
+          
+            <form (ngSubmit)="updatemdata(monumentid,mdataForm)" #mdataForm="ngForm">
+            <div class="createmonument-statistic-form">
+              <span>Monument interface</span>
+
+              <input type="text" id="lat" class="form-control map-text-box1" attr.data-lat="{{Latitude.value}}"
+                placeholder="Latitude" #Latitude [(ngModel)]="data.lat" (ngModelChange)="holaUpdate(Latitude)" name="lat">
+              <input id="lng" class="form-control map-text-box2" type="text" #Longitude
+                attr.data-lng="{{Longitude.value}}" [(ngModel)]="data.lng" placeholder="Longitude" name="lng">
+              <div (mouseenter)="mouseEnter() " (mouseleave)="mouseLeave()" id="mapm"></div>
+
+              <div class="form-group">
+                <label>Location</label>
+                <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" [(ngModel)]="model">
+              <input required type="text" id="location" class="form-control" placeholder="Enter an address or reference"
+                [(ngModel)]="data.location" name="location">
+                
+              <label ngbButtonLabel class="btn-light toggle-active">
+                <input ngbButton type="radio" value="middle"> Public
+              </label>
+              <label ngbButtonLabel class="btn-light toggle-active">
+                <input ngbButton type="radio" [value]="false"> Business
+              </label>
+              </div>
+              </div>
+              <div class="form-group row">
+                <label for="sel1" class="for-label col-md-4">Assigned block</label>
+                <select [(ngModel)]="data.block" class="form-control for-inputbox col-md-4" id="sel1" name="block">
+                  <option>Select block</option>
+                  <div *ngIf="nearest; then thenBlockc "></div>
+                  <ng-template #thenBlockc>
+                    <option *ngFor="let block of nearest" value="{{block.id}}">{{block.bname}}</option>
+                    <!-- <option>3</option>
+                            <option>4</option> -->
+                  </ng-template>
+
+                </select>
+
+              </div>
+              <div class="form-group">
+                <label for="sel1">Type</label>
+                <select class="form-control" [(ngModel)]="data.type" id="sel1" name="type">
+                  <option>Mupi</option>
+                  <option>Transmupi</option>
+                  <option>Valla</option>
+                  <option>Pasarela</option>
+                </select>
+                <button type="submit" class="manage-faces btn btn-light">
+                  <span (click)="openfaces(faces)">Manage faces<i class="material-icons">filter_none</i></span>
+                </button>
+              </div>
+
+              <div class="form-group">
+                <label for="sel1">Provider</label>
+                <select class="form-control" id="sel1" [(ngModel)]="data.provider" name="provider">
+                  <option>Select an option</option>
+                  <option>GPO Vallas</option>
+                  <option>Publigrafik</option>
+                  <option>Top Media</option>
+                </select>
+
+              </div>
+
+              <div class="form-group">
+                <label>Notes</label>
+                <input required type="text" class="form-control" placeholder="Enter an optional note for reference"
+                  [(ngModel)]="data.notes" name="notes">
+              </div>
+
+
+              <div class="modal-footer">
+                <div  class="set-reference btn btn-light">
+                  <span class="set-reference-content">Set references
+                    <!-- {{refurls[0]|json}} -->
+                    <img [src]="refurls[0]"  *ngIf="refurls[0]; else other_content" width="30" height="30">
+                    <ng-template #other_content><i class="material-icons">aspect_ratio</i></ng-template>
+                  </span>
+                  <input type='file' (change)="opensetref(setref,refurls)" (change)="onSelectref($event)" id="reference" name="ref_image[]" multiple>
+                </div>
+                <!-- <button type="submit" (click)="opensetref(setref)" class="set-reference btn btn-light">
+                  <span class="set-reference-content">Set references <i class="material-icons">aspect_ratio</i></span>
+                </button> -->
+                
+                <button type="submit" class="reset btn btn-light">Reset</button>
+                <button type="submit" class="footer-direction btn btn-light" ><i
+                    class="material-icons"> room</i>Create Monument</button>
+              </div>
+
+            </div>
+            </form>
+          </div>
+        </div>
+      
+      <!-- </div> -->
+    </div>
+
+  </div>
+</div>
+
+<ng-template #setref let-c="close" let-d="dismiss">
+  <div class="modal-country animated fadeIn">
+    <form class="form-signin" (ngSubmit)="setreference(refimages,monumentid)" #dataForm="ngForm">
+    <div class="modal-header">
+      <h4 class="text-center" id="modal-basic-title">Draw a rectangle for reference</h4>
+      <button type="submit" class="country btn btn-light" >Reset</button>
+      <button type="submit" class="country btn btn-light" [disabled]="!dataForm.form.valid">Set reference </button>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true" class="close-icon">&times;</span>
+      </button>
+    </div>
+
+    
+
+      <div class="modal-body" style="height:100%">
+        <!-- galll start -->
+        <ngb-carousel *ngIf="refurls">
+          <ng-template ngbSlide *ngFor='let url of refurls'>
+            <!-- <span>{{url}}</span> -->
+            <img [src]="url" height="400" alt="Random first slide">
+            <div class="carousel-caption">
+            
+            </div>
+          </ng-template>
+        
+        </ngb-carousel>
+        <!-- galll end -->
+      </div>
+
+
+      <!-- <div class="modal-footer">
+        
+      </div> -->
+      </form>
+    
+  </div>
+</ng-template>
+
+<ng-template #setfref let-c="close" let-d="dismiss">
+  <div class="modal-country animated fadeIn">
+    <form class="form-signin" (ngSubmit)="setreference(refimages,monumentid)" #dataForm="ngForm">
+      <div class="modal-header">
+        <h4 class="text-center" id="modal-basic-title">Draw a rectangle for reference</h4>
+        <button type="submit" class="country btn btn-light">Reset</button>
+        <button type="submit" class="country btn btn-light" [disabled]="!dataForm.form.valid">Set reference </button>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+          <span aria-hidden="true" class="close-icon">&times;</span>
+        </button>
+      </div>
+
+
+
+      <div class="modal-body" style="height:100%">
+        <!-- galll start -->
+        <ngb-carousel *ngIf="refurls">
+          <ng-template ngbSlide *ngFor='let url of refurls'>
+            <!-- <span>{{url}}</span> -->
+            <img [src]="url" height="400" alt="Random first slide">
+            <div class="carousel-caption">
+
+            </div>
+          </ng-template>
+
+        </ngb-carousel>
+        <!-- galll end -->
+      </div>
+
+
+      <!-- <div class="modal-footer">
+        
+      </div> -->
+    </form>
+
+  </div>
+</ng-template>
+
+<ng-template #faces let-c="close" let-d="dismiss">
+  <div class="modal-faces animated fadeIn">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="modal-header">
+      <h4 class="text-center" id="modal-basic-title">Faces Management</h4>
+      <button type="submit" class="savefaces btn btn-light"  >Save Faces </button>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true" class="close-icon"><i class="material-icons">
+            close
+          </i></span>
+      </button>
+    </div>
+
+    
+
+      <div class="modal-body" style="height:100%">
+        <!-- form start -->
+        
+          <div class="card">
+            
+            
+            <div class="card-body" formArrayName="contacts">
+              <div class="row">
+                <div class="col-12" *ngFor="let contact of contactFormGroup.controls; let i = index;">
+                  <div [formGroupName]="i" class="row">
+                    <div class="form-group col-6">
+                      <label>Face {{i}}</label>
+                      
+                    </div>
+                    <div class="form-group col-6">
+                     
+                      <input class="form-control" formControlName="refname" type="text" placeholder="Reference name">
+                     
+                    </div>
+                    <div class="form-group col-6">
+                    
+                      <select  class="form-control" formControlName="level" type="text">
+                        <option value="A">Trafic level A</option>
+                        <option value="B">Trafic level B</option>
+                        <!-- <option value="3">3</option> -->
+                      </select>
+                    </div>
+                   
+                    <div class="form-group col-6">
+                       <!-- <input class="form-control" formControlName="refimg" type="file"> -->
+                        <input type='file' (change)="opensetfref(setfref,frefurls)" (change)="onSelectfref($event)" id="freference" formControlName="fref_image" multiple>
+                    </div>
+
+                    <div class="form-group col-12 text-right">
+                      <button class="btn btn-danger" type="button" (click)="removeContact(i)"> X </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="col-12">
+                <button class="btn btn-primary m-1" type="button" (click)="addContact()"> Add new </button>
+                
+              </div>
+            </div>
+          </div>
+        
+        <!-- form end -->
+
+      </div>
+      </form>
+
+      
+
+    
+  </div>
+</ng-template>

@@ -1,0 +1,105 @@
+ <!-- <div class="row row-offcanvas row-offcanvas-left"> -->
+        <nav class="sidebar" id="sidebar" role="navigation" *ngIf="navbarservice.visible">
+            <a class="navbar-brand text-center" [routerLink]="['/']"><img class="logo" src="../../../assets/images/adsmart_logo.png"></a>
+    
+            <ul class="nav flex-column ">
+              <!--  <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
+                          <a class="nav-link" [routerLink]="['/']">Home <span></span></a>
+                    </li> -->
+                    <div>
+                          <ngb-accordion #acc="ngbAccordion" [closeOthers]="true">
+                          <ngb-panel id="toggle-1" class="nav-item" *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
+                               <ng-template  ngbPanelTitle>
+                                 <a class="nav-link " [routerLink]="['/dashboard']">  <span class="nav-style"><i class="icon material-icons">apps</i>Dashboard</span></a>
+                               </ng-template>
+                          </ngb-panel>
+                          <ngb-panel >
+                            <ng-template ngbPanelTitle > 
+                              <span class="nav-tag"> Global Operations</span>
+                              </ng-template>
+                          </ngb-panel>
+                        
+                          <ngb-panel id="toggle-2" >
+                               <ng-template  ngbPanelTitle>
+                               <span class="nav-style"><i class="icon material-icons">clear_all</i> Hierarchy</span>
+                               </ng-template>
+                             <ng-template ngbPanelContent>  
+                                  <ul class="inner-item sub-menu">
+                                    <li class="sub-list"> <a class="nav-link" [routerLink]="['/dependency']" >Dependency</a></li>
+                                    <li class="sub-list"> <a class="nav-link" [routerLink]="['/monuments']">Monuments</a></li>
+                                  </ul>  
+                             </ng-template>
+                          </ngb-panel>
+                
+                        <ngb-panel id="toggle-3">
+                            <ng-template ngbPanelTitle>
+                                <span class="nav-style"><i class="icon material-icons">perm_identity</i>User Types</span>
+                            </ng-template>
+                             <ng-template ngbPanelContent>
+                                 <ul class="inner-item sub-menu">
+                                     <li><a class="nav-link" [routerLink]="['/']"><span>Operators</span></a></li>
+                                     <li><a class="nav-link" [routerLink]="['/']"> <span>Verifiers</span></a></li>
+                                     <li><a class="nav-link" [routerLink]="['/']"> <span>Resellers</span></a></li>
+                                     <li><a class="nav-link" [routerLink]="['/']"><span>Customers</span></a></li>
+                                 </ul>
+                             </ng-template>
+                      </ngb-panel>
+                 
+                          <ngb-panel id="toggle-4">
+                           <ng-template ngbPanelTitle>
+                            <span class="nav-style" ><i class="icon material-icons">filter_none</i>Advertisement Setup</span>
+                            </ng-template>
+                              <ng-template ngbPanelContent>
+                                <ul class="inner-item sub-menu">
+                                   <li><a class="nav-link" [routerLink]="['/']" ><span>Categories</span> </a></li>
+                                   <li><a class="nav-link" [routerLink]="['/']"><span>Types</span> </a></li>
+                                   <li><a class="nav-link" [routerLink]="['/']"><span> Brands</span> </a></li>
+                                   <li><a class="nav-link" [routerLink]="['/']"><span> Providers</span> </a></li>
+                                   <li><a class="nav-link" [routerLink]="['/']"><span> Cycles</span> </a></li>
+                                </ul>
+                              </ng-template>
+                          </ngb-panel>
+                      
+                 
+                          <ngb-panel >
+                              <ng-template ngbPanelTitle >
+                                <span class="nav-tag"> Display</span>
+                                </ng-template>
+                            </ngb-panel>
+                       
+                          <ngb-panel id="toggle-5">
+                               <ng-template  ngbPanelTitle>
+                           <!-- <span class="nav-tag">Display</span> -->
+                           <a class="nav-link" [routerLink]="['/globalheatmap']"><span class="nav-style"><i class="icon material-icons">public</i>Global Heatmap</span></a>
+                            
+                             </ng-template>
+                          </ngb-panel>
+                            <ngb-panel id="toggle-6">
+                               <ng-template  ngbPanelTitle>
+                            <a class="nav-link logout" (click)="onLogoutClick()" [routerLink]="['/']"><span class="nav-style"><i class="icon material-icons">exit_to_app</i>Logout</span></a>
+                            
+                             </ng-template>
+                          </ngb-panel>
+                        </ngb-accordion>
+                      </div>
+                  
+                    <li class="nav-item" *ngIf="show" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
+                         <a class="nav-link" *ngIf="!authService.loggedIn()" [routerLink]="['/login']">Login </a>
+                    </li>
+
+                    
+             
+                        
+                        
+                  
+                <!--     <li class="nav-item" *ngIf="authService.loggedIn()"><a class="nav-link" (click)="onLogoutClick()" [routerLink]="['/']">Logout</a>
+                    </li> -->
+                        <!--<li class="nav-item" *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
+                          <a class="nav-link" [routerLink]="['/profile']">Profile </a>
+                    </li> -->
+                <!--<li class="nav-item" *ngIf="!authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
+                    <a class="nav-link" [routerLink]="['/register']">Register</a>
+                    </li> -->
+            </ul>
+        </nav>
+   

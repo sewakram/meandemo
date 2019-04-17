@@ -1,0 +1,56 @@
+import { Injectable } from '@angular/core';
+import { Http, Headers } from '@angular/http';
+import { HttpModule } from '@angular/http';
+import { NavbarserviceService } from './navbarservice.service';
+
+@Injectable()
+export class DependencyService {
+
+  constructor(private http: Http,public navbarservice: NavbarserviceService,) { }
+
+    getcountry() {
+    let headers = new Headers();
+    this.navbarservice.loadToken();
+    headers.append('Authorization', this.navbarservice.authToken);
+    headers.append('Content-Type', 'application/json');
+    return this.http.get('http://3.95.92.70:5000/hierarchy/country', {headers: headers})
+      .map(res => res.json());
+  	}
+
+  	getstate() {
+    let headers = new Headers();
+    this.navbarservice.loadToken();
+    headers.append('Authorization', this.navbarservice.authToken);
+    headers.append('Content-Type', 'application/json');
+    return this.http.get('http://3.95.92.70:5000/hierarchy/state', {headers: headers})
+      .map(res => res.json());
+  	}
+
+  	getregion() {
+    let headers = new Headers();
+    this.navbarservice.loadToken();
+    headers.append('Authorization', this.navbarservice.authToken);
+    headers.append('Content-Type', 'application/json');
+    return this.http.get('http://3.95.92.70:5000/hierarchy/region', {headers: headers})
+      .map(res => res.json());
+  	}
+
+  	getroute() {
+    let headers = new Headers();
+    this.navbarservice.loadToken();
+    headers.append('Authorization', this.navbarservice.authToken);
+    headers.append('Content-Type', 'application/json');
+    return this.http.get('http://3.95.92.70:5000/hierarchy/route', {headers: headers})
+      .map(res => res.json());
+  	}
+
+  	getblock() {
+    let headers = new Headers();
+    this.navbarservice.loadToken();
+    headers.append('Authorization', this.navbarservice.authToken);
+    headers.append('Content-Type', 'application/json');
+    return this.http.get('http://3.95.92.70:5000/hierarchy/block', {headers: headers})
+      .map(res => res.json());
+  	}
+
+}
